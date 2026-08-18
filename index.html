@@ -3,41 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neuron Blood Foundation - Blood Donor List</title>
+    <title>Neuron Blood Foundation</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background: #f8f9fa; padding: 10px; }
-        .header { background: #dc3545; color: white; padding: 15px; text-align: center; border-radius: 10px; margin-bottom: 15px; }
-        .header h1 { font-size: 20px; }
-        .header p { font-size: 12px; margin-top: 5px; }
+        .header { background: #dc3545; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 15px; }
+        .header h1 { font-size: 22px; }
+        .search-box { width: 100%; padding: 12px; border: 2px solid #dc3545; border-radius: 8px; font-size: 16px; margin-bottom: 15px; }
         .donor-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .donor-name { font-size: 18px; font-weight: bold; color: #dc3545; }
-        .donor-info { margin-top: 8px; font-size: 14px; }
-        .donor-info span { display: block; margin: 4px 0; }
-        .status { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 8px; }
+        .donor-name { font-size: 20px; font-weight: bold; color: #dc3545; }
+        .donor-info { margin-top: 10px; font-size: 15px; }
+        .donor-info span { display: block; margin: 5px 0; }
+        .blood-group { background: #dc3545; color: white; padding: 4px 10px; border-radius: 5px; font-weight: bold; }
+        .status { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-top: 8px; }
         .available { background: #d4edda; color: #155724; }
-        .blood-group { background: #dc3545; color: white; padding: 3px 8px; border-radius: 5px; }
+        .phone { color: #007bff; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Neuron Blood Foundation</h1>
-        <p>রক্ত দিন, জীবন বাঁচান ❤️</p>
+        <h1>Neuron Blood Foundation 🩸</h1>
+        <p>রক্ত দিন, জীবন বাঁচান</p>
     </div>
 
+    <input type="text" id="searchInput" class="search-box" placeholder="Search: নাম, গ্রুপ, এলাকা দিয়ে খুঁজুন...">
+
     <div id="donorList">
-        <!-- DONOR 1 -->
-        <div class="donor-card">
-            <div class="donor-name">Imran</div>
+        <!-- DONOR 1 - এখানে lastDonate এর date change করলেই auto হিসাব হবে -->
+        <div class="donor-card" data-name="Imran Ahmed Kawser" data-group="B+" data-location="Savar Dhaka">
+            <div class="donor-name">Imran Ahmed Kawser</div>
             <div class="donor-info">
                 <span><b>বয়স:</b> 21 বছর</span>
                 <span><b>Blood Group:</b> <span class="blood-group">B+</span></span>
                 <span><b>Location:</b> Savar, Dhaka</span>
-                <span><b>Number:</b> 01627-000</span>
-                <span><b>Last Donate:</b> 36 days ago</span>
+                <span><b>Number:</b> <span class="phone">01627-000</span></span>
+                <span><b>Last Donate:</b> <span class="last-donate" data-date="2026-07-13"></span></span>
             </div>
             <div class="status available">Available - রক্ত দিতে পারবে</div>
         </div>
     </div>
+
+<script>
+// 1. Auto Days Calculate
+document.querySelectorAll('.last-donate').forEach(el => {
+    const lastDate = new Date(el.dataset.date);
+    const today = new Date();
+    const diffTime = Math.abs(today - lastDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    el.innerText = diffDays + " days ago";
+});
+
+// 2. Search Function
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    let filter = this.value.toLowerCase();
+    let cards = document.querySelectorAll('.donor-card');
+    cards.forEach(card => {
+        let text = card.dataset.name + card.dataset.group + card.dataset.location;
+        if(text.toLowerCase().includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
 </body>
 </html>
