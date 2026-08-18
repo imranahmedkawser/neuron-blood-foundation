@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuron Foundation - Blood Donor List</title>
+<style>
+body { font-family: 'Arial'; background: #f5f5f5; margin: 0; padding: 10px; }
+.header { background: #d32f2f; color: white; padding: 20px; text-align: center; border-radius: 10px; }
+.logo { width: 90px; height: 90px; background: #fff; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; color: #d32f2f; font-weight: bold; font-size: 12px; }
+.search { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
+input, select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; flex: 1; min-width: 150px; }
+table { width: 100%; background: white; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+th { background: #d32f2f; color: white; padding: 12px; font-size: 14px; }
+td { padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-size: 14px; }
+.green { background: #c8e6c9; color: #2e7d32; font-weight: bold; border-radius: 5px; padding: 5px; }
+.red { background: #ffcdd2; color: #c62828; font-weight: bold; border-radius: 5px; padding: 5px; }
+.call-btn { background: #25D366; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 12px; }
+@media(max-width:700px){ table { font-size: 12px; } th,td { padding: 8px 4px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">LOGO<br>HERE</div> <!-- এখানে পরে logo.png বসাবা -->
+  <h1>Neuron Foundation</h1>
+  <p>রক্ত দিন, জীবন বাঁচান ❤️</p>
+</div>
+
+<div class="search">
+  <input type="text" id="searchName" placeholder="নাম দিয়ে খুঁজুন...">
+  <select id="searchGroup">
+    <option value="">সব Blood Group</option>
+    <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+    <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
+  </select>
+  <select id="searchThana">
+    <option value="">সব থানা</option>
+    <option>ধামরাই</option><option>সাভার</option><option>আশুলিয়া</option>
+    <option>কেরানীগঞ্জ</option><option>মিরপুর</option>
+  </select>
+</div>
+
+<table id="donorTable">
+  <thead>
+    <tr>
+      <th>নাম</th><th>বয়স</th><th>গ্রুপ</th><th>থানা</th><th>নাম্বার</th><th>শেষ রক্তদান</th><th>Status</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+// এখানে donor add করবা। তোমার দেওয়া format এ
+const donors = [
+  {name: "Imran Ahmed Kawser", age: 25, group: "B+", thana: "Savar", number: "01627-000", last: "2026-01-10"},
+  {name: "রাহিম মিয়া", age: 24, group: "O+", thana: "ধামরাই", number: "01711-111", last: "2026-03-15"},
+  {name: "করিম সাহেব", age: 30, group: "A+", thana: "সাভার", number: "01822-222222", last: "2026-04-20"}
+];
+
+function daysBetween(d1, d2) {
+  return Math.floor((d2 - d1) / (1000*60*60*24));
+}
+
+function showDonors() {
+  const tbody = document.querySelector("#donorTable tbody");
+  const today = new Date();
+  const nameVal = document.getElementById("searchName").value.toLowerCase();
+  const groupVal = document.getElementById("searchGroup").value;
+  const thanaVal = document.getElementById("searchThana").value;
+  
+  let html = "";
+  
+  donors.filter(d => {
+    return d.name.toLowerCase().includes(nameVal) &&
+           (groupVal === "" || d.group === groupVal) &&
+           (thanaVal === "" || d.thana === thanaVal);
+  }).forEach(d => {
+    const lastDate = new Date(d.last);
+    const diff = daysBetween(lastDate, today);
+    let status = "";
+    if(diff < 120) status = `<span class="red">🔴 ${120-diff} দিন বাকি</span>`;
+    else status = `<span class="green">🟢 দিতে পারবে</span>`;
+    
+    html += `<tr>
+      <td>${d.name}</td>
+      <td>${d.age}</td>
+      <td>${d.group}</td>
+      <td>${d.thana}</td>
+      <td><a href="tel:${d.number}" class="call-btn">📞 ${d.number}</a></td>
+      <td>${d.last}</td>
+      <td>${status}</td>
+    </tr>`;
+  });
+  
+  if(html === "") html = `<tr><td colspan="7">কোনো Donor পাওয়া যায়নি</td></tr>`;
+  tbody.innerHTML = html;
+}
+
+showDonors();
+
+// Search কাজ করবে
+document.getElementById("searchName").onkeyup = showDonors;
+document.getElementById("searchGroup").onchange = showDonors;
+document.getElementById("searchThana").onchange = showDonors;
+</script>
+</body>
+</html>
