@@ -3,69 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neuron Blood Foundation</title>
+    <title>Neuron Blood Foundation - Donor List</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background: #f8f9fa; padding: 10px; }
         .header { background: #dc3545; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 15px; }
         .header h1 { font-size: 22px; }
-        .search-box { width: 100%; padding: 12px; border: 2px solid #dc3545; border-radius: 8px; font-size: 16px; margin-bottom: 15px; }
-        .donor-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .donor-name { font-size: 20px; font-weight: bold; color: #dc3545; }
-        .donor-info { margin-top: 10px; font-size: 15px; }
-        .donor-info span { display: block; margin: 5px 0; }
-        .blood-group { background: #dc3545; color: white; padding: 4px 10px; border-radius: 5px; font-weight: bold; }
-        .status { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-top: 8px; }
-        .available { background: #d4edda; color: #155724; }
-        .phone { color: #007bff; font-weight: bold; }
+        
+        .search-area { display: flex; gap: 10px; margin-bottom: 15px; }
+        .search-box { flex: 1; padding: 12px; border: 2px solid #dc3545; border-radius: 8px; font-size: 16px; }
+        
+        table { width: 100%; background: white; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #dc3545; color: white; padding: 12px 8px; text-align: left; font-size: 14px; }
+        td { padding: 12px 8px; border-bottom: 1px solid #ddd; font-size: 14px; }
+        tr:hover { background: #f1f1f1; }
+        
+        .blood-group { background: #dc3545; color: white; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
+        .status-green { color: #155724; font-weight: bold; }
+        .status-red { color: #dc3545; font-weight: bold; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .green-dot { background-color: #28a745; }
+        .red-dot { background-color: #dc3545; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Neuron Blood Foundation 🩸</h1>
-        <p>রক্ত দিন, জীবন বাঁচান</p>
+        <p>রক্তদাতার তালিকা</p>
     </div>
 
-    <input type="text" id="searchInput" class="search-box" placeholder="Search: নাম, গ্রুপ, এলাকা দিয়ে খুঁজুন...">
-
-    <div id="donorList">
-        <!-- DONOR 1 - এখানে lastDonate এর date change করলেই auto হিসাব হবে -->
-        <div class="donor-card" data-name="Imran Ahmed Kawser" data-group="B+" data-location="Savar Dhaka">
-            <div class="donor-name">Imran Ahmed Kawser</div>
-            <div class="donor-info">
-                <span><b>বয়স:</b> 21 বছর</span>
-                <span><b>Blood Group:</b> <span class="blood-group">B+</span></span>
-                <span><b>Location:</b> Savar, Dhaka</span>
-                <span><b>Number:</b> <span class="phone">01627-000</span></span>
-                <span><b>Last Donate:</b> <span class="last-donate" data-date="2026-07-13"></span></span>
-            </div>
-            <div class="status available">Available - রক্ত দিতে পারবে</div>
-        </div>
+    <div class="search-area">
+        <input type="text" id="bloodSearch" class="search-box" placeholder="1. Blood Group লিখুন: A+ B+ O+">
+        <input type="text" id="locationSearch" class="search-box" placeholder="2. থানা লিখুন: সাভার ধামরাই">
     </div>
+
+    <table id="donorTable">
+        <thead>
+            <tr>
+                <th>নাম</th>
+                <th>বয়স</th>
+                <th>Blood Group</th>
+                <th>থানা</th>
+                <th>Last Donate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- DONOR 1 -->
+            <tr data-group="O+" data-location="ধামরাই">
+                <td>রাহিম</td>
+                <td>24</td>
+                <td><span class="blood-group">O+</span></td>
+                <td>ধামরাই</td>
+                <td class="last-date" data-date="2026-04-10">10-04-2026</td>
+                <td class="status"></td>
+            </tr>
+
+            <!-- DONOR 2 -->
+            <tr data-group="A+" data-location="সাভার">
+                <td>করিম</td>
+                <td>30</td>
+                <td><span class="blood-group">A+</span></td>
+                <td>সাভার</td>
+                <td class="last-date" data-date="2026-01-20">20-01-2026</td>
+                <td class="status"></td>
+            </tr>
+
+            <!-- DONOR 3 -->
+            <tr data-group="B+" data-location="সাভার">
+                <td>Imran Ahmed Kawser</td>
+                <td>21</td>
+                <td><span class="blood-group">B+</span></td>
+                <td>সাভার</td>
+                <td class="last-date" data-date="2026-07-13">13-07-2026</td>
+                <td class="status"></td>
+            </tr>
+        </tbody>
+    </table>
 
 <script>
-// 1. Auto Days Calculate
-document.querySelectorAll('.last-donate').forEach(el => {
-    const lastDate = new Date(el.dataset.date);
+// 1. Auto Status: 120 দিন = 4 মাস
+function updateStatus() {
     const today = new Date();
-    const diffTime = Math.abs(today - lastDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    el.innerText = diffDays + " days ago";
-});
-
-// 2. Search Function
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    let filter = this.value.toLowerCase();
-    let cards = document.querySelectorAll('.donor-card');
-    cards.forEach(card => {
-        let text = card.dataset.name + card.dataset.group + card.dataset.location;
-        if(text.toLowerCase().includes(filter)) {
-            card.style.display = "";
+    document.querySelectorAll('#donorTable tbody tr').forEach(row => {
+        const dateCell = row.querySelector('.last-date');
+        const statusCell = row.querySelector('.status');
+        const lastDate = new Date(dateCell.dataset.date);
+        const diffDays = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+        
+        if(diffDays >= 120) {
+            statusCell.innerHTML = '<span class="dot green-dot"></span><span class="status-green">Donate করতে পারবে</span>';
         } else {
-            card.style.display = "none";
+            statusCell.innerHTML = '<span class="dot red-dot"></span><span class="status-red">Donate করা যাবে না</span>';
         }
     });
-});
+}
+updateStatus();
+
+// 2. Search: Blood Group must, Location optional
+function filterTable() {
+    let bloodFilter = document.getElementById('bloodSearch').value.toLowerCase();
+    let locationFilter = document.getElementById('locationSearch').value.toLowerCase();
+    let rows = document.querySelectorAll('#donorTable tbody tr');
+    
+    rows.forEach(row => {
+        let group = row.dataset.group.toLowerCase();
+        let location = row.dataset.location.toLowerCase();
+        
+        let bloodMatch = group.includes(bloodFilter);
+        let locationMatch = locationFilter === "" || location.includes(locationFilter);
+        
+        if(bloodMatch && locationMatch) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
+document.getElementById('bloodSearch').addEventListener('keyup', filterTable);
+document.getElementById('locationSearch').addEventListener('keyup', filterTable);
 </script>
 </body>
 </html>
