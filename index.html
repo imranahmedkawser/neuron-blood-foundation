@@ -36,28 +36,31 @@
         <input type="text" id="bloodSearch" class="search-box" placeholder="1. Blood Group লিখুন: A+ B+ O+">
         <input type="text" id="locationSearch" class="search-box" placeholder="2. থানা লিখুন: সাভার ধামরাই">
     </div>
-
-    <table id="donorTable">
+<table id="donorTable">
         <thead>
             <tr>
                 <th>নাম</th>
+                <th>রক্তের গ্রুপ</th>
                 <th>বয়স</th>
-                <th>Blood Group</th>
-                <th>থানা</th>
-                <th>Last Donate</th>
+                <th>ওজন</th>
+                <th>ঠিকানা</th>
+                <th>সর্বশেষ Donate</th>
                 <th>Status</th>
+                <th>মোবাইল</th>
             </tr>
         </thead>
         <tbody>
             <!-- DONOR 1 -->
-            <tr data-group="O+" data-location="ধামরাই">
-                <td>রাহিম</td>
-                <td>24</td>
-                <td><span class="blood-group">O+</span></td>
-                <td>ধামরাই</td>
-                <td class="last-date" data-date="2026-04-10">10-04-2026</td>
-                <td class="status"></td>
-            </tr>
+<tr data-group="B+" data-location="সাভার">
+    <td>Imran Ahmed Kawser</td>
+    <td><span class="blood-group">B+</span></td>
+    <td>21</td>
+    <td>60 kg</td>
+    <td>বাইপাইল, সাভার, ঢাকা</td>
+    <td class="last-date" data-date="2026-07-13">13-07-2026</td>
+    <td class="status"></td>
+    <td><a href="tel:01627-000" style="color:#007bff; font-weight:bold;">01627-000</a></td>
+</tr>
 
             <!-- DONOR 2 -->
             <tr data-group="A+" data-location="সাভার">
