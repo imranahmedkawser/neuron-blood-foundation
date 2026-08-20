@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Neuron Blood Foundation - Become a Donor</title>
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+ body { background: #28a745; padding: 10px; }
+.header { background: white; color: #28a745; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 15px; }
+.header h1 { font-size: 22px; }
+.form-container {
+  background: white; padding: 25px; border-radius: 10px;
+  max-width: 600px; margin: 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+ }
+.form-group { margin-bottom: 15px; }
+ label { display: block; font-weight: bold; margin-bottom: 6px; color: #333; font-size: 15px; }
+ input, select, textarea {
+  width: 100%; padding: 12px; border: 2px solid #dc3545;
+  border-radius: 8px; font-size: 16px; background: white;
+ }
+.form-row { display: flex; gap: 10px; }
+.form-row.form-group { flex: 1; }
+.submit-btn {
+  width: 100%; background: #dc3545; color: white; padding: 15px;
+  border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold;
+ }
+.submit-btn:hover { background: #b02a37; }
+.note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 5px; font-size: 14px; }
+.btn-box { text-align:center; margin:15px 0; }
+.btn-box a { background:#fff; color:#dc3545; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:bold; display:inline-block; }
+.success { display:none; color:green; text-align:center; margin-top:15px; font-weight:bold; font-size:16px; }
+ </style>
+</head>
+<body>
+
+<div class="header">
+ <h1>Neuron Blood Foundation 🩸</h1>
+ <p>রক্তদাতা হিসেবে রেজিস্ট্রেশন করুন</p>
+</div>
+
+<div class="btn-box">
+ <a href="donor.html">← Donor List দেখুন</a>
+</div>
+
+<div class="form-container">
+ <div class="note">
+  <b>নোট:</b> 18+ বয়স, 50kg+ ওজন এবং শেষ রক্তদানের 4 মাস পার হতে হবে।
+ </div>
+
+ <form id="donorForm">
+  <div class="form-row">
+   <div class="form-group">
+    <label>আপনার নাম *</label>
+    <input type="text" name="entry.2005620554" required placeholder="পুরো নাম লিখুন">
+   </div>
+   <div class="form-group">
+    <label>মোবাইল নাম্বার *</label>
+    <input type="tel" name="entry.1045781291" required placeholder="01XXXXXXXXX">
+   </div>
+  </div>
+
+  <div class="form-row">
+   <div class="form-group">
+    <label>রক্তের গ্রুপ *</label>
+    <select name="entry.1065046570" required>
+     <option value="">Select করুন</option>
+     <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+     <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label>বয়স *</label>
+    <input type="number" name="entry.839337160" required min="18" max="60" placeholder="18-60">
+   </div>
+  </div>
+
+  <div class="form-row">
+   <div class="form-group">
+    <label>ওজন *</label>
+    <input type="number" name="entry.1166974658" required placeholder="kg">
+   </div>
+   <div class="form-group">
+    <label>সর্বশেষ রক্তদান</label>
+    <input type="date" name="entry.1846923512">
+   </div>
+  </div>
+
+  <div class="form-group">
+    <label>বিভাগ *</label>
+    <select name="entry.1209115379" id="division" onchange="loadDistricts()" required>
+     <option value="">Select করুন</option>
+     <option>ঢাকা</option><option>চট্টগ্রাম</option><option>রাজশাহী</option>
+     <option>খুলনা</option><option>বরিশাল</option><option>সিলেট</option>
+     <option>রংপুর</option><option>ময়মনসিংহ</option>
+    </select>
+   </div>
+
+   <div class="form-row">
+    <div class="form-group">
+     <label>জেলা *</label>
+     <select name="entry.1424675003" id="district" required>
+      <option value="">প্রথমে বিভাগ Select করুন</option>
+     </select>
+    </div>
+    <div class="form-group">
+     <label>উপজেলা/থানা *</label>
+     <input type="text" name="entry.2037210213" required placeholder="যেমন: সাভার">
+    </div>
+   </div>
+
+   <div class="form-group">
+    <label>সম্পূর্ণ ঠিকানা *</label>
+    <textarea name="entry.1979452670" rows="3" required placeholder="গ্রাম, ইউনিয়ন, থানা, জেলা"></textarea>
+   </div>
+
+   <button type="submit" class="submit-btn">রেজিস্ট্রেশন করুন</button>
+ </form>
+
+ <p id="successMsg" class="success">✅ আপনার তথ্য সফলভাবে জমা হয়েছে। ধন্যবাদ!</p>
+</div>
+
+<script>
+// 64 জেলার Data
+const data = {
+ "ঢাকা": ["ঢাকা", "গাজীপুর", "কিশোরগঞ্জ", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "নারায়ণগঞ্জ", "নরসিংদী", "টাঙ্গাইল", "ফরিদপুর", "গোপালগঞ্জ", "মাদারীপুর", "রাজবাড়ী", "শরীয়তপুর", "সাভার", "ধামরাই"],
+ "চট্টগ্রাম": ["চট্টগ্রাম", "ক্সবাজার", "রাঙামাটি", "বান্দরবান", "খাগড়াছড়ি", "কুমিল্লা", "চাঁদপুর", "লক্ষ্মীপুর", "নোয়াখালী", "ফেনী", "ব্রাহ্মণবাড়িয়া"],
+ "রাজশাহী": ["রাজশাহী", "নাটোর", "পাবনা", "সিরাজগঞ্জ", "বগুড়া", "চাঁপাইনবাবগঞ্জ", "নওগাঁ", "জয়পুরহাট"],
+ "খুলনা": ["খুলনা", "বাগেরহাট", "সাতক্ষীরা", "যশোর", "নড়াইল", "কুষ্টিয়া", "মেহেরপুর", "চুয়াডাঙ্গা"],
+ "বরিশাল": ["বরিশাল", "পটুয়াখালী", "ভোলা", "পিরোজপুর", "ঝালকাঠি", "বরগুনা"],
+ "সিলেট": ["সিলেট", "হবিগঞ্জ", "মৌলভীবাজার", "সুনামগঞ্জ"],
+ "রংপুর": ["রংপুর", "দিনাজপুর", "কুড়িগ্রাম", "লালমনিরহাট", "নীলফামারী", "গাইবান্ধা", "ঠাকুরগাঁও", "পঞ্চগড়"],
+ "ময়মনসিংহ": ["ময়মনসিংহ", "জামালপুর", "নেত্রকোনা", "শেরপুর"]
+};
+
+function loadDistricts() {
+ let division = document.getElementById('division').value;
+ let districtSelect = document.getElementById('district');
+ districtSelect.innerHTML = '<option value="">Select করুন</option>';
+ if(data[division]) {
+  data[division].forEach(d => {
+   districtSelect.innerHTML += `<option>${d}</option>`;
+  });
+ }
+}
+
+// Google Form এ Submit
+document.getElementById('donorForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+
+ let formData = new FormData(this);
+
+ fetch("https://docs.google.com/forms/d/e/1FAIpQLSf9BwD-6JIv1H7dg3yLNtMR74D7RwGQD5Rz6LqB3rDSdX91Xg/formResponse", {
+  method: "POST",
+  mode: "no-cors",
+  body: formData
+ });
+
+ document.getElementById('successMsg').style.display = 'block';
+ this.reset();
+ setTimeout(()=>{document.getElementById('successMsg').style.display = 'none';}, 5000);
+});
+</script>
+
+</body>
+  </html>
