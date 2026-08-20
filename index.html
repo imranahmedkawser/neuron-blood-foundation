@@ -2,41 +2,83 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neuron Blood Foundation</title>
   <style>
-    body { font-family: Arial; margin:0; background:#f9f9f9; }
-    header { background:white; padding:15px; text-align:center; }
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to right, #c70000, #2d5016);
-      color: white;
+    body { margin:0; font-family: Arial, sans-serif; background:#f5f5f5; }
+    
+    .top-bar {
+      background:#c70000;
+      padding:10px;
     }
-    .hero h2 span { color: #ffff00; }
-    .btn {
-      padding: 12px 25px;
-      margin: 10px;
-      border-radius: 25px;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: bold;
+    .search-box {
+      background:white;
+      border-radius:5px;
+      padding:10px;
+      text-align:center;
+      font-weight:bold;
     }
-    .btn.red { background: white; color: #c70000; }
-    .btn.green { background: white; color: #2d5016; }
+
+    .banner img {
+      width:100%;
+      border-radius:10px;
+      margin-top:10px;
+    }
+
+    .title {
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      margin:15px 0;
+    }
+
+    .mission {
+      font-size:18px;
+      margin:20px 15px 10px 15px;
+      font-weight:bold;
+    }
+
+    .btn-box {
+      background:white;
+      margin:10px 15px;
+      padding:15px;
+      border-radius:8px;
+      font-size:18px;
+      font-weight:bold;
+      box-shadow:0 2px 4px #ddd;
+    }
+    .btn-box a {
+      text-decoration:none;
+      color:black;
+      display:block;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Neuron Blood Foundation</h1>
-  </header>
+  <div class="top-bar">
+    <div class="search-box">24 Hours, Dhaka, Contact</div>
+  </div>
 
-  <section class="hero">
-    <h2>Save Lives, <span>Donate Blood</span></h2>
-    <p>saving humanity, connecting lives</p>
-    <a href="donor.html" class="btn red">Find Donor</a>
-    <a href="form.html" class="btn green">Become a Donor</a>
-  </section>
+  <div class="banner">
+    <img src="banner.jpg" alt="Save Lives Donate Blood">
+  </div>
+
+  <div class="title">Neuron • Blood Foundation</div>
+
+  <div class="mission">Mission</div>
+
+  <div class="btn-box">
+    <a href="donor.html">Find Donor</a>
+  </div>
+
+  <div class="btn-box">
+    <a href="form.html">Become Donor</a>
+  </div>
+
+  <div class="btn-box">
+    🔒 Emergency Blood Request
+  </div>
 
 </body>
 </html>
