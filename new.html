@@ -5,40 +5,91 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Neuron Blood Foundation - Donor List</title>
  <style>
+  
  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
  body { background: #28a745; padding: 10px; }
  .header { background: white; color: #28a745; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 15px; }
  .header h1 { font-size: 22px; }
+<script>
+// 1. Auto Status: 120 দিন = 4 মাস
+function updateStatus() {
+ const today = new Date();
+ document.querySelectorAll('#donorTable tbody tr').forEach(row => {
+  const dateCell = row.querySelector('.last-date');
+  const statusCell = row.querySelector('.status');
+  if(!dateCell ||!dateCell.dataset.date) { statusCell.innerHTML = '<span class="dot red-dot"></span><span class="status-red">Data নাই</span>'; return; }
+  const lastDate = new Date(dateCell.dataset.date);
+  const diffDays = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+  if(diffDays >= 120) {
+   statusCell.innerHTML = '<span class="dot green-dot"></span><span class="status-green">Donate করতে পারবে</span>';
+  } else {
+   statusCell.innerHTML = '<span class="dot red-dot"></span><span class="status-red">Donate করা যাবে না</span>';
+  }
+ });
+}
+updateStatus();
 
- .search-area {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
- }
- .form-row { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
- .form-group { flex: 1; min-width: 200px; }
- label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; font-size: 14px; }
- select, input {
-  width: 100%; padding: 12px; border: 2px solid #dc3545;
-  border-radius: 8px; font-size: 16px; background: white;
- }
- .search-btn {
-  width: 100%; background: #dc3545; color: white; padding: 14px;
-  border: none; border-radius: 8px; font-size: 18px; cursor: pointer; margin-top: 5px;
- }
- .search-btn:hover { background: #b02a37; }
+// 2. বাংলাদেশের 64 জেলা + উপজেলা
+const data = {
+ "ঢাকা": ["ঢাকা", "ফরিদপুর", "গাজীপুর", "গোপালগঞ্জ", "কিশোরগঞ্জ", "মাদারীপুর", "মানিকগঞ্জ", "মুন্সীগঞ্জ", "নারায়ণগঞ্জ", "নরসিংদী", "রাজবাড়ী", "শরীয়তপুর", "টাঙ্গাইল"],
+ "চট্টগ্রাম": ["চট্টগ্রাম", "বান্দরবান", "ব্রাহ্মণবাড়িয়া", "চাঁদপুর", "ক্সবাজার", "কুমিল্লা", "খাগড়াছড়ি", "লক্ষ্মীপুর", "নোয়াখালী", "রাঙামাটি", "ফেনী"],
+ "রাজশাহী": ["রাজশাহী", "বগুড়া", "চাঁপাইনবাবগঞ্জ", "জয়পুরহাট", "নাটোর", "নওগাঁ", "পাবনা", "সিরাজগঞ্জ"],
+ "খুলনা": ["খুলনা", "বাগেরহাট", "চুয়াডাঙ্গা", "যশোর", "ঝিনাইদহ", "কুষ্টিয়া", "মাগুরা", "মেহেরপুর", "নড়াইল", "সাতক্ষীরা"],
+ "বরিশাল": ["বরিশাল", "বরগুনা", "ভোলা", "ঝালকাঠি", "পটুয়াখালী", "পিরোজপুর"],
+ "সিলেট": ["সিলেট", "হবিগঞ্জ", "মৌলভীবাজার", "সুনামগঞ্জ"],
+ "রংপুর": ["রংপুর", "দিনাজপুর", "গাইবান্ধা", "কুড়িগ্রাম", "লালমনিরহাট", "নীলফামারী", "পঞ্চগড়", "ঠাকুরগাঁও"],
+ "ময়মনসিংহ": ["ময়মনসিংহ", "জামালপুর", "নেত্রকোনা", "শেরপুর"]
+};
 
- table { width: 100%; background: white; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
- th { background: #dc3545; color: white; padding: 12px 8px; text-align: left; font-size: 14px; }
- td { padding: 12px 8px; border-bottom: 1px solid #ddd; font-size: 14px; }
- tr:hover { background: #f1f1f1; }
- .blood-group { background: #dc3545; color: white; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
- .status-green { color: #155724; font-weight: bold; }
- .status-red { color: #dc3545; font-weight: bold; }
- .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
- .green-dot { background-color: #28a745; }
- .red-dot { background-color: #dc3545; }
+function loadDistricts() {
+ let division = document.getElementById('divisionSelect').value;
+ let districtSelect = document.getElementById('districtSelect');
+ let upazilaSelect = document.getElementById('upazilaSelect');
+
+ districtSelect.innerHTML = '<option value="">সব জেলা</option>';
+ upazilaSelect.innerHTML = '<option value="">প্রথমে জেলা Select করুন</option>';
+
+ if(division!== "" && data[division]) {
+  data[division].forEach(d => {
+   districtSelect.innerHTML += `<option value="${d}">${d}</option>`;
+  });
+ }
+}
+
+function loadUpazilas() {
+ let district = document.getElementById('districtSelect').value;
+ let upazilaSelect = document.getElementById('upazilaSelect');
+ upazilaSelect.innerHTML = '<option value="">সব উপজেলা</option>';
+ if(district!== "") {
+  upazilaSelect.innerHTML += `<option value="${district}">${district}</option>`;
+ }
+}
+
+// 3. Search: Filter করার Function
+function filterTable() {
+  let blood = document.getElementById('bloodSelect').value.toLowerCase();
+  let division = document.getElementById('divisionSelect').value.toLowerCase();
+  let district = document.getElementById('districtSelect').value.toLowerCase();
+  let upazila = document.getElementById('upazilaSelect').value.toLowerCase();
+  let area = document.getElementById('areaInput').value.toLowerCase();
+
+  let rows = document.querySelectorAll("#donorTable tbody tr");
+  rows.forEach(row => {
+    let group = row.getAttribute("data-group").toLowerCase();
+    let location = row.getAttribute("data-location").toLowerCase();
+
+    let show = true;
+    if(blood && group!== blood) show = false;
+    if(district &&!location.includes(district)) show = false;
+    if(upazila &&!location.includes(upazila)) show = false;
+    if(area &&!location.includes(area)) show = false;
+    if(division &&!location.includes(division)) show = false;
+
+    row.style.display = show? "" : "none";
+  });
+}
+</script>
+
  </style>
 </head>
 <body>
