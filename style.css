@@ -293,37 +293,23 @@ font-size:18px;
 
 @media(max-width:768px){
 
-.navbar{
-flex-direction:column;
-gap:20px;
-padding:20px;
-}
-
-.navbar ul{
-flex-wrap:wrap;
-justify-content:center;
-}
-
 .hero{
 flex-direction:column;
-padding:30px;
+padding:20px;
 }
 
 .hero-left{
 width:100%;
 }
 
-.hero-left h1{
-font-size:55px;
-}
-
-.hero-left p{
-font-size:20px;
+.hero-right{
+width:100%;
+text-align:center;
 }
 
 .hero-right img{
-width:100%;
-margin-top:20px;
+width:90%;
+max-width:350px;
 }
 
 .why-grid,
@@ -335,14 +321,28 @@ grid-template-columns:1fr;
 grid-template-columns:repeat(2,1fr);
 }
 
-.cta h3{
-width:100%;
+.navbar{
+flex-direction:column;
+padding:15px;
+}
+
+.navbar ul{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+
+.logo-box h2{
 font-size:32px;
 }
 
-footer{
-flex-direction:column;
-gap:20px;
-text-align:center;
+.logo-box p{
+font-size:18px;
 }
+
+.tagline{
+display:none;
+}
+
 }
