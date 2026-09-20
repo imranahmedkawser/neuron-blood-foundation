@@ -282,16 +282,16 @@ color:white;
 }
 
 footer h2{
-font-size:30px;
+font-size:40px;
 }
 
 footer p{
-font-size:14px;
+font-size:18px;
 }
 
 /* MOBILE */
 
-@media(max-width:100%){
+@media(max-width:768px){
 
 .hero{
 flex-direction:column;
@@ -347,35 +347,8 @@ display:none;
 
 .social-links a{
 color:white;
-font-size:40px;
+font-size:28px;
 margin:0 10px;
 text-decoration:none;
-}
-
-.menu-btn{
-    display:none;
-    font-size:30px;
-    cursor:pointer;
-    color:white;
-}
-
-@media(max-width:768px){
-
-.menu-btn{
-    display:block;
-}
-
-#navMenu{
-    display:none;
-    flex-direction:column;
-    width:100%;
-    text-align:center;
-    margin-top:15px;
-}
-
-#navMenu.show{
-    display:flex;
-}
-
 }
 }
