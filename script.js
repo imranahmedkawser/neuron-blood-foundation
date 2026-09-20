@@ -28,8 +28,12 @@ element.innerText = Math.floor(count) + "+";
 
 // Default Values
 
-animateCounter("donorCount", 500);
+animateCounter("donorCount", 00);
 
-animateCounter("donationCount", 1000);
+animateCounter("donationCount", 00);
 
-animateCounter("memberCount", 200);
+animateCounter("memberCount", 05);
+
+function toggleMenu(){
+    document.getElementById("navMenu").classList.toggle("show");
+}
