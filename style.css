@@ -345,4 +345,10 @@ font-size:18px;
 display:none;
 }
 
+.social-links a{
+color:white;
+font-size:28px;
+margin:0 10px;
+text-decoration:none;
+}
 }
