@@ -282,16 +282,16 @@ color:white;
 }
 
 footer h2{
-font-size:40px;
+font-size:30px;
 }
 
 footer p{
-font-size:18px;
+font-size:14px;
 }
 
 /* MOBILE */
 
-@media(max-width:768px){
+@media(max-width:100%){
 
 .hero{
 flex-direction:column;
@@ -347,7 +347,7 @@ display:none;
 
 .social-links a{
 color:white;
-font-size:28px;
+font-size:40px;
 margin:0 10px;
 text-decoration:none;
 }
