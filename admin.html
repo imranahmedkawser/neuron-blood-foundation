@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuron Blood Foundation - Admin Panel</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+.admin-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.admin-card{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.admin-card h2{
+    text-align:center;
+    color:#d90000;
+    margin-bottom:20px;
+}
+
+.admin-card input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    margin-bottom:12px;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#d90000;
+    color:white;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#b50000;
+}
+
+.error{
+    color:red;
+    margin-top:10px;
+    text-align:center;
+}
+
+#adminPanel{
+    display:none;
+    margin-top:20px;
+}
+
+#pendingList{
+    width:100%;
+}
+
+.pending-card{
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+    margin-bottom:12px;
+    background:#fff;
+}
+
+.pending-card h3{
+    color:#d90000;
+    margin-bottom:8px;
+}
+
+.pending-card p{
+    margin:4px 0;
+}
+
+.action-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.approve-btn{
+    flex:1;
+    background:green;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.decline-btn{
+    flex:1;
+    background:#d90000;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.no-data{
+    text-align:center;
+    font-weight:bold;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+    .admin-card{
+        max-width:100%;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="admin-wrapper">
+
+    <div class="admin-card">
+
+        <h2>Neuron Blood Foundation Admin Panel</h2>
+
+        <input
+        type="password"
+        id="adminPassword"
+        placeholder="Enter Admin Password">
+
+        <button
+        class="btn"
+        onclick="adminLogin()">
+        Login
+        </button>
+
+        <div id="adminMessage"></div>
+
+        <div id="adminPanel">
+
+            <h3 style="margin-bottom:15px;">
+                Pending Members
+            </h3>
+
+            <div id="pendingList">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module">
+
+import {
+initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+onSnapshot,
+updateDoc,
+deleteDoc,
+doc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+apiKey: "YOUR_API_KEY",
+
+authDomain: "YOUR_PROJECT.firebaseapp.com",
+
+projectId: "YOUR_PROJECT_ID",
+
+storageBucket: "YOUR_PROJECT.appspot.com",
+
+messagingSenderId: "YOUR_SENDER_ID",
+
+appId: "YOUR_APP_ID"
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+
+/* ADMIN PASSWORD */
+
+const ADMIN_PASSWORD =
+"neuron123";
+
+
+window.adminLogin=function(){
+
+const password =
+document.getElementById("adminPassword").value;
+
+const message =
+document.getElementById("adminMessage");
+
+if(password===ADMIN_PASSWORD){
+
+message.innerHTML="";
+
+document.getElementById("adminPanel")
+.style.display="block";
+
+loadPending();
+
+}
+else{
+
+message.innerHTML=
+"<div class='error'>Wrong Password!</div>";
+
+}
+
+};
+
+
+/* LOAD PENDING MEMBERS */
+
+function loadPending(){
+
+const list =
+document.getElementById("pendingList");
+
+list.innerHTML="Loading...";
+
+onSnapshot(
+collection(db,"members"),
+
+snapshot=>{
+
+list.innerHTML="";
+
+let found=false;
+
+snapshot.forEach(item=>{
+
+const data=item.data();
+
+if(data.status==="Pending"){
+
+found=true;
+
+const div=
+document.createElement("div");
+
+div.className="pending-card";
+
+div.innerHTML=`
+
+<h3>
+${data.fullNameEnglish || data.fullNameBangla}
+</h3>
+
+<p>
+<b>Phone:</b>
+${data.mobileNumber || ""}
+</p>
+
+<p>
+<b>Email:</b>
+${data.email || ""}
+</p>
+
+<p>
+<b>Role:</b>
+${data.interestedRole || ""}
+</p>
+
+<div class="action-buttons">
+
+<button
+class="approve-btn"
+onclick="approveMember('${item.id}')">
+
+Approve
+
+</button>
+
+<button
+class="decline-btn"
+onclick="deleteMember('${item.id}')">
+
+Decline
+
+</button>
+
+</div>
+
+`;
+
+list.appendChild(div);
+
+}
+
+});
+
+if(!found){
+
+list.innerHTML=
+"<div class='no-data'>No Pending Members</div>";
+
+}
+
+});
+
+}
+
+
+/* APPROVE */
+
+window.approveMember=
+async function(id){
+
+await updateDoc(
+doc(db,"members",id),
+{
+status:"Approved"
+}
+);
+
+alert("Member Approved");
+
+};
+
+
+/* DECLINE */
+
+window.deleteMember=
+async function(id){
+
+if(
+!confirm("Delete this member?")
+){
+return;
+}
+
+await deleteDoc(
+doc(db,"members",id)
+);
+
+alert("Member Deleted");
+
+};
+
+</script>
+
+</body>
+</html>
