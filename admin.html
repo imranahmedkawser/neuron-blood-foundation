@@ -179,12 +179,20 @@ body{
 
 </div>
 
+
 <script type="module">
 
 import {
 initializeApp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+signInWithEmailAndPassword,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 getFirestore,
@@ -209,20 +217,26 @@ const firebaseConfig = {
     measurementId: "G-90P3HEZLPJ"
 };
 
+
+/* INITIALIZE FIREBASE */
+
 const app =
 initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
 
 const db =
 getFirestore(app);
 
 
-/* ADMIN PASSWORD */
+/* ADMIN LOGIN */
 
-const ADMIN_PASSWORD =
-"neuron123";
+window.adminLogin =
+async function(){
 
-
-window.adminLogin=function(){
+const email =
+document.getElementById("adminEmail").value.trim();
 
 const password =
 document.getElementById("adminPassword").value;
@@ -230,7 +244,24 @@ document.getElementById("adminPassword").value;
 const message =
 document.getElementById("adminMessage");
 
-if(password===ADMIN_PASSWORD){
+
+if(!email || !password){
+
+message.innerHTML =
+"<div class='error'>Enter Email and Password!</div>";
+
+return;
+
+}
+
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
 
 message.innerHTML="";
 
@@ -240,10 +271,10 @@ document.getElementById("adminPanel")
 loadPending();
 
 }
-else{
+catch(error){
 
-message.innerHTML=
-"<div class='error'>Wrong Password!</div>";
+message.innerHTML =
+"<div class='error'>Invalid Email or Password!</div>";
 
 }
 
@@ -259,6 +290,7 @@ document.getElementById("pendingList");
 
 list.innerHTML="Loading...";
 
+
 onSnapshot(
 collection(db,"members"),
 
@@ -268,18 +300,22 @@ list.innerHTML="";
 
 let found=false;
 
+
 snapshot.forEach(item=>{
 
 const data=item.data();
+
 
 if(data.status==="Pending"){
 
 found=true;
 
-const div=
+
+const div =
 document.createElement("div");
 
 div.className="pending-card";
+
 
 div.innerHTML=`
 
@@ -302,6 +338,7 @@ ${data.email || ""}
 ${data.interestedRole || ""}
 </p>
 
+
 <div class="action-buttons">
 
 <button
@@ -311,6 +348,7 @@ onclick="approveMember('${item.id}')">
 Approve
 
 </button>
+
 
 <button
 class="decline-btn"
@@ -324,15 +362,17 @@ Decline
 
 `;
 
+
 list.appendChild(div);
 
 }
 
 });
 
+
 if(!found){
 
-list.innerHTML=
+list.innerHTML =
 "<div class='no-data'>No Pending Members</div>";
 
 }
@@ -344,8 +384,10 @@ list.innerHTML=
 
 /* APPROVE */
 
-window.approveMember=
+window.approveMember =
 async function(id){
+
+try{
 
 await updateDoc(
 doc(db,"members",id),
@@ -356,25 +398,44 @@ status:"Approved"
 
 alert("Member Approved");
 
+}
+catch(error){
+
+alert("Error approving member.");
+
+}
+
 };
 
 
 /* DECLINE */
 
-window.deleteMember=
+window.deleteMember =
 async function(id){
 
 if(
 !confirm("Delete this member?")
 ){
+
 return;
+
 }
+
+
+try{
 
 await deleteDoc(
 doc(db,"members",id)
 );
 
 alert("Member Deleted");
+
+}
+catch(error){
+
+alert("Error deleting member.");
+
+}
 
 };
 
