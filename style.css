@@ -351,30 +351,30 @@ font-size:40px;
 margin:0 10px;
 text-decoration:none;
 }
-  /* Desktop */
-@media (min-width: 769px){
 
-.navbar ul{
-    gap:25px;
+.menu-btn{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+    color:white;
 }
 
-.navbar ul li a{
-    font-size:18px;
+@media(max-width:768px){
+
+.menu-btn{
+    display:block;
 }
 
+#navMenu{
+    display:none;
+    flex-direction:column;
+    width:100%;
+    text-align:center;
+    margin-top:15px;
 }
 
-/* Mobile */
-@media (max-width:768px){
-
-.navbar ul{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-}
-
-.navbar ul li a{
-    font-size:14px;
+#navMenu.show{
+    display:flex;
 }
 
 }
