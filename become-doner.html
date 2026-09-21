@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Become a Donor - Neuron Blood Foundation</title>
+
+    <style>
+      <style>
+
+.member-step{
+    display:none;
+}
+
+.member-step.active{
+    display:block;
+}
+
+.donor-card{
+    max-width:600px;
+    margin:30px auto;
+    padding:25px;
+    background:linear-gradient(135deg,#ecfff1,#f8fff9);
+    border:1px solid #d8f5df;
+    border-radius:15px;
+}
+
+.question{
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.step-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.btn{
+    flex:1;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.green-btn{
+    background:#16a34a;
+    color:white;
+}
+
+</style>
+    </style>
+
+</head>
+
+<body>
+
+    <!-- এখানে তোমার Step 1 -->
+    <div id="donorStep1" class="member-step active">
+
+<h2 class="form-title">🩸 Become a Blood Donor</h2>
+
+<div class="question">Full Name*</div>
+<input type="text" id="donorName" required>
+
+<div class="question">Mobile Number*</div>
+<input type="tel" id="donorPhone" placeholder="01XXXXXXXXX" required>
+
+<div class="question">Blood Group*</div>
+<select id="donorBlood" required>
+<option value="">Select</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>O+</option>
+<option>O-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+
+<div class="question">Age*</div>
+<input type="number" id="donorAge" required>
+
+<div class="question">Weight (KG)*</div>
+<input type="number" id="donorWeight" required>
+
+<div class="step-buttons">
+
+<button
+type="button"
+class="btn"
+onclick="showPage('home')">
+Home
+</button>
+
+<button
+type="button"
+class="btn green-btn"
+onclick="nextDonorStep()">
+Next
+</button>
+
+</div>
+
+    </div>
+
+
+    <!-- এখানে Step 2 -->
+    <div id="donorStep2" class="member-step">
+
+<div class="question">
+Last Blood Donation Date*
+</div>
+
+<input
+type="date"
+id="lastDonation"
+required>
+
+<div class="question">
+Division*
+</div>
+
+<select id="donorDivision" required>
+<option value="">Select Division</option>
+</select>
+
+<div class="question">
+District*
+</div>
+
+<select id="donorDistrict" required disabled>
+<option value="">Select District</option>
+</select>
+
+<div class="question">
+Upazila*
+</div>
+
+<select id="donorUpazila" required disabled>
+<option value="">Select Upazila</option>
+</select>
+
+<div class="question">
+Village/Town*
+</div>
+
+<input
+type="text"
+id="donorVillage"
+required>
+
+<div class="question">
+Full Address*
+</div>
+
+<textarea
+id="donorAddress"
+required>
+</textarea>
+
+<div class="step-buttons">
+
+<button
+type="button"
+class="btn"
+onclick="previousDonorStep()">
+Back
+</button>
+
+<button
+type="button"
+class="btn green-btn"
+onclick="submitDonor()">
+Submit
+</button>
+
+</div>
+
+<div id="donorMessage"></div>
+
+    </div>
+
+
+    <!-- একদম শেষে Firebase + সব JavaScript -->
+    <script type="module">
+
+        <script type="module">
+
+    // Firebase imports
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+        getFirestore,
+        collection,
+        addDoc
+    }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+        authDomain: "neuron-blood-foundation.firebaseapp.com",
+        databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
+        projectId: "neuron-blood-foundation",
+        storageBucket: "neuron-blood-foundation.firebasestorage.app",
+        messagingSenderId: "160902995293",
+        appId: "1:160902995293:web:d0e4137de45290873e5cb4",
+        measurementId: "G-2NVL55Q5GN"
+    };
+
+
+    // Firebase start
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    // =========================
+    // NEXT BUTTON
+    // =========================
+
+    window.nextDonorStep = function(){
+
+        const step1 = document.getElementById("donorStep1");
+
+        const inputs = step1.querySelectorAll("input, select");
+
+        for(const input of inputs){
+
+            if(!input.checkValidity()){
+                input.reportValidity();
+                return;
+            }
+
+        }
+
+        const phone =
+            document.getElementById("donorPhone").value.trim();
+
+        if(!/^01[0-9]{9}$/.test(phone)){
+
+            alert("Mobile Number must be 11 digits and start with 01.");
+
+            return;
+        }
+
+        document
+            .getElementById("donorStep1")
+            .classList.remove("active");
+
+        document
+            .getElementById("donorStep2")
+            .classList.add("active");
+    };
+
+
+    // =========================
+    // BACK BUTTON
+    // =========================
+
+    window.previousDonorStep = function(){
+
+        document
+            .getElementById("donorStep2")
+            .classList.remove("active");
+
+        document
+            .getElementById("donorStep1")
+            .classList.add("active");
+    };
+
+
+    // =========================
+    // BANGLADESH LOCATION
+    // =========================
+
+    const division =
+        document.getElementById("donorDivision");
+
+    const district =
+        document.getElementById("donorDistrict");
+
+    const upazila =
+        document.getElementById("donorUpazila");
+
+
+    fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
+    .then(response => response.json())
+    .then(data => {
+
+        // এখানে JSON structure অনুযায়ী dropdown তৈরি হবে
+        console.log("Bangladesh data loaded:", data);
+
+    })
+    .catch(error => {
+
+        console.error("Location data error:", error);
+
+    });
+
+
+    // =========================
+    // ⭐ SUBMIT FUNCTION
+    // =========================
+
+    window.submitDonor = async function(){
+
+        const step2 =
+            document.getElementById("donorStep2");
+
+        const inputs =
+            step2.querySelectorAll("input, select, textarea");
+
+        for(const input of inputs){
+
+            if(!input.checkValidity()){
+
+                input.reportValidity();
+
+                return;
+            }
+        }
+
+
+        try{
+
+            await addDoc(
+                collection(db, "donors"),
+                {
+
+                    name:
+                        document.getElementById("donorName").value,
+
+                    phone:
+                        document.getElementById("donorPhone").value,
+
+                    blood:
+                        document.getElementById("donorBlood").value,
+
+                    age:
+                        document.getElementById("donorAge").value,
+
+                    weight:
+                        document.getElementById("donorWeight").value,
+
+                    lastDonation:
+                        document.getElementById("lastDonation").value,
+
+                    division:
+                        document.getElementById("donorDivision").value,
+
+                    district:
+                        document.getElementById("donorDistrict").value,
+
+                    upazila:
+                        document.getElementById("donorUpazila").value,
+
+                    village:
+                        document.getElementById("donorVillage").value,
+
+                    address:
+                        document.getElementById("donorAddress").value,
+
+                    status: "Pending",
+
+                    type: "Donor",
+
+                    createdAt:
+                        new Date().toISOString()
+                }
+            );
+
+
+            // Form-এর জায়গায় Thank You message
+            step2.innerHTML = `
+
+                <div style="
+                    background:#e8fff0;
+                    padding:25px;
+                    border-radius:12px;
+                    text-align:center;
+                ">
+
+                    <h2>✅ Thank You</h2>
+
+                    <p>
+                        Your donor registration has been
+                        submitted successfully.
+                    </p>
+
+                    <p>
+                        Your application is now pending
+                        for admin approval.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            alert(
+                "Registration Failed.\n\n" +
+                error.message
+            );
+
+        }
+
+    };
+
+    </script>
+
+</body>
+</html>
