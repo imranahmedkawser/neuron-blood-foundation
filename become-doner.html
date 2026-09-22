@@ -294,19 +294,85 @@ Submit
         document.getElementById("donorUpazila");
 
 
-    fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
-    .then(response => response.json())
-    .then(data => {
+    let bdData = [];
 
-        // এখানে JSON structure অনুযায়ী dropdown তৈরি হবে
-        console.log("Bangladesh data loaded:", data);
+fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
+.then(response => response.json())
+.then(data => {
 
-    })
-    .catch(error => {
+    bdData = data;
 
-        console.error("Location data error:", error);
+    data.forEach(div => {
+
+        division.innerHTML += `
+            <option value="${div.name}">
+                ${div.bn_name}
+            </option>
+        `;
 
     });
+
+})
+.catch(error => {
+
+    console.error("Location data error:", error);
+
+});
+
+
+division.addEventListener("change", function(){
+
+    district.innerHTML =
+    '<option value="">Select District</option>';
+
+    upazila.innerHTML =
+    '<option value="">Select Upazila</option>';
+
+    district.disabled = false;
+    upazila.disabled = true;
+
+    const selectedDivision =
+    bdData.find(d => d.name === this.value);
+
+    selectedDivision.districts.forEach(dist => {
+
+        district.innerHTML += `
+            <option value="${dist.name}">
+                ${dist.bn_name}
+            </option>
+        `;
+
+    });
+
+});
+
+
+district.addEventListener("change", function(){
+
+    upazila.innerHTML =
+    '<option value="">Select Upazila</option>';
+
+    upazila.disabled = false;
+
+    const selectedDivision =
+    bdData.find(d => d.name === division.value);
+
+    const selectedDistrict =
+    selectedDivision.districts.find(
+        d => d.name === this.value
+    );
+
+    selectedDistrict.upazilas.forEach(upz => {
+
+        upazila.innerHTML += `
+            <option value="${upz.name}">
+                ${upz.bn_name}
+            </option>
+        `;
+
+    });
+
+});
 
 
     // =========================
