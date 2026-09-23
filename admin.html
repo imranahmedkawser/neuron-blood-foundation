@@ -139,6 +139,20 @@ body{
 
 }
 
+    .dashboard-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+@media(max-width:768px){
+
+    .dashboard-box{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 </head>
 
@@ -150,15 +164,19 @@ body{
 
         <h2>Neuron Blood Foundation Admin Panel</h2>
 
-        <input
-type="email"
-id="adminEmail"
-placeholder="Enter Admin Email">
+        <div id="loginBox">
 
-<input
-type="password"
-id="adminPassword"
-placeholder="Enter Admin Password">
+<input type="email" id="adminEmail" placeholder="Enter Admin Email">
+
+<input type="password" id="adminPassword" placeholder="Enter Admin Password">
+
+<button class="btn" onclick="adminLogin()">
+Login
+</button>
+
+<div id="adminMessage"></div>
+
+</div>
 
 <button
 class="btn"
@@ -168,17 +186,23 @@ Login
         
         <div id="adminMessage"></div>
 
-        <div id="adminPanel">
+        <div id="adminPanel" style="display:none;">
 
-            <h3 style="margin-bottom:15px;">
-                Pending Members
-            </h3>
+    <div class="dashboard-box">
 
-            <div id="pendingList">
-                Loading...
-            </div>
+        <button class="btn" onclick="showMembers()">
+            Pending Members
+            (<span id="memberCount">0</span>)
+        </button>
 
-        </div>
+        <button class="btn" onclick="showDonors()">
+            Pending Donors
+            (<span id="donorCount">0</span>)
+        </button>
+
+    </div>
+
+    <div id="pendingList"></div>
 
     </div>
 
@@ -270,8 +294,8 @@ password
 
 message.innerHTML="";
 
-document.getElementById("adminPanel")
-.style.display="block";
+document.getElementById("loginBox")
+.style.display="none";
 
 loadPending();
 
