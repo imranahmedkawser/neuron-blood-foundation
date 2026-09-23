@@ -328,6 +328,7 @@ snapshot=>{
 list.innerHTML="";
 
 let found=false;
+    let count=0; 
 
 
 snapshot.forEach(item=>{
@@ -336,6 +337,7 @@ const data=item.data();
 
 
 if(data.status==="Pending"){
+    count++;
 
 found=true;
 
@@ -397,7 +399,8 @@ list.appendChild(div);
 }
 
 });
-
+    
+document.getElementById("memberCount").textContent = count;
 
 if(!found){
 
@@ -410,6 +413,229 @@ list.innerHTML =
 
 }
 
+    /* SHOW MEMBERS */
+
+window.showMembers = function(){
+
+    loadPending();
+
+};
+
+
+/* SHOW DONORS */
+
+window.showDonors = function(){
+
+    const list =
+    document.getElementById("pendingList");
+
+    list.innerHTML = "Loading...";
+
+    onSnapshot(
+        collection(db,"donors"),
+
+        snapshot=>{
+
+            list.innerHTML="";
+
+            let found=false;
+            let count=0;
+
+            snapshot.forEach(item=>{
+
+                const data=item.data();
+
+                if(data.status==="Pending"){
+
+                    found=true;
+                    count++;
+
+                    const div =
+                    document.createElement("div");
+
+                    div.className="pending-card";
+
+                    div.innerHTML=`
+
+                    <h3>${data.name || ""}</h3>
+
+                    <p>
+                    <b>Phone:</b>
+                    ${data.phone || ""}
+                    </p>
+
+                    <p>
+                    <b>Blood Group:</b>
+                    ${data.blood || ""}
+                    </p>
+
+                    <p>
+                    <b>District:</b>
+                    ${data.district || ""}
+                    </p>
+
+                    <div class="action-buttons">
+
+                    <button
+                    class="approve-btn"
+                    onclick="approveDonor('${item.id}')">
+
+                    Approve
+
+                    </button>
+
+                    <button
+                    class="decline-btn"
+                    onclick="deleteDonor('${item.id}')">
+
+                    Decline
+
+                    </button>
+
+                    </div>
+                    `;
+
+                    list.appendChild(div);
+
+                }
+
+            });
+
+            document.getElementById("donorCount").textContent = count;
+
+            if(!found){
+
+                list.innerHTML =
+                "<div class='no-data'>No Pending Donors</div>";
+
+            }
+
+        }
+
+    );
+
+};
+
+
+/* DONOR COUNT */
+
+onSnapshot(
+    collection(db,"donors"),
+
+    snapshot=>{
+
+        let count=0;
+
+        snapshot.forEach(item=>{
+
+            if(item.data().status==="Pending"){
+
+                count++;
+
+            }
+
+        });
+
+        const el =
+        document.getElementById("donorCount");
+
+        if(el){
+
+            el.textContent=count;
+
+        }
+
+    }
+
+);
+
+
+/* MEMBER COUNT */
+
+onSnapshot(
+    collection(db,"members"),
+
+    snapshot=>{
+
+        let count=0;
+
+        snapshot.forEach(item=>{
+
+            if(item.data().status==="Pending"){
+
+                count++;
+
+            }
+
+        });
+
+        const el =
+        document.getElementById("memberCount");
+
+        if(el){
+
+            el.textContent=count;
+
+        }
+
+    }
+
+);
+
+
+/* APPROVE DONOR */
+
+window.approveDonor =
+async function(id){
+
+    try{
+
+        await updateDoc(
+            doc(db,"donors",id),
+            {
+                status:"Approved"
+            }
+        );
+
+        alert("Donor Approved");
+
+    }
+    catch(error){
+
+        alert("Error approving donor");
+
+    }
+
+};
+
+
+/* DELETE DONOR */
+
+window.deleteDonor =
+async function(id){
+
+    if(!confirm("Delete this donor?")){
+
+        return;
+
+    }
+
+    try{
+
+        await deleteDoc(
+            doc(db,"donors",id)
+        );
+
+        alert("Donor Deleted");
+
+    }
+    catch(error){
+
+        alert("Error deleting donor");
+
+    }
+
+};
 
 /* APPROVE */
 
