@@ -75,13 +75,6 @@ input, select, textarea{
 <div class="question">Mobile Number*</div>
 <input type="tel" id="donorPhone" placeholder="01XXXXXXXXX" required>
 
-        <div class="question">Profile Picture (Optional)</div>
-
-<input
-type="file"
-id="donorPhoto"
-accept="image/*">
-
         <div class="question">Gender*</div>
 
 <select id="donorGender" required>
@@ -427,6 +420,9 @@ district.addEventListener("change", function(){
 
                     blood:
                         document.getElementById("donorBlood").value,
+
+                    gender:
+                        document.getElementById("donorGender").value,
 
                     age:
                         document.getElementById("donorAge").value,
