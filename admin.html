@@ -178,9 +178,6 @@ Login
 
 </div>
 
-        
-        <div id="adminMessage"></div>
-
         <div id="adminPanel" style="display:none;">
 
     <div class="dashboard-box">
@@ -289,9 +286,11 @@ password
 
 message.innerHTML="";
 
-document.getElementById("loginBox")
+    document.getElementById("loginBox")
 .style.display="none";
 
+    document.getElementById("adminPanel")
+.style.display="block";
 loadPending();
 
 }
