@@ -62,6 +62,9 @@ body{
 .btn:hover{
     background:#b50000;
 }
+    .active-btn{
+    background:#28a745 !important;
+}
 
 .error{
     color:red;
@@ -182,12 +185,12 @@ Login
 
     <div class="dashboard-box">
 
-        <button class="btn" onclick="showMembers()">
+        <button id="memberBtn" class="btn" onclick="showMembers()">
             Pending Members
             (<span id="memberCount">0</span>)
         </button>
 
-        <button class="btn" onclick="showDonors()">
+        <button id="donorBtn" class="btn" onclick="showDonors()">
             Pending Donors
             (<span id="donorCount">0</span>)
         </button>
@@ -411,14 +414,24 @@ list.innerHTML =
 
 window.showMembers = function(){
 
+    document.querySelector("#memberBtn")
+    .classList.add("active-btn");
+
+    document.querySelector("#donorBtn")
+    .classList.remove("active-btn");
+
     loadPending();
 
 };
 
-
 /* SHOW DONORS */
 
 window.showDonors = function(){
+    document.querySelector("#donorBtn")
+.classList.add("active-btn");
+
+document.querySelector("#memberBtn")
+.classList.remove("active-btn");
 
     const list =
     document.getElementById("pendingList");
