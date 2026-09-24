@@ -287,6 +287,8 @@ document.getElementById("donorGrid");
 const totalDonors =
 document.getElementById("totalDonors");
 
+    const searchInput =
+document.getElementById("searchInput");
 
 onSnapshot(
 collection(db,"donors"),
@@ -302,6 +304,19 @@ snapshot.forEach((doc)=>{
 const donor = doc.data();
 
 if(donor.status==="Approved"){
+
+    const searchValue =
+searchInput.value.toLowerCase();
+
+if(
+!donor.name
+.toLowerCase()
+.includes(searchValue)
+){
+
+return;
+
+}
 
 approvedCount++;
 
