@@ -249,9 +249,135 @@ font-size:24px;
 
 <script type="module">
 
-// Firebase code এখানে বসবে
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+authDomain: "neuron-blood-foundation.firebaseapp.com",
+databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
+projectId: "neuron-blood-foundation",
+storageBucket: "neuron-blood-foundation.firebasestorage.app",
+messagingSenderId: "160902995293",
+appId: "1:160902995293:web:d0e4137de45290873e5cb4",
+measurementId: "G-2NVL55Q5GN"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+const donorGrid =
+document.getElementById("donorGrid");
+
+const totalDonors =
+document.getElementById("totalDonors");
+
+
+onSnapshot(
+collection(db,"donors"),
+
+(snapshot)=>{
+
+donorGrid.innerHTML="";
+
+let approvedCount=0;
+
+snapshot.forEach((doc)=>{
+
+const donor = doc.data();
+
+if(donor.status==="Approved"){
+
+approvedCount++;
+
+const avatar =
+donor.gender==="Female"
+? "👩"
+: "👨";
+
+donorGrid.innerHTML += `
+
+<div class="donor-card">
+
+<div class="avatar">
+${avatar}
+</div>
+
+<div class="name">
+${donor.name || ""}
+</div>
+
+<div style="text-align:center;margin-bottom:10px;">
+
+<span class="blood">
+${donor.blood || ""}
+</span>
+
+</div>
+
+<div>
+📍 ${donor.district || ""}
+</div>
+
+<div>
+🏠 ${donor.upazila || ""}
+</div>
+
+<div class="status available">
+🟢 Available
+</div>
+
+<div class="action-buttons">
+
+<button
+class="call-btn"
+onclick="window.location.href='tel:${donor.phone}'">
+
+Call
+
+</button>
+
+<button
+class="whatsapp-btn"
+onclick="window.open('https://wa.me/88${donor.phone}')">
+
+WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+totalDonors.textContent =
+approvedCount;
+
+if(approvedCount===0){
+
+donorGrid.innerHTML =
+"<h3>No Approved Donors Found</h3>";
+
+}
+
+}
+
+);
 
 </script>
-
 </body>
 </html>
