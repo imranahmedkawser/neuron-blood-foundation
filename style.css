@@ -125,6 +125,8 @@ border-radius:40px;
 font-size:20px;
 cursor:pointer;
 color:#006b3c;
+  
+  text-decoration:none;
 }
 
 .hero-right img{
