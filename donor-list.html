@@ -252,7 +252,6 @@ font-size:24px;
 
 </div>
 
-
 <script type="module">
 
 import { initializeApp }
@@ -264,7 +263,6 @@ collection,
 onSnapshot
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 const firebaseConfig = {
 apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
@@ -280,18 +278,19 @@ measurementId: "G-2NVL55Q5GN"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 const donorGrid =
 document.getElementById("donorGrid");
 
 const totalDonors =
 document.getElementById("totalDonors");
 
-    const searchInput =
+const searchInput =
 document.getElementById("searchInput");
-    const bloodFilter =
+
+const bloodFilter =
 document.getElementById("bloodFilter");
-    const divisionFilter =
+
+const divisionFilter =
 document.getElementById("divisionFilter");
 
 const districtFilter =
@@ -299,7 +298,10 @@ document.getElementById("districtFilter");
 
 const upazilaFilter =
 document.getElementById("upazilaFilter");
-    [
+
+let allDonors = [];
+
+[
 "A+","A-",
 "B+","B-",
 "O+","O-",
@@ -313,40 +315,61 @@ ${group}
 
 });
 
-    let allDonors = [];
-
-onSnapshot(
-collection(db,"donors"),
-
-(snapshot)=>{
+function renderDonors(){
 
 donorGrid.innerHTML="";
-    
-    allDonors = [];
 
-let approvedCount=0;
+let count=0;
 
-snapshot.forEach((doc)=>{
+const searchValue =
+searchInput.value
+.toLowerCase();
 
-const donor = doc.data();
-
-    allDonors.push(donor);
-
-if(donor.status==="Approved"){
-    const selectedBlood =
+const bloodValue =
 bloodFilter.value;
 
-if(
-selectedBlood &&
-donor.blood !== selectedBlood
-){
+const divisionValue =
+divisionFilter.value;
 
+const districtValue =
+districtFilter.value;
+
+const upazilaValue =
+upazilaFilter.value;
+
+allDonors.forEach(donor=>{
+
+if(donor.status!=="Approved"){
 return;
-
 }
 
-    const searchValue =
-searchInput.value.toLowerCase();
+if(
+bloodValue &&
+donor.blood!==bloodValue
+){
+return;
+}
+
+if(
+divisionValue &&
+donor.division!==divisionValue
+){
+return;
+}
+
+if(
+districtValue &&
+donor.district!==districtValue
+){
+return;
+}
+
+if(
+upazilaValue &&
+donor.upazila!==upazilaValue
+){
+return;
+}
 
 const searchMatch =
 
@@ -366,45 +389,17 @@ const searchMatch =
 .includes(searchValue);
 
 if(!searchMatch){
-
 return;
-
-}
-    if(
-divisionFilter.value &&
-donor.division !== divisionFilter.value
-){
-
-return;
-
 }
 
-if(
-districtFilter.value &&
-donor.district !== districtFilter.value
-){
-
-return;
-
-}
-
-if(
-upazilaFilter.value &&
-donor.upazila !== upazilaFilter.value
-){
-
-return;
-
-}
-
-approvedCount++;
+count++;
 
 const avatar =
 donor.gender==="Female"
 ? "👩"
 : "👨";
-
-donorGrid.innerHTML += `
+    
+    donorGrid.innerHTML += `
 
 <div class="donor-card">
 
@@ -464,24 +459,130 @@ WhatsApp
 
 `;
 
+});
+
+totalDonors.textContent = count;
+
+if(count===0){
+
+donorGrid.innerHTML =
+"<h3>No Donors Found</h3>";
+
+}
+
+}
+
+    const divisions = new Set();
+const districts = new Set();
+const upazilas = new Set();
+
+onSnapshot(
+collection(db,"donors"),
+
+(snapshot)=>{
+
+allDonors = [];
+
+divisions.clear();
+districts.clear();
+upazilas.clear();
+
+snapshot.forEach(doc=>{
+
+const donor = doc.data();
+
+allDonors.push(donor);
+
+if(donor.status==="Approved"){
+
+if(donor.division){
+divisions.add(donor.division);
+}
+
+if(donor.district){
+districts.add(donor.district);
+}
+
+if(donor.upazila){
+upazilas.add(donor.upazila);
+}
+
 }
 
 });
 
-totalDonors.textContent =
-approvedCount;
+divisionFilter.innerHTML =
+'<option value="">All Divisions</option>';
 
-if(approvedCount===0){
+districtFilter.innerHTML =
+'<option value="">All Districts</option>';
 
-donorGrid.innerHTML =
-"<h3>No Approved Donors Found</h3>";
+upazilaFilter.innerHTML =
+'<option value="">All Upazilas</option>';
 
-}
+[...divisions]
+.sort()
+.forEach(item=>{
 
-}
+divisionFilter.innerHTML +=
+`<option value="${item}">
+${item}
+</option>`;
 
+});
+
+[...districts]
+.sort()
+.forEach(item=>{
+
+districtFilter.innerHTML +=
+`<option value="${item}">
+${item}
+</option>`;
+
+});
+
+[...upazilas]
+.sort()
+.forEach(item=>{
+
+upazilaFilter.innerHTML +=
+`<option value="${item}">
+${item}
+</option>`;
+
+});
+
+renderDonors();
+
+});
+
+searchInput.addEventListener(
+"input",
+renderDonors
+);
+
+bloodFilter.addEventListener(
+"change",
+renderDonors
+);
+
+divisionFilter.addEventListener(
+"change",
+renderDonors
+);
+
+districtFilter.addEventListener(
+"change",
+renderDonors
+);
+
+upazilaFilter.addEventListener(
+"change",
+renderDonors
 );
 
 </script>
+
 </body>
 </html>
