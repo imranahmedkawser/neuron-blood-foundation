@@ -28,7 +28,7 @@ element.innerText = Math.floor(count) + "+";
 
 // Default Values
 
-animateCounter("donorCount", 00);
+animateCounter("donorCount", 03);
 
 animateCounter("donationCount", 00);
 
