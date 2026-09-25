@@ -430,9 +430,38 @@ ${donor.blood || ""}
 🏠 ${donor.upazila || ""}
 </div>
 
+${(() => {
+
+const lastDate =
+new Date(donor.lastDonation);
+
+const today =
+new Date();
+
+const diffDays =
+Math.floor(
+(today - lastDate)
+/
+(1000 * 60 * 60 * 24)
+);
+
+if(diffDays >= 90){
+
+return `
 <div class="status available">
 🟢 Available
 </div>
+`;
+
+}
+
+return `
+<div class="status unavailable">
+🔴 Unavailable
+</div>
+`;
+
+})()}
 
 <div class="action-buttons">
 
