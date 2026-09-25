@@ -291,6 +291,14 @@ document.getElementById("totalDonors");
 document.getElementById("searchInput");
     const bloodFilter =
 document.getElementById("bloodFilter");
+    const divisionFilter =
+document.getElementById("divisionFilter");
+
+const districtFilter =
+document.getElementById("districtFilter");
+
+const upazilaFilter =
+document.getElementById("upazilaFilter");
     [
 "A+","A-",
 "B+","B-",
@@ -334,10 +342,49 @@ return;
     const searchValue =
 searchInput.value.toLowerCase();
 
-if(
-!donor.name
+const searchMatch =
+
+(donor.name || "")
 .toLowerCase()
 .includes(searchValue)
+
+||
+
+(donor.phone || "")
+.includes(searchValue)
+
+||
+
+(donor.blood || "")
+.toLowerCase()
+.includes(searchValue);
+
+if(!searchMatch){
+
+return;
+
+}
+    if(
+divisionFilter.value &&
+donor.division !== divisionFilter.value
+){
+
+return;
+
+}
+
+if(
+districtFilter.value &&
+donor.district !== districtFilter.value
+){
+
+return;
+
+}
+
+if(
+upazilaFilter.value &&
+donor.upazila !== upazilaFilter.value
 ){
 
 return;
