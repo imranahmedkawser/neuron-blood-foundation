@@ -177,6 +177,21 @@ id="donorAddress"
 required>
 </textarea>
 
+        <div style="margin-top:15px;">
+
+<label>
+
+<input
+type="checkbox"
+id="donorConsent"
+required>
+
+I agree that my contact number may be visible to blood seekers after approval.
+
+</label>
+
+</div> 
+
 <div class="step-buttons">
 
 <button
@@ -406,6 +421,17 @@ district.addEventListener("change", function(){
         }
 
 
+        if(
+!document.getElementById("donorConsent").checked
+){
+
+alert(
+"Please accept the consent first."
+);
+
+return;
+
+}
         try{
 
             await addDoc(
