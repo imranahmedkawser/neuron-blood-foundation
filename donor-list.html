@@ -289,6 +289,21 @@ document.getElementById("totalDonors");
 
     const searchInput =
 document.getElementById("searchInput");
+    const bloodFilter =
+document.getElementById("bloodFilter");
+    [
+"A+","A-",
+"B+","B-",
+"O+","O-",
+"AB+","AB-"
+].forEach(group=>{
+
+bloodFilter.innerHTML +=
+`<option value="${group}">
+${group}
+</option>`;
+
+});
 
 onSnapshot(
 collection(db,"donors"),
@@ -304,6 +319,17 @@ snapshot.forEach((doc)=>{
 const donor = doc.data();
 
 if(donor.status==="Approved"){
+    const selectedBlood =
+bloodFilter.value;
+
+if(
+selectedBlood &&
+donor.blood !== selectedBlood
+){
+
+return;
+
+}
 
     const searchValue =
 searchInput.value.toLowerCase();
