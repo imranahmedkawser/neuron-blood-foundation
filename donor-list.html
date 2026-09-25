@@ -313,18 +313,24 @@ ${group}
 
 });
 
+    let allDonors = [];
+
 onSnapshot(
 collection(db,"donors"),
 
 (snapshot)=>{
 
 donorGrid.innerHTML="";
+    
+    allDonors = [];
 
 let approvedCount=0;
 
 snapshot.forEach((doc)=>{
 
 const donor = doc.data();
+
+    allDonors.push(donor);
 
 if(donor.status==="Approved"){
     const selectedBlood =
@@ -475,6 +481,17 @@ donorGrid.innerHTML =
 }
 
 );
+    searchInput.addEventListener("input", ()=>{
+
+location.reload();
+
+});
+
+bloodFilter.addEventListener("change", ()=>{
+
+location.reload();
+
+});
 
 </script>
 </body>
