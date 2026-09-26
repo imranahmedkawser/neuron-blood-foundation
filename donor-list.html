@@ -511,14 +511,19 @@ WhatsApp
 
 <button
 class="details-btn"
-onclick="alert(
-'Name: ${donor.name}\n' +
-'Blood Group: ${donor.blood}\n' +
-'Phone: ${donor.phone}\n' +
-'Division: ${donor.division}\n' +
-'District: ${donor.district}\n' +
-'Upazila: ${donor.upazila}\n' +
-'Last Donation: ${donor.lastDonation}'
+onclick="showProfile(
+'${donor.name || ""}',
+'${donor.blood || ""}',
+'${donor.phone || ""}',
+'${donor.gender || ""}',
+'${donor.age || ""}',
+'${donor.weight || ""}',
+'${donor.division || ""}',
+'${donor.district || ""}',
+'${donor.upazila || ""}',
+'${donor.village || ""}',
+'${donor.address || ""}',
+'${donor.lastDonation || ""}'
 )">
 Profile
 </button>
@@ -651,6 +656,92 @@ upazilaFilter.addEventListener(
 "change",
 renderDonors
 );
+
+    window.showProfile = function(
+name,
+blood,
+phone,
+gender,
+age,
+weight,
+division,
+district,
+upazila,
+village,
+address,
+lastDonation
+){
+
+const modal =
+document.getElementById("profileModal");
+
+const content =
+document.getElementById("profileContent");
+
+content.innerHTML = `
+
+<h2>${name}</h2>
+
+<p>🩸 Blood Group: ${blood}</p>
+
+<p>📞 Phone: ${phone}</p>
+
+<p>🚻 Gender: ${gender}</p>
+
+<p>🎂 Age: ${age}</p>
+
+<p>⚖️ Weight: ${weight} KG</p>
+
+<hr>
+
+<p>🌍 Division: ${division}</p>
+
+<p>📍 District: ${district}</p>
+
+<p>📌 Upazila: ${upazila}</p>
+
+<p>🏘️ Village: ${village}</p>
+
+<p>🏠 Address: ${address}</p>
+
+<hr>
+
+<p>🩸 Last Donation: ${lastDonation}</p>
+
+<br>
+
+<button
+class="call-btn"
+onclick="window.location.href='tel:${phone}'">
+Call
+</button>
+
+<button
+class="whatsapp-btn"
+onclick="window.open('https://wa.me/88${phone}')">
+WhatsApp
+</button>
+
+<button
+onclick="
+document.getElementById('profileModal').style.display='none'
+"
+style="
+margin-top:10px;
+width:100%;
+padding:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+Close
+</button>
+
+`;
+
+modal.style.display = "flex";
+
+};
 
 </script>
 
