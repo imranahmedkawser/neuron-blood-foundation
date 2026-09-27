@@ -678,6 +678,42 @@ document.getElementById("profileModal");
 const content =
 document.getElementById("profileContent");
 
+        const donationDate =
+new Date(lastDonation);
+
+const eligibleDate =
+new Date(donationDate);
+
+eligibleDate.setDate(
+eligibleDate.getDate() + 90
+);
+
+const today =
+new Date();
+
+let eligibilityText = "";
+
+if(!isNaN(eligibleDate)){
+
+if(today >= eligibleDate){
+
+eligibilityText =
+"🟢 Eligible Now";
+
+}else{
+
+eligibilityText =
+"🔴 Eligible After: " +
+eligibleDate.toLocaleDateString("en-GB");
+
+}
+
+}else{
+
+eligibilityText =
+"Not Available";
+
+} 
 content.innerHTML = `
 
 <h2>${name}</h2>
@@ -707,6 +743,7 @@ content.innerHTML = `
 <hr>
 
 <p>🩸 Last Donation: ${lastDonation}</p>
+<p>${eligibilityText}</p>
 
 <br>
 
