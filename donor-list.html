@@ -704,7 +704,14 @@ eligibilityText =
 
 eligibilityText =
 "🔴 Eligible After: " +
-eligibleDate.toLocaleDateString("en-GB");
+eligibleDate.toLocaleDateString(
+"en-GB",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+)
 
 }
 
