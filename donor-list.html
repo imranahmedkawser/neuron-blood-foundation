@@ -900,29 +900,51 @@ border-radius:15px;
 
 <h2>🩸 Emergency Blood Request</h2>
 
-    <input
+    
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📋 Patient Problem</b></label>
+
+<input
 type="text"
-placeholder="🤰 Patient Problem"
+placeholder="Patient condition / problem"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>🩸 Blood Group *</b></label>
 
 <select
+required
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
-<option value="">
-🩸 Select Blood Group
-</option>
+<option value="">Select Blood Group</option>
 
 <option>A+</option>
 <option>A-</option>
@@ -935,104 +957,250 @@ border-radius:10px;
 
 </select>
 
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>💉 Blood Quantity *</b></label>
+
 <input
 type="text"
-placeholder="💉 Blood Quantity (Example: 2 Bag)"
+required
+placeholder="Example: 1 Bag / 2 Bag"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📅 Required Donation Date *</b></label>
+
 <input
 type="date"
+required
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>🕒 Required Time</b></label>
 
 <input
 type="time"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
-<input
-type="text"
-placeholder="📍 District"
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📍 District *</b></label>
+
+<select
+required
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
-<input
-type="text"
-placeholder="📌 Upazila"
+<option value="">Select District</option>
+
+</select>
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📌 Upazila *</b></label>
+
+<select
+required
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
+<option value="">Select Upazila</option>
+
+</select>
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>🏥 Hospital Name *</b></label>
+
 <input
 type="text"
-placeholder="🏥 Hospital Name"
+required
+placeholder="Hospital Name"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>☎ Contact Number *</b></label>
 
 <input
 type="tel"
-placeholder="☎ Contact Number"
+required
+placeholder="01XXXXXXXXX"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>👤 Reference Name *</b></label>
 
 <input
 type="text"
-placeholder="👤 Reference Name"
+required
+placeholder="Reference Name"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📞 Reference Number *</b></label>
 
 <input
 type="tel"
-placeholder="📞 Reference Number"
+required
+placeholder="01XXXXXXXXX"
 style="
 width:100%;
 padding:12px;
-margin-top:10px;
+margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
 
-<button
+</div>
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📝 Additional Note</b></label>
+
+<textarea
+rows="3"
+placeholder="Optional"
+style="
+width:100%;
+padding:12px;
+margin-top:8px;
+border:1px solid #ddd;
+border-radius:10px;
+resize:vertical;
+"></textarea>
+
+</div>
+
+    <button
 style="
 width:100%;
 padding:12px;
@@ -1048,7 +1216,6 @@ cursor:pointer;
 Submit Request
 
 </button>
-    
 
     <button
 onclick="
