@@ -863,7 +863,11 @@ border-radius:15px;
 
 </div>
 
-    <button id="emergencyBtn">
+    <button
+id="emergencyBtn"
+onclick="
+document.getElementById('emergencyModal').style.display='flex'
+">
 
 🩸 Emergency Blood Request
 
@@ -895,6 +899,21 @@ border-radius:15px;
 ">
 
 <h2>🩸 Emergency Blood Request</h2>
+    <button
+onclick="
+document.getElementById('emergencyModal').style.display='none'
+"
+style="
+float:right;
+border:none;
+background:none;
+font-size:22px;
+cursor:pointer;
+">
+
+Cancel
+
+</button>
 
 </div>
 
