@@ -831,6 +831,82 @@ modal.style.display = "flex";
 
 };
 
+    const emergencyDistrict = document.getElementById("emergencyDistrict");
+const emergencyUpazila = document.getElementById("emergencyUpazila");
+
+const emergencyDistrict = document.getElementById("emergencyDistrict");
+const emergencyUpazila = document.getElementById("emergencyUpazila");
+
+fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
+    .then(response => response.json())
+    .then(data => {
+
+        // সব District একসাথে নেওয়া
+        let districts = [];
+
+        data.forEach(division => {
+            if (division.districts) {
+                districts.push(...division.districts);
+            }
+        });
+
+        // District A-Z
+        districts.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
+
+        // District dropdown
+        districts.forEach(district => {
+
+            const option = document.createElement("option");
+
+            option.value = district.name;
+            option.textContent = district.name;
+
+            emergencyDistrict.appendChild(option);
+
+        });
+
+        // District select করলে Upazila আসবে
+        emergencyDistrict.addEventListener("change", function () {
+
+            emergencyUpazila.innerHTML =
+                '<option value="">Select Upazila</option>';
+
+            const selectedDistrict =
+                districts.find(
+                    district => district.name === this.value
+                );
+
+            if (!selectedDistrict) return;
+
+            let upazilas =
+                selectedDistrict.upazilas || [];
+
+            // Upazila A-Z
+            upazilas.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+
+            upazilas.forEach(upazila => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = upazila.name;
+                option.textContent = upazila.name;
+
+                emergencyUpazila.appendChild(option);
+
+            });
+
+        });
+
+    })
+    .catch(error => {
+        console.error("Location data error:", error);
+    });
+    
 </script>
 
     <div id="profileModal"
@@ -1067,6 +1143,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>📌 Upazila *</b></label>
 
 <select
+id="emergencyUpazila"
 required
 style="
 width:100%;
@@ -1074,11 +1151,12 @@ padding:12px;
 margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
+background:white;
 ">
 
 <option value="">Select Upazila</option>
 
-</select>
+</select> 
 
 </div>
 
