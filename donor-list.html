@@ -903,7 +903,12 @@ fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
     .catch(error => {
         console.error("Location data error:", error);
     });
-    
+
+    document.getElementById("submitEmergency").addEventListener("click", function(){
+
+    alert("Emergency Blood Request submitted successfully!");
+
+});
 </script>
 
     <div id="profileModal"
@@ -985,6 +990,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>📋 Patient Problem</b></label>
 
 <input
+id="emergencyProblem"
 type="text"
 placeholder="Patient condition / problem"
 style="
@@ -1008,6 +1014,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>🩸 Blood Group *</b></label>
 
 <select
+id="emergencyBlood"
 required
 style="
 width:100%;
@@ -1043,6 +1050,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>💉 Blood Quantity *</b></label>
 
 <input
+id="emergencyQuantity
 type="text"
 required
 placeholder="Example: 1 Bag / 2 Bag"
@@ -1067,6 +1075,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>📅 Required Donation Date *</b></label>
 
 <input
+id="emergencyDate" 
 type="date"
 required
 style="
@@ -1090,6 +1099,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>🕒 Required Time</b></label>
 
 <input
+id="emergencyTime"
 type="time"
 style="
 width:100%;
@@ -1168,8 +1178,10 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 <label><b>🏥 Hospital Name *</b></label>
 
 <input
+id="emergencyHospital"
 type="text"
 required
+placeholder="Hospital Name"
 placeholder="Hospital Name"
 style="
 width:100%;
@@ -1189,9 +1201,9 @@ margin-top:10px;
 box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
 
-<label><b>☎ Contact Number *</b></label>
-
+ <label><b>☎ Contact Number *</b></label>
 <input
+id="emergencyContact"
 type="tel"
 required
 placeholder="01XXXXXXXXX"
@@ -1202,9 +1214,8 @@ margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
-
 </div>
-
+    
 <div style="
 background:#f8fafc;
 padding:15px;
@@ -1212,38 +1223,15 @@ border-radius:12px;
 margin-top:10px;
 box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
-
-<label><b>👤 Reference Name *</b></label>
-
-<input
-type="text"
-required
-placeholder="Reference Name"
-style="
-width:100%;
-padding:12px;
-margin-top:8px;
-border:1px solid #ddd;
-border-radius:10px;
-">
-
 </div>
-
-<div style="
-background:#f8fafc;
-padding:15px;
-border-radius:12px;
-margin-top:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.05);
-">
-
+ 
 <label><b>📞 Reference Number *</b></label>
 
 <input
+id="emergencyReferencePhone"
 type="tel"
 required
 placeholder="01XXXXXXXXX"
-style="
 width:100%;
 padding:12px;
 margin-top:8px;
@@ -1262,8 +1250,8 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
 
 <label><b>📝 Additional Note</b></label>
-
 <textarea
+id="emergencyNote"
 rows="3"
 placeholder="Optional"
 style="
