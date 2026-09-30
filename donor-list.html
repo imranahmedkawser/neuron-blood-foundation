@@ -321,6 +321,7 @@ import {
 getFirestore,
 collection,
 onSnapshot
+addDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -904,11 +905,7 @@ fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
         console.error("Location data error:", error);
     });
 
-    document.getElementById("submitEmergency").addEventListener("click", function(){
-
-    alert("Emergency Blood Request submitted successfully!");
-
-});
+    
 </script>
 
     <div id="profileModal"
