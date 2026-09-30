@@ -1179,7 +1179,6 @@ id="emergencyHospital"
 type="text"
 required
 placeholder="Hospital Name"
-placeholder="Hospital Name"
 style="
 width:100%;
 padding:12px;
@@ -1190,6 +1189,7 @@ border-radius:10px;
 
 </div>
 
+
 <div style="
 background:#f8fafc;
 padding:15px;
@@ -1198,7 +1198,8 @@ margin-top:10px;
 box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
 
- <label><b>☎ Contact Number *</b></label>
+<label><b>☎ Contact Number *</b></label>
+
 <input
 id="emergencyContact"
 type="tel"
@@ -1211,8 +1212,10 @@ margin-top:8px;
 border:1px solid #ddd;
 border-radius:10px;
 ">
+
 </div>
-    
+
+
 <div style="
 background:#f8fafc;
 padding:15px;
@@ -1220,15 +1223,15 @@ border-radius:12px;
 margin-top:10px;
 box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
-</div>
- 
-<label><b>📞 Reference Number *</b></label>
+
+<label><b>👤 Reference Name *</b></label>
 
 <input
-id="emergencyReferencePhone"
-type="tel"
+id="emergencyReferenceName"
+type="text"
 required
-placeholder="01XXXXXXXXX"
+placeholder="Reference Name"
+style="
 width:100%;
 padding:12px;
 margin-top:8px;
@@ -1237,6 +1240,33 @@ border-radius:10px;
 ">
 
 </div>
+
+
+<div style="
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+margin-top:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);
+">
+
+<label><b>📞 Reference Number *</b></label>
+
+<input
+id="emergencyReferencePhone"
+type="tel"
+required
+placeholder="01XXXXXXXXX"
+style="
+width:100%;
+padding:12px;
+margin-top:8px;
+border:1px solid #ddd;
+border-radius:10px;
+">
+
+</div>
+
 
 <div style="
 background:#f8fafc;
@@ -1247,6 +1277,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.05);
 ">
 
 <label><b>📝 Additional Note</b></label>
+
 <textarea
 id="emergencyNote"
 rows="3"
@@ -1261,7 +1292,7 @@ resize:vertical;
 "></textarea>
 
 </div>
-
+    
 <button
 id="submitEmergency"
 style="
