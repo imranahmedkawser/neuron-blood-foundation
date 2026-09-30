@@ -905,6 +905,73 @@ fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
         console.error("Location data error:", error);
     });
 
+
+    document.getElementById("submitEmergency").addEventListener("click", async function(){
+
+    const requestData = {
+
+        patientProblem:
+        document.getElementById("emergencyProblem").value,
+
+        bloodGroup:
+        document.getElementById("emergencyBlood").value,
+
+        bloodQuantity:
+        document.getElementById("emergencyQuantity").value,
+
+        requiredDate:
+        document.getElementById("emergencyDate").value,
+
+        requiredTime:
+        document.getElementById("emergencyTime").value,
+
+        district:
+        document.getElementById("emergencyDistrict").value,
+
+        upazila:
+        document.getElementById("emergencyUpazila").value,
+
+        hospital:
+        document.getElementById("emergencyHospital").value,
+
+        contactNumber:
+        document.getElementById("emergencyContact").value,
+
+        referenceName:
+        document.getElementById("emergencyReferenceName").value,
+
+        referenceNumber:
+        document.getElementById("emergencyReferencePhone").value,
+
+        additionalNote:
+        document.getElementById("emergencyNote").value,
+
+        status: "Pending",
+
+        createdAt: new Date().toISOString()
+
+    };
+
+    try {
+
+        await addDoc(
+            collection(db, "emergencyRequests"),
+            requestData
+        );
+
+        alert("🩸 Emergency Blood Request submitted successfully!");
+
+        document.getElementById("emergencyModal").style.display = "none";
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert("❌ Request submit failed. Please try again.");
+
+    }
+
+});
     
 </script>
 
