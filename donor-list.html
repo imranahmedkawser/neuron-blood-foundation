@@ -908,6 +908,33 @@ fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
 
     document.getElementById("submitEmergency").addEventListener("click", async function(){
 
+        const requiredFields = [
+    "emergencyBlood",
+    "emergencyQuantity",
+    "emergencyDate",
+    "emergencyDistrict",
+    "emergencyUpazila",
+    "emergencyHospital",
+    "emergencyContact",
+    "emergencyReferenceName",
+    "emergencyReferencePhone"
+];
+
+for (const fieldId of requiredFields) {
+
+    const field = document.getElementById(fieldId);
+
+    if (!field.value.trim()) {
+
+        alert("⚠️ Please fill in all required fields.");
+
+        field.focus();
+
+        return;
+    }
+}
+
+        
     const requestData = {
 
         patientProblem:
