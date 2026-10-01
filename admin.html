@@ -841,6 +841,66 @@ window.showEmergencies = function(){
     }
 );
 
+    /* APPROVE EMERGENCY */
+
+window.approveEmergency =
+async function(id){
+
+    try{
+
+        await updateDoc(
+            doc(db,"emergencyRequests",id),
+            {
+                status:"Approved"
+            }
+        );
+
+        alert("🚨 Emergency Request Approved");
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert("❌ Error approving emergency request");
+
+    }
+
+};
+
+
+/* CLOSE EMERGENCY */
+
+window.closeEmergency =
+async function(id){
+
+    if(!confirm("Close this emergency request?")){
+
+        return;
+
+    }
+
+    try{
+
+        await updateDoc(
+            doc(db,"emergencyRequests",id),
+            {
+                status:"Closed"
+            }
+        );
+
+        alert("✅ Emergency Request Closed");
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert("❌ Error closing emergency request");
+
+    }
+
+};
 </script>
 
 </body>
