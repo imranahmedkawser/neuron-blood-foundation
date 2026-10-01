@@ -706,6 +706,26 @@ alert("Error deleting member.");
 
 };
 
+    /* SHOW EMERGENCY REQUESTS */
+
+window.showEmergencies = function(){
+
+    document.querySelector("#emergencyBtn")
+    .classList.add("active-btn");
+
+    document.querySelector("#memberBtn")
+    .classList.remove("active-btn");
+
+    document.querySelector("#donorBtn")
+    .classList.remove("active-btn");
+
+    const list =
+    document.getElementById("pendingList");
+
+    list.innerHTML = "Loading Emergency Requests...";
+
+};
+
 </script>
 
 </body>
