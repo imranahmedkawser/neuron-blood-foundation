@@ -804,6 +804,25 @@ window.showEmergencies = function(){
                     ${data.status || "Pending"}
                 </p>
 
+<div class="action-buttons">
+
+    <button
+    class="approve-btn"
+    onclick="approveEmergency('${item.id}')">
+
+    Approve
+
+    </button>
+
+    <button
+    class="decline-btn"
+    onclick="closeEmergency('${item.id}')">
+
+    Close
+
+    </button>
+
+</div>
             `;
 
             list.appendChild(div);
