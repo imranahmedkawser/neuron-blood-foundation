@@ -425,6 +425,9 @@ window.showMembers = function(){
     document.querySelector("#donorBtn")
     .classList.remove("active-btn");
 
+    document.querySelector("#emergencyBtn")
+.classList.remove("active-btn");
+
     loadPending();
 
 };
@@ -436,6 +439,9 @@ window.showDonors = function(){
 .classList.add("active-btn");
 
 document.querySelector("#memberBtn")
+.classList.remove("active-btn");
+
+    document.querySelector("#emergencyBtn")
 .classList.remove("active-btn");
 
     const list =
