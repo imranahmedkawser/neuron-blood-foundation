@@ -726,6 +726,102 @@ window.showEmergencies = function(){
 
 };
 
+    onSnapshot(
+    collection(db, "emergencyRequests"),
+
+    snapshot => {
+
+        list.innerHTML = "";
+
+        let found = false;
+        let count = 0;
+
+        snapshot.forEach(item => {
+
+            const data = item.data();
+
+            count++;
+
+            found = true;
+
+            const div = document.createElement("div");
+
+            div.className = "pending-card";
+
+            div.innerHTML = `
+
+                <h3>
+                    🩸 ${data.bloodGroup || "Blood Group Not Given"}
+                </h3>
+
+                <p>
+                    <b>Blood Quantity:</b>
+                    ${data.bloodQuantity || ""}
+                </p>
+
+                <p>
+                    <b>Required Date:</b>
+                    ${data.requiredDate || ""}
+                </p>
+
+                <p>
+                    <b>Required Time:</b>
+                    ${data.requiredTime || ""}
+                </p>
+
+                <p>
+                    <b>District:</b>
+                    ${data.district || ""}
+                </p>
+
+                <p>
+                    <b>Upazila:</b>
+                    ${data.upazila || ""}
+                </p>
+
+                <p>
+                    <b>Hospital:</b>
+                    ${data.hospital || ""}
+                </p>
+
+                <p>
+                    <b>Contact:</b>
+                    ${data.contactNumber || ""}
+                </p>
+
+                <p>
+                    <b>Reference:</b>
+                    ${data.referenceName || ""}
+                </p>
+
+                <p>
+                    <b>Reference Number:</b>
+                    ${data.referenceNumber || ""}
+                </p>
+
+                <p>
+                    <b>Status:</b>
+                    ${data.status || "Pending"}
+                </p>
+
+            `;
+
+            list.appendChild(div);
+
+        });
+
+        document.getElementById("emergencyCount").textContent = count;
+
+        if(!found){
+
+            list.innerHTML =
+            "<div class='no-data'>No Emergency Requests</div>";
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
