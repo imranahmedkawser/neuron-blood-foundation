@@ -754,6 +754,11 @@ window.showEmergencies = function(){
                     🩸 ${data.bloodGroup || "Blood Group Not Given"}
                 </h3>
 
+
+<p>
+    <b>Patient Problem:</b>
+    ${data.patientProblem || "Not given"}
+</p>
                 <p>
                     <b>Blood Quantity:</b>
                     ${data.bloodQuantity || ""}
@@ -798,7 +803,10 @@ window.showEmergencies = function(){
                     <b>Reference Number:</b>
                     ${data.referenceNumber || ""}
                 </p>
-
+<p>
+    <b>Additional Note:</b>
+    ${data.additionalNote || "No additional note"}
+</p>
                 <p>
                     <b>Status:</b>
                     ${data.status || "Pending"}
