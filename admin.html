@@ -745,11 +745,17 @@ window.showEmergencies = function(){
 
             snapshot.forEach(item => {
 
-                const data = item.data();
+    const data = item.data();
 
-                count++;
-                found = true;
+    if(
+        data.status === "Closed" ||
+        data.status === "Completed"
+    ){
+        return;
+    }
 
+    count++;
+    found = true;
 
                 const div =
                 document.createElement("div");
