@@ -17,31 +17,124 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <body>
 
 <!-- NAVBAR -->
+
 <nav class="navbar">
 
-<div class="logo-box">
-    <img src="images/logo.png" alt="">
-    <div>
-        <h2>Neuron Blood Foundation</h2>
+    <div class="logo-box">
+
+        <img src="images/logo.png" alt="Neuron Blood Foundation">
+
+        <div>
+            <h2>Neuron Blood Foundation</h2>
+        </div>
+
     </div>
 
 
-<ul id="navMenu">
+    <!-- Always Visible Buttons -->
 
-    <li><a href="index.html">Home</a></li>
+    <div class="quick-buttons">
 
-    <li><a href="become-doner.html">Become a Doner</a></li>
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
 
-    <li><a href="donor-list.html">Doner List</a></li>
+        <a href="donor-list.html">
+            <i class="fa-solid fa-droplet"></i>
+            Donor List
+        </a>
 
-    <li><a href="member-login.html">Member Login</a></li>
+        <a href="emergency.html">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Emergency Blood Request
+        </a>
 
-    <li><a href="admin.html">Admin</a></li>
+    </div>
 
-</ul>
+
+    <!-- Menu Button -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        <i class="fa-solid fa-bars"></i>
+        Menu
+
+    </button>
+
+
+    <!-- Menu -->
+
+    <ul id="navMenu">
+
+        <li>
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="donor-list.html">
+                <i class="fa-solid fa-droplet"></i>
+                Donor List
+            </a>
+        </li>
+
+        <li>
+            <a href="become-doner.html">
+                <i class="fa-solid fa-hand-holding-droplet"></i>
+                Become a Donor
+            </a>
+        </li>
+
+        <li>
+            <a href="emergency.html">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Emergency Blood Request
+            </a>
+        </li>
+
+        <li>
+            <a href="member-registration.html">
+                <i class="fa-solid fa-user-plus"></i>
+                Become a Member
+            </a>
+        </li>
+
+        <li>
+            <a href="member-profile.html">
+                <i class="fa-solid fa-user"></i>
+                Member Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="donor-profile.html">
+                <i class="fa-solid fa-id-card"></i>
+                Donor Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact">
+                <i class="fa-solid fa-phone"></i>
+                Contact Us
+            </a>
+        </li>
+
+        <li>
+            <a href="admin.html">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </li>
+
+    </ul>
 
 </nav>
-
 
 <!-- HERO -->
 
