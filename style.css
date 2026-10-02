@@ -354,3 +354,132 @@ margin:0 10px;
 text-decoration:none;
 }
 }
+
+/* ============================= */
+/* NEW NAVBAR MENU DESIGN */
+/* ============================= */
+
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.quick-buttons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.quick-buttons a{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 16px;
+    background:#ffffff;
+    color:#006b3c;
+    border:2px solid #006b3c;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+}
+
+.quick-buttons a:hover{
+    background:#006b3c;
+    color:white;
+}
+
+.menu-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 16px;
+    background:#006b3c;
+    color:white;
+    border:2px solid white;
+    border-radius:25px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+#navMenu{
+    display:none;
+    width:100%;
+    list-style:none;
+    margin:0;
+    padding:10px 0;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+#navMenu.show{
+    display:flex;
+}
+
+#navMenu li a{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 15px;
+    background:white;
+    color:#006b3c;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+#navMenu li a:hover{
+    background:#006b3c;
+    color:white;
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .navbar{
+        justify-content:center;
+    }
+
+    .logo-box{
+        width:100%;
+        justify-content:center;
+    }
+
+    .quick-buttons{
+        width:100%;
+        justify-content:center;
+    }
+
+    .quick-buttons a{
+        font-size:13px;
+        padding:8px 11px;
+    }
+
+    .menu-btn{
+        font-size:14px;
+    }
+
+    #navMenu{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    #navMenu li{
+        width:100%;
+        text-align:center;
+    }
+
+    #navMenu li a{
+        width:90%;
+        justify-content:center;
+    }
+
+}
