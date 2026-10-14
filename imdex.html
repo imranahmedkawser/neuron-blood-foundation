@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Neuron Blood Foundation</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo-box">
+
+        <img src="images/logo.png" alt="Neuron Blood Foundation">
+
+        <div>
+            <h2>Neuron Blood Foundation</h2>
+        </div>
+
+    </div>
+
+
+    <!-- Always Visible Buttons -->
+
+    <div class="quick-buttons">
+
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="donor-list.html">
+            <i class="fa-solid fa-droplet"></i>
+            Donor List
+        </a>
+
+        <a href="emergency.html">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Emergency Blood Request
+        </a>
+
+    </div>
+
+
+    <!-- Menu Button -->
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        <i class="fa-solid fa-bars"></i>
+        Menu
+
+    </button>
+
+
+    <!-- Menu -->
+
+    <ul id="navMenu">
+
+        <li>
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="donor-list.html">
+                <i class="fa-solid fa-droplet"></i>
+                Donor List
+            </a>
+        </li>
+
+        <li>
+            <a href="become-doner.html">
+                <i class="fa-solid fa-hand-holding-droplet"></i>
+                Become a Donor
+            </a>
+        </li>
+
+        <li>
+            <a href="emergency.html">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Emergency Blood Request
+            </a>
+        </li>
+
+        <li>
+            <a href="member-registration.html">
+                <i class="fa-solid fa-user-plus"></i>
+                Become a Member
+            </a>
+        </li>
+
+        <li>
+            <a href="member-profile.html">
+                <i class="fa-solid fa-user"></i>
+                Member Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="donor-profile.html">
+                <i class="fa-solid fa-id-card"></i>
+                Donor Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact">
+                <i class="fa-solid fa-phone"></i>
+                Contact Us
+            </a>
+        </li>
+
+        <li>
+            <a href="admin.html">
+                <i class="fa-solid fa-user-shield"></i>
+                Admin
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h4>NEURON BLOOD FOUNDATION</h4>
+
+<h1>
+
+Donate Blood,<br>
+
+<span>Save Lives</span>
+
+</h1>
+
+<p>
+
+এক ব্যাগ রক্ত বাঁচাতে পারে একটি জীবন।❤️‍🩹
+
+</p>
+
+<p>
+
+আপনার স্বেচ্ছায় রক্তদান হতে পারে কারও নতুন জীবনের সূচনা।
+
+</p>
+
+<div class="buttons">
+
+<a href="become-doner.html" class="btn-red" style="text-decoration:none;">
+    <i class="fa-solid fa-user"></i>
+    Register as Doner
+</a>
+<button class="btn-white" onclick="location.href='donor-list.html'">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    Find a Doner
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="images/blood-bag.png">
+
+</div>
+
+</section>
+
+<!-- WHY -->
+
+<section class="why">
+
+<h2>Why Donate Blood?</h2>
+
+<div class="why-grid">
+
+<div class="box">
+
+<i class="fa-regular fa-clock"></i>
+
+<p>প্রতি ২ সেকেন্ডে একজন মানুষের রক্তের প্রয়োজন হয়</p>
+
+</div>
+
+<div class="box">
+
+<i class="fa-solid fa-users"></i>
+
+<p>একজন দাতা ৩ জন মানুষের জীবন বাঁচাতে সাহায্য করতে পারেন</p>
+
+</div>
+
+<div class="box">
+
+<i class="fa-solid fa-heart-pulse"></i>
+
+<p>নিয়মিত রক্তদান স্বাস্থ্যের জন্যও উপকারী</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- IMPACT -->
+
+<section class="impact">
+
+<h2>Our Impact</h2>
+
+<div class="impact-grid">
+
+<div class="card">
+
+<h1 id="donorCount">3</h1>
+
+<p>Donors</p>
+
+</div>
+
+<div class="card">
+
+<h1 id="donationCount">0</h1>
+
+<p>Donations</p>
+
+</div>
+
+<div class="card">
+
+<h1 id="memberCount">6</h1>
+
+<p>Members</p>
+
+</div>
+
+<div class="card">
+
+<h1>01</h1>
+
+<p>District Coverage</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BLOOD GROUP -->
+
+<section class="blood">
+
+<h2>Need Blood?</h2>
+
+<p>Search donors by blood group instantly.</p>
+
+<div class="groups">
+
+<button>A+</button>
+<button>A-</button>
+<button>B+</button>
+<button>B-</button>
+
+<button>AB+</button>
+<button>AB-</button>
+
+<button>O+</button>
+<button>O-</button>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h3>
+
+আপনার কয়েক মিনিটের সময়
+
+কারও জীবনের জন্য অমূল্য হতে পারে।
+
+</h3>
+
+<button>
+
+Register as Member
+
+</button>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div>
+
+<h2>Neuron Blood Foundation</h2>
+
+<p>Bangladesh</p>
+
+</div>
+
+<div>
+    <h5>Contact Us</h5>
+    <div class="social-links">
+<a href="mailto:neuronfoundationofficial@gmail.com">
+    <i class="fa-solid fa-envelope"></i>
+</a>
+    </div>
+    
+    <div class="social-links">
+
+<a href="https://www.facebook.com/neuronfoundation" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+    </div>
+
+    <div class="social-links">
+    
+<a href="https://wa.me/8801701854860" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
