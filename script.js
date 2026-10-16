@@ -56,10 +56,11 @@ function goBack() {
 
 window.calculateAge = function () {
     const input = document.getElementById("donorAge");
+    const dobValue = input.value;
 
-    if (!input.value) return;
+    if (!dobValue) return;
 
-    const dob = new Date(input.value + "T00:00:00");
+    const dob = new Date(dobValue + "T00:00:00");
     const today = new Date();
 
     if (dob > today) {
@@ -68,17 +69,24 @@ window.calculateAge = function () {
         return;
     }
 
-    let age = today.getFullYear() - dob.getFullYear();
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
 
-    const month = today.getMonth() - dob.getMonth();
+    if (days < 0) {
+        months--;
+        days += new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+        ).getDate();
+    }
 
-    if (
-        month < 0 ||
-        (month === 0 && today.getDate() < dob.getDate())
-    ) {
-        age--;
+    if (months < 0) {
+        years--;
+        months += 12;
     }
 
     input.type = "text";
-    input.value = age + " years old";
+    input.value = `${years}Y ${months}M ${days}D`;
 };
