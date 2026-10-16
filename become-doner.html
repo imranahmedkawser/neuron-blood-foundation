@@ -162,13 +162,21 @@ textarea {
 </select>
 
 <div class="question">Age / Date of Birth*</div>
+
 <input
     type="text"
     id="donorAge"
     placeholder="Select date of birth"
-    onfocus="this.type='date'"
-    onchange="calculateAge()"
+    readonly
+    onclick="openAgeCalendar()"
     required
+>
+
+<input
+    type="date"
+    id="donorDOB"
+    style="position:absolute;opacity:0;pointer-events:none;"
+    onchange="calculateAge()"
 >
 
 <div class="question">Weight (KG)*</div>
