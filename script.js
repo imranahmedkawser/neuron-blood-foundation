@@ -37,3 +37,19 @@ animateCounter("memberCount", 05);
 function toggleMenu(){
     document.getElementById("navMenu").classList.toggle("show");
 }
+
+// Back Button Navigation
+function goBack() {
+    const currentHost = window.location.hostname;
+    const previousPage = document.referrer;
+
+    if (
+        previousPage &&
+        new URL(previousPage).hostname === currentHost &&
+        window.history.length > 1
+    ) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
