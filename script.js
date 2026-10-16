@@ -53,3 +53,32 @@ function goBack() {
         window.location.href = "index.html";
     }
 }
+
+window.calculateAge = function () {
+    const input = document.getElementById("donorAge");
+
+    if (!input.value) return;
+
+    const dob = new Date(input.value + "T00:00:00");
+    const today = new Date();
+
+    if (dob > today) {
+        alert("Future date is not allowed!");
+        input.value = "";
+        return;
+    }
+
+    let age = today.getFullYear() - dob.getFullYear();
+
+    const month = today.getMonth() - dob.getMonth();
+
+    if (
+        month < 0 ||
+        (month === 0 && today.getDate() < dob.getDate())
+    ) {
+        age--;
+    }
+
+    input.type = "text";
+    input.value = age + " years old";
+};
