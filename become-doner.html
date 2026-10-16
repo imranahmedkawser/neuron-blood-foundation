@@ -161,8 +161,15 @@ textarea {
     <option>AB-</option>
 </select>
 
-<div class="question">Age*</div>
-<input type="number" id="donorAge" min="18" required>
+<div class="question">Age / Date of Birth*</div>
+<input
+    type="text"
+    id="donorAge"
+    placeholder="Select date of birth"
+    onfocus="this.type='date'"
+    onchange="calculateAge()"
+    required
+>
 
 <div class="question">Weight (KG)*</div>
 <input type="number" id="donorWeight" min="1" required>
