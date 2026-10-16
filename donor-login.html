@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Login | Neuron Blood Foundation</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f8f5;
+      color: #26352d;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #087443;
+      color: white;
+      padding: 18px 15px;
+      text-align: center;
+    }
+
+    header h2 {
+      font-size: 23px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 13px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 430px;
+      margin: 45px auto;
+    }
+
+    .login-card {
+      background: white;
+      padding: 28px 22px;
+      border-radius: 15px;
+      box-shadow: 0 5px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .icon {
+      width: 75px;
+      height: 75px;
+      background: #e3f4e9;
+      color: #087443;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 18px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 23px;
+      color: #087443;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d5dfd8;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #087443;
+      box-shadow: 0 0 0 2px rgba(8, 116, 67, 0.1);
+    }
+
+    .login-btn {
+      width: 100%;
+      background: #087443;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background: #065c35;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      margin: -5px 0 20px;
+      color: #087443;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .register a {
+      color: #087443;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .notice {
+      display: none;
+      background: #fff3cd;
+      color: #795600;
+      padding: 11px;
+      border-radius: 7px;
+      font-size: 13px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+      padding: 15px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 28px auto;
+      }
+
+      .login-card {
+        padding: 25px 18px;
+      }
+
+      header h2 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>🩸 Neuron Blood Foundation</h2>
+    <p>With Youth, On the Path of Humanity</p>
+  </header>
+
+  <main class="container">
+    <section class="login-card">
+
+      <div class="icon">👤</div>
+
+      <h1>Donor Login</h1>
+
+      <p class="subtitle">
+        Welcome back!<br>
+        লগইন করে আপনার ডোনার প্রোফাইলে প্রবেশ করুন।
+      </p>
+
+      <div class="notice" id="notice" role="status">
+        লগইন ব্যবস্থা এখনো Firebase-এর সঙ্গে সংযুক্ত করা হয়নি।
+      </div>
+
+      <form id="loginForm">
+
+        <label for="phone">মোবাইল নম্বর</label>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="আপনার মোবাইল নম্বর"
+          autocomplete="username"
+          required
+        >
+
+        <label for="password">পাসওয়ার্ড</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="আপনার পাসওয়ার্ড"
+          autocomplete="current-password"
+          required
+        >
+
+        <a href="#" class="forgot" id="forgotPassword">
+          পাসওয়ার্ড ভুলে গেছেন?
+        </a>
+
+        <button type="submit" class="login-btn">
+          Login
+        </button>
+
+      </form>
+
+      <div class="register">
+        এখনো ডোনার অ্যাকাউন্ট নেই?<br>
+        <a href="become-doner.html">Register as Donor</a>
+      </div>
+
+      <a href="index.html" class="back">
+        ← হোমপেজে ফিরে যান
+      </a>
+
+    </section>
+  </main>
+
+  <footer>
+    © Neuron Blood Foundation<br>
+    মানবতার সেবায়, রক্তদাতার পাশে ❤️
+  </footer>
+
+  <script>
+    const notice = document.getElementById("notice");
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      notice.style.display = "block";
+    });
+
+    document.getElementById("forgotPassword").addEventListener("click", function(event) {
+      event.preventDefault();
+      notice.textContent =
+        "পাসওয়ার্ড পুনরুদ্ধারের সুবিধা Firebase সংযুক্ত করার পর চালু হবে।";
+      notice.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
