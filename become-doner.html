@@ -415,11 +415,32 @@ window.nextDonorStep = function() {
         return;
     }
 
-    const  age: document.getElementById("donorAge").value,
+   const dobValue = document.getElementById("donorDOB").value;
 
-    if (age < 18) {
-        alert("You must be at least 18 years old to register as a donor.");
-        return;
+if (!dobValue) {
+    alert("Please select your date of birth.");
+    return;
+}
+
+const [year, month, day] = dobValue.split("-").map(Number);
+
+const today = new Date();
+
+let age = today.getFullYear() - year;
+
+if (
+    today.getMonth() < month - 1 ||
+    (
+        today.getMonth() === month - 1 &&
+        today.getDate() < day
+    )
+) {
+    age--;
+}
+
+if (age < 18) {
+    alert("Sorry! You must be at least 18 years old to register as a blood donor.");
+    return;
     }
 
     showStep(2);
