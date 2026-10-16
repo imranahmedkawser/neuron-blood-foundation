@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Blood Donors | Neuron Blood Foundation</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <section class="blood">
+        <h2><i class="fa-solid fa-droplet"></i> Blood Donors</h2>
+
+        <h3 id="selectedGroup">Loading...</h3>
+
+        <p id="statusMessage">Donor list loading...</p>
+
+        <div id="donorResults"></div>
+
+        <br>
+
+        <button onclick="location.href='index.html'">
+            <i class="fa-solid fa-house"></i> Home
+        </button>
+
+        <button onclick="location.href='donor-list.html'">
+            <i class="fa-solid fa-arrow-left"></i> All Donors
+        </button>
+    </section>
+
+    <script type="module">
+
+        const params = new URLSearchParams(window.location.search);
+        const bloodGroup = params.get("group");
+
+        document.getElementById("selectedGroup").textContent =
+            bloodGroup ? "Blood Group: " + bloodGroup : "No Blood Group Selected";
+
+        document.getElementById("statusMessage").textContent =
+            "Firebase connection setup is needed.";
+
+    </script>
+
+</body>
+</html>
