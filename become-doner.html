@@ -1,531 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Donor - Neuron Blood Foundation</title>
 
-    <title>Become a Donor - Neuron Blood Foundation</title>
-
-    <style>
-
-.member-step{
-    display:none;
+<style>
+* {
+    box-sizing: border-box;
 }
 
-.member-step.active{
-    display:block;
+body {
+    margin: 0;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    background: #f5fff7;
 }
 
-.donor-card{
-    max-width:600px;
-    margin:30px auto;
-    padding:25px;
-    background:linear-gradient(135deg,#ecfff1,#f8fff9);
-    border:1px solid #d8f5df;
-    border-radius:15px;
+.member-step {
+    display: none;
 }
 
-.question{
-    margin-top:15px;
-    margin-bottom:6px;
-    font-weight:bold;
+.member-step.active {
+    display: block;
 }
 
-input, select, textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
+.donor-card {
+    max-width: 600px;
+    margin: 25px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #ecfff1, #f8fff9);
+    border: 1px solid #d8f5df;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
 }
 
-.step-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+h2 {
+    text-align: center;
+    color: #15803d;
 }
 
-.btn{
-    flex:1;
-    padding:12px;
-    border:0;
-    border-radius:8px;
-    cursor:pointer;
+.question {
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
 }
 
-.green-btn{
-    background:#16a34a;
-    color:white;
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
 }
-    </style>
 
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.step-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.green-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.gray-btn {
+    background: #e5e7eb;
+    color: #222;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.password-note {
+    color: #555;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+#donorMessage {
+    margin-top: 15px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+@media(max-width:480px) {
+    .donor-card {
+        padding: 18px;
+        margin: 10px auto;
+    }
+
+    .step-buttons {
+        gap: 8px;
+    }
+}
+</style>
 </head>
 
 <body>
- <div class="donor-card">
-    <!-- এখানে তোমার Step 1 -->
-    <div id="donorStep1" class="member-step active">
 
-<h2 class="form-title">🩸 Become a Blood Donor</h2>
+<div class="donor-card">
+
+<!-- ================= STEP 1 ================= -->
+
+<div id="donorStep1" class="member-step active">
+
+<h2>🩸 Become a Blood Donor</h2>
 
 <div class="question">Full Name*</div>
 <input type="text" id="donorName" required>
 
 <div class="question">Mobile Number*</div>
-<input type="tel" id="donorPhone" placeholder="01XXXXXXXXX" required>
+<input
+    type="tel"
+    id="donorPhone"
+    placeholder="01XXXXXXXXX"
+    maxlength="11"
+    inputmode="numeric"
+    required
+>
 
-        <div class="question">Gender*</div>
-
+<div class="question">Gender*</div>
 <select id="donorGender" required>
-<option value="">Select Gender</option>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
 </select>
-        
+
 <div class="question">Blood Group*</div>
 <select id="donorBlood" required>
-<option value="">Select</option>
-<option>A+</option>
-<option>A-</option>
-<option>B+</option>
-<option>B-</option>
-<option>O+</option>
-<option>O-</option>
-<option>AB+</option>
-<option>AB-</option>
+    <option value="">Select Blood Group</option>
+    <option>A+</option>
+    <option>A-</option>
+    <option>B+</option>
+    <option>B-</option>
+    <option>O+</option>
+    <option>O-</option>
+    <option>AB+</option>
+    <option>AB-</option>
 </select>
 
 <div class="question">Age*</div>
-<input type="number" id="donorAge" required>
+<input type="number" id="donorAge" min="18" required>
 
 <div class="question">Weight (KG)*</div>
-<input type="number" id="donorWeight" required>
+<input type="number" id="donorWeight" min="1" required>
 
 <div class="step-buttons">
 
 <button
-type="button"
-class="btn"
-onclick="window.location.href='index.html'">
-Home
+    type="button"
+    class="btn gray-btn"
+    onclick="location.href='index.html'">
+    Home
 </button>
 
 <button
-type="button"
-class="btn green-btn"
-onclick="nextDonorStep()">
-Next
+    type="button"
+    class="btn green-btn"
+    onclick="nextDonorStep()">
+    Next
 </button>
 
 </div>
-
-    </div>
-
-
-    <!-- এখানে Step 2 -->
-    <div id="donorStep2" class="member-step">
-
-<div class="question">
-Last Blood Donation Date*
 </div>
 
-<input
-type="date"
-id="lastDonation"
-required>
 
-<div class="question">
-Division*
-</div>
+<!-- ================= STEP 2 ================= -->
 
+<div id="donorStep2" class="member-step">
+
+<h2>📍 Donation & Address</h2>
+
+<div class="question">Last Blood Donation Date</div>
+<input type="date" id="lastDonation">
+
+<p class="password-note">
+Never donated blood? You may leave this field empty.
+</p>
+
+<div class="question">Division*</div>
 <select id="donorDivision" required>
-<option value="">Select Division</option>
+    <option value="">Select Division</option>
 </select>
 
-<div class="question">
-District*
-</div>
-
+<div class="question">District*</div>
 <select id="donorDistrict" required disabled>
-<option value="">Select District</option>
+    <option value="">Select District</option>
 </select>
 
-<div class="question">
-Upazila*
-</div>
-
+<div class="question">Upazila*</div>
 <select id="donorUpazila" required disabled>
-<option value="">Select Upazila</option>
+    <option value="">Select Upazila</option>
 </select>
 
-<div class="question">
-Village/Town*
+<div class="question">Village/Town*</div>
+<input type="text" id="donorVillage" required>
+
+<div class="question">Full Address*</div>
+<textarea id="donorAddress" required></textarea>
+
+<div style="margin-top:18px; display:flex; gap:8px; align-items:flex-start;">
+    <input
+        type="checkbox"
+        id="donorConsent"
+        style="margin-top:4px;"
+        required
+    >
+
+    <label for="donorConsent">
+        I agree that my contact number may be visible to blood seekers
+        after approval.
+    </label>
 </div>
-
-<input
-type="text"
-id="donorVillage"
-required>
-
-<div class="question">
-Full Address*
-</div>
-
-<textarea
-id="donorAddress"
-required>
-</textarea>
-
-        <div style="margin-top:15px;">
-
-<label>
-
-<input
-type="checkbox"
-id="donorConsent"
-required>
-
-I agree that my contact number may be visible to blood seekers after approval.
-
-</label>
-
-</div> 
 
 <div class="step-buttons">
 
 <button
-type="button"
-class="btn"
-onclick="previousDonorStep()">
-Back
+    type="button"
+    class="btn gray-btn"
+    onclick="previousDonorStep()">
+    Back
 </button>
 
 <button
-type="button"
-class="btn green-btn"
-onclick="submitDonor()">
-Submit
+    type="button"
+    class="btn green-btn"
+    onclick="nextDonorStep3()">
+    Next
+</button>
+
+</div>
+</div>
+
+
+<!-- ================= STEP 3 ================= -->
+
+<div id="donorStep3" class="member-step">
+
+<h2>🔐 Create Your Donor Account</h2>
+
+<p>
+Set a password to access your donor account in the future.
+</p>
+
+<div class="question">Login Number</div>
+<input type="tel" id="loginNumber" readonly>
+
+<p class="password-note">
+Your mobile number from Step 1 will be your login number.
+</p>
+
+<div class="question">Create Password*</div>
+<input
+    type="password"
+    id="donorPassword"
+    minlength="8"
+    autocomplete="new-password"
+    placeholder="At least 8 characters"
+    required
+>
+
+<div style="margin-top:8px;">
+    <input type="checkbox" id="showPassword">
+    <label for="showPassword">Show password</label>
+</div>
+
+<div class="question">Confirm Password*</div>
+<input
+    type="password"
+    id="confirmPassword"
+    minlength="8"
+    autocomplete="new-password"
+    placeholder="Enter password again"
+    required
+>
+
+<p class="password-note">
+Use at least 8 characters. Never share your password with anyone.
+</p>
+
+<div class="step-buttons">
+
+<button
+    type="button"
+    class="btn gray-btn"
+    onclick="previousDonorStep3()">
+    Back
+</button>
+
+<button
+    type="button"
+    id="submitDonorButton"
+    class="btn green-btn"
+    onclick="submitDonor()">
+    Register as Donor
 </button>
 
 </div>
 
-<div id="donorMessage"></div>
+<div id="donorMessage" role="status"></div>
 
-    </div>
+</div>
 
-
-    <!-- একদম শেষে Firebase + সব JavaScript -->
-    <script type="module">
-
-    // Firebase imports
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-    import {
-        getFirestore,
-        collection,
-        addDoc
-    }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+</div>
 
 
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
-        authDomain: "neuron-blood-foundation.firebaseapp.com",
-        databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
-        projectId: "neuron-blood-foundation",
-        storageBucket: "neuron-blood-foundation.firebasestorage.app",
-        messagingSenderId: "160902995293",
-        appId: "1:160902995293:web:d0e4137de45290873e5cb4",
-        measurementId: "G-2NVL55Q5GN"
-    };
+<!-- ================= FIREBASE + JAVASCRIPT ================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    setDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-    // Firebase start
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+const firebaseConfig = {
+    apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+    authDomain: "neuron-blood-foundation.firebaseapp.com",
+    databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
+    projectId: "neuron-blood-foundation",
+    storageBucket: "neuron-blood-foundation.firebasestorage.app",
+    messagingSenderId: "160902995293",
+    appId: "1:160902995293:web:d0e4137de45290873e5cb4",
+    measurementId: "G-2NVL55Q5GN"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 
-    // =========================
-    // NEXT BUTTON
-    // =========================
+// ================= STEP NAVIGATION =================
 
-    window.nextDonorStep = function(){
+function showStep(stepNumber) {
 
-        const step1 = document.getElementById("donorStep1");
+    document.querySelectorAll(".member-step").forEach(step => {
+        step.classList.remove("active");
+    });
 
-        const inputs = step1.querySelectorAll("input, select");
+    document.getElementById("donorStep" + stepNumber)
+        .classList.add("active");
 
-        for(const input of inputs){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-            if(!input.checkValidity()){
-                input.reportValidity();
-                return;
-            }
 
-        }
+window.nextDonorStep = function() {
 
-        const phone =
-            document.getElementById("donorPhone").value.trim();
+    const step = document.getElementById("donorStep1");
+    const inputs = step.querySelectorAll("input[required], select[required]");
 
-        if(!/^01[0-9]{9}$/.test(phone)){
-
-            alert("Mobile Number must be 11 digits and start with 01.");
-
+    for (const input of inputs) {
+        if (!input.checkValidity()) {
+            input.reportValidity();
             return;
         }
+    }
 
-        document
-            .getElementById("donorStep1")
-            .classList.remove("active");
+    const phone = document.getElementById("donorPhone").value.trim();
 
-        document
-            .getElementById("donorStep2")
-            .classList.add("active");
-    };
+    if (!/^01[0-9]{9}$/.test(phone)) {
+        alert("Mobile number must contain 11 digits and start with 01.");
+        return;
+    }
 
+    const age = Number(document.getElementById("donorAge").value);
 
-    // =========================
-    // BACK BUTTON
-    // =========================
+    if (age < 18) {
+        alert("You must be at least 18 years old to register as a donor.");
+        return;
+    }
 
-    window.previousDonorStep = function(){
-
-        document
-            .getElementById("donorStep2")
-            .classList.remove("active");
-
-        document
-            .getElementById("donorStep1")
-            .classList.add("active");
-    };
+    showStep(2);
+};
 
 
-    // =========================
-    // BANGLADESH LOCATION
-    // =========================
-
-    const division =
-        document.getElementById("donorDivision");
-
-    const district =
-        document.getElementById("donorDistrict");
-
-    const upazila =
-        document.getElementById("donorUpazila");
+window.previousDonorStep = function() {
+    showStep(1);
+};
 
 
-    let bdData = [];
+window.nextDonorStep3 = function() {
+
+    const step = document.getElementById("donorStep2");
+
+    const inputs = step.querySelectorAll(
+        "input[required], select[required], textarea[required]"
+    );
+
+    for (const input of inputs) {
+        if (!input.checkValidity()) {
+            input.reportValidity();
+            return;
+        }
+    }
+
+    if (
+        !document.getElementById("donorDivision").value ||
+        !document.getElementById("donorDistrict").value ||
+        !document.getElementById("donorUpazila").value
+    ) {
+        alert("Please select Division, District and Upazila.");
+        return;
+    }
+
+    if (!document.getElementById("donorConsent").checked) {
+        alert("Please accept the consent first.");
+        return;
+    }
+
+    const phone = document.getElementById("donorPhone").value.trim();
+
+    document.getElementById("loginNumber").value = phone;
+
+    showStep(3);
+};
+
+
+window.previousDonorStep3 = function() {
+    showStep(2);
+};
+
+
+// ================= SHOW PASSWORD =================
+
+document.getElementById("showPassword").addEventListener("change", function() {
+
+    const type = this.checked ? "text" : "password";
+
+    document.getElementById("donorPassword").type = type;
+    document.getElementById("confirmPassword").type = type;
+});
+
+
+// ================= BANGLADESH LOCATION =================
+
+const division = document.getElementById("donorDivision");
+const district = document.getElementById("donorDistrict");
+const upazila = document.getElementById("donorUpazila");
+
+let bdData = [];
 
 fetch("https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json")
-.then(response => response.json())
+.then(response => {
+    if (!response.ok) {
+        throw new Error("Could not load location data.");
+    }
+    return response.json();
+})
 .then(data => {
 
     bdData = data;
 
     data.forEach(div => {
-
-        division.innerHTML += `
-            <option value="${div.name}">
-                ${div.bn_name}
-            </option>
-        `;
-
+        division.add(new Option(div.bn_name, div.name));
     });
 
 })
 .catch(error => {
-
     console.error("Location data error:", error);
-
+    alert("Location list could not be loaded. Please reload the page.");
 });
 
 
-division.addEventListener("change", function(){
+division.addEventListener("change", function() {
 
-    district.innerHTML =
-    '<option value="">Select District</option>';
+    district.innerHTML = '<option value="">Select District</option>';
+    upazila.innerHTML = '<option value="">Select Upazila</option>';
 
-    upazila.innerHTML =
-    '<option value="">Select Upazila</option>';
-
-    district.disabled = false;
+    district.disabled = true;
     upazila.disabled = true;
 
-    const selectedDivision =
-    bdData.find(d => d.name === this.value);
+    const selectedDivision = bdData.find(d => d.name === this.value);
+
+    if (!selectedDivision) return;
 
     selectedDivision.districts.forEach(dist => {
-
-        district.innerHTML += `
-            <option value="${dist.name}">
-                ${dist.bn_name}
-            </option>
-        `;
-
+        district.add(new Option(dist.bn_name, dist.name));
     });
 
+    district.disabled = false;
 });
 
 
-district.addEventListener("change", function(){
+district.addEventListener("change", function() {
 
-    upazila.innerHTML =
-    '<option value="">Select Upazila</option>';
+    upazila.innerHTML = '<option value="">Select Upazila</option>';
+    upazila.disabled = true;
 
-    upazila.disabled = false;
+    const selectedDivision = bdData.find(d => d.name === division.value);
 
-    const selectedDivision =
-    bdData.find(d => d.name === division.value);
+    if (!selectedDivision) return;
 
-    const selectedDistrict =
-    selectedDivision.districts.find(
+    const selectedDistrict = selectedDivision.districts.find(
         d => d.name === this.value
     );
 
+    if (!selectedDistrict) return;
+
     selectedDistrict.upazilas.forEach(upz => {
-
-        upazila.innerHTML += `
-            <option value="${upz.name}">
-                ${upz.bn_name}
-            </option>
-        `;
-
+        upazila.add(new Option(upz.bn_name, upz.name));
     });
 
+    upazila.disabled = false;
 });
 
 
-    // =========================
-    // ⭐ SUBMIT FUNCTION
-    // =========================
+// ================= REGISTER DONOR =================
 
-    window.submitDonor = async function(){
+window.submitDonor = async function() {
 
-        const step2 =
-            document.getElementById("donorStep2");
+    const message = document.getElementById("donorMessage");
+    const button = document.getElementById("submitDonorButton");
 
-        const inputs =
-            step2.querySelectorAll("input, select, textarea");
+    const phone = document.getElementById("donorPhone").value.trim();
+    const password = document.getElementById("donorPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-        for(const input of inputs){
+    message.textContent = "";
 
-            if(!input.checkValidity()){
+    if (!/^01[0-9]{9}$/.test(phone)) {
+        alert("Please enter a valid Bangladeshi mobile number.");
+        showStep(1);
+        return;
+    }
 
-                input.reportValidity();
+    if (password.length < 8) {
+        alert("Password must contain at least 8 characters.");
+        return;
+    }
 
-                return;
-            }
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    if (!document.getElementById("donorConsent").checked) {
+        alert("Please accept the consent first.");
+        showStep(2);
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Registering...";
+
+    let createdUser = null;
+
+    try {
+
+        /*
+         * Phone number is converted into a consistent email-style
+         * login identifier. Donor Login must use the same conversion.
+         *
+         * This is NOT SMS verification.
+         */
+
+        const loginEmail = phone + "@donor.neuronfoundation.com";
+
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            loginEmail,
+            password
+        );
+
+        createdUser = userCredential.user;
+
+        const donorData = {
+            uid: createdUser.uid,
+
+            name: document.getElementById("donorName").value.trim(),
+            phone: phone,
+            blood: document.getElementById("donorBlood").value,
+            gender: document.getElementById("donorGender").value,
+            age: Number(document.getElementById("donorAge").value),
+            weight: Number(document.getElementById("donorWeight").value),
+
+            lastDonation: document.getElementById("lastDonation").value,
+
+            division: division.value,
+            district: district.value,
+            upazila: upazila.value,
+
+            village: document.getElementById("donorVillage").value.trim(),
+            address: document.getElementById("donorAddress").value.trim(),
+
+            status: "Pending",
+            type: "Donor",
+
+            totalDonations: 0,
+            createdAt: serverTimestamp()
+        };
+
+        /*
+         * Use the Firebase Authentication UID as the document ID.
+         * This makes it easier to enforce per-user access rules later.
+         */
+
+        await setDoc(
+            doc(db, "donors", createdUser.uid),
+            donorData
+        );
+
+        document.getElementById("donorStep3").innerHTML = `
+            <div style="
+                background:#e8fff0;
+                padding:25px;
+                border-radius:12px;
+                text-align:center;
+            ">
+                <h2>✅ Thank You!</h2>
+
+                <p>Your donor registration has been submitted successfully.</p>
+
+                <p>Your application is pending admin approval.</p>
+
+                <p><strong>Login Number:</strong> ${phone}</p>
+
+                <p>
+                    Keep your password safe. You can use your login
+                    number and password when the Donor Login page is ready.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn green-btn"
+                    onclick="location.href='index.html'">
+                    Go to Home
+                </button>
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error("Donor registration error:", error);
+
+        let errorMessage = "Registration failed. Please try again.";
+
+        if (error.code === "auth/email-already-in-use") {
+            errorMessage =
+                "This mobile number already has a donor account. Please use the login page.";
+        } else if (error.code === "auth/weak-password") {
+            errorMessage =
+                "Your password is too weak. Please choose a stronger password.";
+        } else if (error.code === "auth/invalid-email") {
+            errorMessage =
+                "The login account could not be created. Please contact the administrator.";
+        } else if (error.code === "permission-denied" ||
+                   error.code === "firestore/permission-denied") {
+            errorMessage =
+                "Database permission denied. Firebase Firestore security rules need to be configured.";
+        } else if (error.code === "auth/network-request-failed") {
+            errorMessage =
+                "Network error. Check your internet connection and try again.";
+        } else if (error.code === "auth/operation-not-allowed") {
+            errorMessage =
+                "Email/Password sign-in is not enabled in Firebase Authentication.";
         }
 
+        message.style.color = "#b91c1c";
+        message.textContent = errorMessage;
 
-        if(
-!document.getElementById("donorConsent").checked
-){
+        /*
+         * If account creation succeeded but Firestore saving failed,
+         * the Authentication account may already exist.
+         * Do not automatically delete the account here.
+         */
 
-alert(
-"Please accept the consent first."
-);
+    } finally {
 
-return;
+        button.disabled = false;
+        button.textContent = "Register as Donor";
+    }
+};
 
-}
-        try{
+</script>
 
-            await addDoc(
-                collection(db, "donors"),
-                {
-
-                    name:
-                        document.getElementById("donorName").value,
-
-                    phone:
-                        document.getElementById("donorPhone").value,
-
-                    blood:
-                        document.getElementById("donorBlood").value,
-
-                    gender:
-                        document.getElementById("donorGender").value,
-
-                    age:
-                        document.getElementById("donorAge").value,
-
-                    weight:
-                        document.getElementById("donorWeight").value,
-
-                    lastDonation:
-                        document.getElementById("lastDonation").value,
-
-                    division:
-                        document.getElementById("donorDivision").value,
-
-                    district:
-                        document.getElementById("donorDistrict").value,
-
-                    upazila:
-                        document.getElementById("donorUpazila").value,
-
-                    village:
-                        document.getElementById("donorVillage").value,
-
-                    address:
-                        document.getElementById("donorAddress").value,
-
-                    status: "Pending",
-
-                    type: "Donor",
-
-                    createdAt:
-                        new Date().toISOString()
-                }
-            );
-
-
-            // Form-এর জায়গায় Thank You message
-            step2.innerHTML = `
-
-                <div style="
-                    background:#e8fff0;
-                    padding:25px;
-                    border-radius:12px;
-                    text-align:center;
-                ">
-
-                    <h2>✅ Thank You</h2>
-
-                    <p>
-                        Your donor registration has been
-                        submitted successfully.
-                    </p>
-
-                    <p>
-                        Your application is now pending
-                        for admin approval.
-                    </p>
-
-                </div>
-
-            `;
-
-        }
-
-        catch(error){
-
-            console.error(error);
-
-            alert(
-                "Registration Failed.\n\n" +
-                error.message
-            );
-
-        }
-
-    };
-
-    </script>
- </div>
 </body>
 </html>
