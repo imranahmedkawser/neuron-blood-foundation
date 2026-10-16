@@ -54,24 +54,36 @@ function goBack() {
     }
 }
 
+const dobInput = document.getElementById("donorDOB");
+const ageInput = document.getElementById("donorAge");
+
+dobInput.max = new Date().toLocaleDateString("en-CA");
+
+window.openAgeCalendar = function () {
+    if (typeof dobInput.showPicker === "function") {
+        dobInput.showPicker();
+    } else {
+        dobInput.click();
+    }
+};
+
 window.calculateAge = function () {
-    const input = document.getElementById("donorAge");
-    const dobValue = input.value;
+    if (!dobInput.value) return;
 
-    if (!dobValue) return;
-
-    const dob = new Date(dobValue + "T00:00:00");
+    const [year, month, day] = dobInput.value.split("-").map(Number);
+    const dob = new Date(year, month - 1, day);
     const today = new Date();
 
     if (dob > today) {
         alert("Future date is not allowed!");
-        input.value = "";
+        dobInput.value = "";
+        ageInput.value = "";
         return;
     }
 
-    let years = today.getFullYear() - dob.getFullYear();
-    let months = today.getMonth() - dob.getMonth();
-    let days = today.getDate() - dob.getDate();
+    let years = today.getFullYear() - year;
+    let months = today.getMonth() - (month - 1);
+    let days = today.getDate() - day;
 
     if (days < 0) {
         months--;
@@ -87,6 +99,5 @@ window.calculateAge = function () {
         months += 12;
     }
 
-    input.type = "text";
-    input.value = `${years}Y ${months}M ${days}D`;
+    ageInput.value = `${years}Y ${months}M ${days}D`;
 };
