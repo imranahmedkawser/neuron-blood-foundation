@@ -250,21 +250,115 @@
     মানবতার সেবায়, রক্তদাতার পাশে ❤️
   </footer>
 
-  <script>
-    const notice = document.getElementById("notice");
+  <script type="module">
 
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      notice.style.display = "block";
-    });
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    document.getElementById("forgotPassword").addEventListener("click", function(event) {
-      event.preventDefault();
-      notice.textContent =
-        "পাসওয়ার্ড পুনরুদ্ধারের সুবিধা Firebase সংযুক্ত করার পর চালু হবে।";
-      notice.style.display = "block";
-    });
-  </script>
+import {
+    getAuth,
+    signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+    authDomain: "neuron-blood-foundation.firebaseapp.com",
+    databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
+    projectId: "neuron-blood-foundation",
+    storageBucket: "neuron-blood-foundation.firebasestorage.app",
+    messagingSenderId: "160902995293",
+    appId: "1:160902995293:web:d0e4137de45290873e5cb4",
+    measurementId: "G-2NVL55Q5GN"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const notice = document.getElementById("notice");
+
+function showNotice(message, isError = true) {
+    notice.textContent = message;
+    notice.style.display = "block";
+    notice.style.background = isError ? "#fff3cd" : "#e3f4e9";
+    notice.style.color = isError ? "#795600" : "#087443";
+}
+
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const button = document.querySelector(".login-btn");
+
+    if (!/^01[0-9]{9}$/.test(phone)) {
+        showNotice("সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।");
+        return;
+    }
+
+    if (!password) {
+        showNotice("আপনার পাসওয়ার্ড দিন।");
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Logging in...";
+
+    try {
+
+        // Registration-এর সময় ব্যবহৃত একই Login ID
+        const loginEmail = phone + "@donor.neuronfoundation.com";
+
+        await signInWithEmailAndPassword(
+            auth,
+            loginEmail,
+            password
+        );
+
+        showNotice("Login successful! আপনার প্রোফাইলে নিয়ে যাওয়া হচ্ছে।", false);
+
+        // Login সফল হলে Donor Profile পেজে যাবে
+        window.location.href = "donor-profile.html";
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        if (
+            error.code === "auth/invalid-credential" ||
+            error.code === "auth/user-not-found" ||
+            error.code === "auth/wrong-password"
+        ) {
+            showNotice("মোবাইল নম্বর অথবা পাসওয়ার্ড ভুল।");
+        } else if (error.code === "auth/too-many-requests") {
+            showNotice("অনেকবার চেষ্টা করা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।");
+        } else {
+            showNotice("Login করা যাচ্ছে না। ইন্টারনেট সংযোগ পরীক্ষা করুন।");
+        }
+
+    } finally {
+
+        button.disabled = false;
+        button.textContent = "Login";
+
+    }
+
+});
+
+
+// Forgot Password
+document.getElementById("forgotPassword").addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    showNotice(
+        "পাসওয়ার্ড ভুলে গেলে আপাতত Admin-এর সাহায্য নিতে হবে। Password Recovery পরে যুক্ত করা হবে।"
+    );
+
+});
+
+</script>
 
 </body>
 </html>
