@@ -825,12 +825,12 @@ function loadProfile(data, documentId, user) {
   display("donorName", data.name || data.fullName);
   display("donorId", data.donorId || documentId);
 
-  display("bloodGroup", data.bloodGroup);
+  display("bloodGroup", data.bloodGroup || data.blood);
   display("phone", data.phone);
   display("age", data.age);
   display("dob", formatDate(data.dob || data.dateOfBirth));
   display("weight", data.weight);
-  display("lastDonation", formatDate(data.lastDonationDate));
+  display("lastDonation", formatDate(data.lastDonationDate || data.lastDonation));
 
   display("division", data.division);
   display("district", data.district);
@@ -847,7 +847,7 @@ function loadProfile(data, documentId, user) {
   display("facebook", data.facebook);
   display("donorType", data.type || "Donor");
 
-  display("statBloodGroup", data.bloodGroup);
+  display("statBloodGroup", data.bloodGroup || data.blood);
   display("statDonations", data.totalDonations || 0);
 
   // Edit Form-এ তথ্য বসানো
