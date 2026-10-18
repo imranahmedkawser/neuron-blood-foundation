@@ -376,6 +376,37 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 
+// ================= AGE CALCULATION =================
+
+function calculateAge(dob) {
+    if (!dob) return "";
+
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    if (
+        today.getMonth() < birthDate.getMonth() ||
+        (
+            today.getMonth() === birthDate.getMonth() &&
+            today.getDate() < birthDate.getDate()
+        )
+    ) {
+        age--;
+    }
+
+    return age;
+}
+
+document.getElementById("donorDOB").addEventListener("change", function() {
+    const age = calculateAge(this.value);
+
+    document.getElementById("donorAge").textContent =
+        age !== "" ? "Your Age: " + age + " years" : "";
+});
+
+    
 // ================= STEP NAVIGATION =================
 
 function showStep(stepNumber) {
