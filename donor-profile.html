@@ -827,7 +827,30 @@ function loadProfile(data, documentId, user) {
 
   display("bloodGroup", data.bloodGroup || data.blood);
   display("phone", data.phone);
-  display("age", data.age);
+
+  const dob = data.dob || data.dateOfBirth;
+
+if (dob) {
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    if (
+        today.getMonth() < birthDate.getMonth() ||
+        (
+            today.getMonth() === birthDate.getMonth() &&
+            today.getDate() < birthDate.getDate()
+        )
+    ) {
+        age--;
+    }
+
+    display("age", age + " years");
+} else {
+    display("age", data.age || "Not available");
+}
+  
   display("dob", formatDate(data.dob || data.dateOfBirth));
   display("weight", data.weight);
   display("lastDonation", formatDate(data.lastDonationDate || data.lastDonation));
