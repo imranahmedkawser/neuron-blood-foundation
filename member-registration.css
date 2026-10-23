@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans Bengali", Arial, sans-serif;
+    background: #f4f7f5;
+    color: #252525;
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+.registration-header {
+    width: 100%;
+    max-width: 1000px;
+    margin: 25px auto;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.banner {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #e5e5e5;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 25px;
+    border-bottom: 4px solid #15803d;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand-info h1 {
+    font-size: 28px;
+    color: #15803d;
+    margin-bottom: 4px;
+}
+
+.brand-info p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.brand-info h2 {
+    font-size: 21px;
+    color: #222;
+}
+
+/* MAIN */
+
+.container {
+    width: 94%;
+    max-width: 1000px;
+    margin: 25px auto;
+}
+
+.form-intro {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-top: 4px solid #15803d;
+}
+
+.form-intro h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #15803d;
+}
+
+.form-intro p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.notice {
+    background: #f0fdf4;
+    border-left: 4px solid #15803d;
+    padding: 12px;
+    border-radius: 5px;
+    color: #166534;
+    font-size: 14px;
+}
+
+/* SECTIONS */
+
+.form-section {
+    background: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.section-number {
+    background: #15803d;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.section-title h3 {
+    font-size: 21px;
+    color: #222;
+}
+
+/* GRID */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label,
+fieldset legend {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group label span,
+fieldset legend span {
+    color: #d00000;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 15px;
+    background: #fff;
+    color: #222;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #15803d;
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.10);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group small {
+    color: #777;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* CHECKBOXES */
+
+fieldset {
+    border: 1px solid #e5e7eb;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.checkbox-grid label,
+.consent-box label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-grid input,
+.consent-box input {
+    width: 17px;
+    height: 17px;
+    margin-top: 4px;
+    accent-color: #15803d;
+    flex-shrink: 0;
+}
+
+/* CONSENT */
+
+.consent-box {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* BUTTONS */
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.form-buttons button {
+    border: none;
+    padding: 14px 28px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #15803d;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.form-buttons button:hover {
+    background: #166534;
+    transform: translateY(-1px);
+}
+
+.form-buttons .reset-btn {
+    background: #6b7280;
+}
+
+.form-buttons .reset-btn:hover {
+    background: #4b5563;
+}
+
+#status {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #666;
+    font-size: 13px;
+    background: #fff;
+    margin-top: 35px;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .registration-header {
+        width: 96%;
+        margin: 12px auto;
+        border-radius: 10px;
+    }
+
+    .banner {
+        height: 150px;
+    }
+
+    .brand-section {
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .brand-info h1 {
+        font-size: 18px;
+    }
+
+    .brand-info p {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .brand-info h2 {
+        font-size: 16px;
+    }
+
+    .container {
+        width: 96%;
+        margin: 15px auto;
+    }
+
+    .form-section {
+        padding: 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-intro {
+        padding: 18px;
+    }
+
+    .section-title h3 {
+        font-size: 18px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .form-buttons button {
+        width: 100%;
+    }
+}
