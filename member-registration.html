@@ -1,686 +1,1295 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Member Registration | Neuron Blood Foundation</title>
+<title>Member Registration | Neuron Blood Foundation</title>
 
-    <link rel="stylesheet" href="member-registration.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root {
+  --green: #087653;
+  --dark-green: #064e3b;
+  --light-green: #e8f7f0;
+  --border: #d9e8e1;
+  --text: #173b30;
+  --muted: #71877e;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f0f8f4;
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  height: 78px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--dark-green);
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: 10px;
+  color: #60776c;
+  margin-top: 4px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #29473d;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.login-btn {
+  background: var(--green);
+  color: white !important;
+  padding: 13px 20px;
+  border-radius: 9px;
+}
+
+/* ================= HERO BANNER ================= */
+
+.hero {
+  width: 100%;
+  min-height: 250px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(222,247,237,0.98) 0%,
+      rgba(222,247,237,0.93) 42%,
+      rgba(222,247,237,0.05) 100%
+    ),
+    url("neuron-banner-reference-crop.jpg");
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 40px 6.5%;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-label {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--dark-green);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.hero p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #234b3d;
+  max-width: 520px;
+}
+
+/* ================= MAIN FORM ================= */
+
+.container {
+  max-width: 1120px;
+  margin: 30px auto 55px;
+  padding: 0 20px;
+}
+
+.form-card {
+  background: white;
+  border: 1px solid #e1eee8;
+  border-radius: 15px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(12, 80, 54, 0.07);
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-area {
+  margin-bottom: 35px;
+}
+
+.progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.progress-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-green);
+}
+
+.progress-count {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.progress-track {
+  height: 6px;
+  width: 100%;
+  background: #e6f0eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 25%;
+  background: var(--green);
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* ================= STEPS ================= */
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 28px;
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.section-heading h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--dark-green);
+}
+
+.section-heading p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.heading-line {
+  flex: 1;
+  height: 2px;
+  background: #b6dccc;
+  margin-left: 8px;
+}
+
+/* ================= FIELD GRID ================= */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 23px 24px;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #294a3e;
+  margin-bottom: 9px;
+}
+
+.required {
+  color: #d44848;
+}
+
+.optional {
+  font-size: 11px;
+  color: #82938b;
+  font-weight: 400;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #d5e3dc;
+  background: #fbfdfc;
+  color: #183f30;
+  font-family: inherit;
+  font-size: 13px;
+  border-radius: 9px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input,
+select {
+  height: 49px;
+  padding: 0 15px;
+}
+
+textarea {
+  min-height: 110px;
+  padding: 14px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(8,118,83,0.09);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aaba3;
+}
+
+/* ================= SELECT ================= */
+
+select {
+  appearance: none;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2361786d' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+/* ================= FILE UPLOAD ================= */
+
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.upload-box {
+  position: relative;
+  min-height: 160px;
+  border: 1.5px dashed #a8cfc0;
+  background: #f7fcf9;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upload-box:hover {
+  border-color: var(--green);
+  background: #effaf4;
+}
+
+.upload-box input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.upload-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark-green);
+}
+
+.upload-info {
+  font-size: 11px;
+  color: #82938b;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.file-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--green);
+  word-break: break-word;
+}
+
+/* ================= CHECKBOX ================= */
+
+.declaration {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 19px;
+  background: #edf9f3;
+  border: 1px solid #d4eee1;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.declaration input {
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  accent-color: var(--green);
+  flex-shrink: 0;
+}
+
+.declaration label {
+  font-size: 12px;
+  line-height: 1.8;
+  cursor: pointer;
+}
+
+/* ================= BUTTONS ================= */
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  min-height: 49px;
+  padding: 0 24px;
+  border-radius: 9px;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-back {
+  background: white;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.btn-back:hover {
+  background: #edf8f2;
+}
+
+.btn-next,
+.btn-submit {
+  background: var(--green);
+  color: white;
+}
+
+.btn-next:hover,
+.btn-submit:hover {
+  background: var(--dark-green);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  background: #064e3b;
+  color: white;
+  padding: 30px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-brand img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.footer-brand h3 {
+  font-size: 15px;
+}
+
+.footer-brand p {
+  font-size: 10px;
+  margin-top: 5px;
+  color: #c9e7d9;
+}
+
+.footer-message {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 68px;
+    padding: 0 16px;
+  }
+
+  .brand img {
+    width: 43px;
+    height: 43px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .brand-tagline {
+    font-size: 9px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    min-height: 175px;
+    padding: 28px 20px;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(222,247,237,0.98) 0%,
+        rgba(222,247,237,0.88) 65%,
+        rgba(222,247,237,0.45) 100%
+      ),
+      url("neuron-banner-reference-crop.jpg");
+
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+
+  .container {
+    margin: 18px auto 30px;
+    padding: 0 12px;
+  }
+
+  .form-card {
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  .section-heading {
+    gap: 10px;
+    margin-bottom: 23px;
+  }
+
+  .section-icon {
+    width: 37px;
+    height: 37px;
+    font-size: 16px;
+  }
+
+  .section-heading h2 {
+    font-size: 15px;
+  }
+
+  .section-heading p {
+    font-size: 10px;
+  }
+
+  .heading-line {
+    margin-left: 2px;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .field label {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  input,
+  select {
+    height: 47px;
+    font-size: 12px;
+  }
+
+  .upload-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .upload-box {
+    min-height: 135px;
+  }
+
+  .form-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .footer {
+    padding: 24px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-message {
+    text-align: left;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= NAVBAR ================= -->
 
-<header class="registration-header">
+<header class="navbar">
 
-    <div class="banner">
-        <img src="neuronbanner.jpg" alt="Neuron Blood Foundation Banner">
+  <div class="brand">
+    <img src="neuronlogo.jpg" alt="Neuron Blood Foundation">
+
+    <div>
+      <div class="brand-name">
+        Neuron Blood<br>Foundation
+      </div>
+
+      <div class="brand-tagline">
+        With youth; on the path of humanity
+      </div>
     </div>
+  </div>
 
-    <div class="brand-section">
-
-        <div class="logo">
-            <img src="neuronlogo.jpg" alt="Neuron Blood Foundation Logo">
-        </div>
-
-        <div class="brand-info">
-            <h1>Neuron Blood Foundation</h1>
-            <p>With youth; on the path of humanity</p>
-            <h2>Member Registration Form</h2>
-        </div>
-
-    </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="become-donor.html">Become a Donor</a>
+    <a href="donor-list.html">Donor List</a>
+    <a href="member-list.html">Member List</a>
+    <a href="emergency.html">Emergency</a>
+    <a href="member-login.html" class="login-btn">Member Login</a>
+  </nav>
 
 </header>
 
 
-<!-- ================= MAIN FORM ================= -->
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+    <div class="hero-label">JOIN OUR MISSION</div>
+
+    <h1>Member Registration</h1>
+
+    <p>
+      Be a part of Neuron Blood Foundation and help us
+      build a healthier, kinder and more humanitarian society.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= REGISTRATION FORM ================= -->
 
 <main class="container">
 
-    <div class="form-intro">
-        <h2>সদস্য নিবন্ধন</h2>
-        <p>
-            Neuron Blood Foundation-এর সদস্য হতে নিচের ফর্মটি
-            সঠিক তথ্য দিয়ে পূরণ করুন।
-        </p>
+<div class="form-card">
 
-        <div class="notice">
-            <i class="fa-solid fa-circle-info"></i>
-            আবেদন জমা দেওয়ার পর Admin যাচাই করবেন।
-            অনুমোদনের আগে আবেদন Pending থাকবে।
-        </div>
+  <div class="progress-area">
+
+    <div class="progress-top">
+      <span class="progress-title" id="progressTitle">
+        Personal Information
+      </span>
+
+      <span class="progress-count" id="progressCount">
+        Step 1 of 4
+      </span>
     </div>
 
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
 
-    <form id="memberForm">
+  </div>
 
-        <!-- PERSONAL INFORMATION -->
 
-        <section class="form-section">
+  <form id="memberForm">
 
-            <div class="section-title">
-                <span class="section-number">01</span>
-                <h3>ব্যক্তিগত তথ্য</h3>
-            </div>
+    <!-- STEP 1 -->
 
-            <div class="form-grid">
+    <section class="form-step active">
 
-                <div class="form-group">
-                    <label>পূর্ণ নাম (বাংলা) <span>*</span></label>
-                    <input type="text" name="bnName" required
-                           placeholder="বাংলায় পূর্ণ নাম লিখুন">
-                </div>
+      <div class="section-heading">
+        <div class="section-icon">👤</div>
 
-                <div class="form-group">
-                    <label>Full Name (English) <span>*</span></label>
-                    <input type="text" name="enName" required
-                           placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label>পিতার নাম <span>*</span></label>
-                    <input type="text" name="fatherName" required>
-                </div>
-
-                <div class="form-group">
-                    <label>মাতার নাম <span>*</span></label>
-                    <input type="text" name="motherName" required>
-                </div>
-
-                <div class="form-group">
-                    <label>জন্ম তারিখ <span>*</span></label>
-                    <input type="date" name="dob" required>
-                </div>
-
-                <div class="form-group">
-                    <label>লিঙ্গ <span>*</span></label>
-                    <select name="gender" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>পুরুষ</option>
-                        <option>নারী</option>
-                        <option>অন্যান্য</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>রক্তের গ্রুপ</label>
-                    <select name="bloodGroup">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>A+</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                        <option>AB+</option>
-                        <option>AB-</option>
-                        <option>O+</option>
-                        <option>O-</option>
-                        <option>জানা নেই</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>NID নম্বর <span>*</span></label>
-                    <input type="text" name="nid"
-                           inputmode="numeric"
-                           minlength="10"
-                           maxlength="17"
-                           required
-                           placeholder="NID নম্বর লিখুন">
-                </div>
-
-                <div class="form-group">
-                    <label>মোবাইল নম্বর <span>*</span></label>
-                    <input type="tel" name="phone"
-                           pattern="01[0-9]{9}"
-                           placeholder="01XXXXXXXXX"
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <label>ইমেইল</label>
-                    <input type="email" name="email"
-                           placeholder="example@gmail.com">
-                </div>
-
-                <div class="form-group">
-                    <label>WhatsApp নম্বর</label>
-                    <input type="tel" name="whatsapp"
-                           placeholder="01XXXXXXXXX">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>Facebook প্রোফাইল লিংক</label>
-                    <input type="url" name="facebook"
-                           placeholder="https://facebook.com/">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>পাসপোর্ট সাইজের ছবি <span>*</span></label>
-                    <input type="file" name="photo"
-                           accept="image/jpeg,image/png,image/webp"
-                           required>
-                    <small>JPG, PNG অথবা WebP | সর্বোচ্চ ৫ MB</small>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ADDRESS -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">02</span>
-                <h3>ঠিকানা</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>বিভাগ <span>*</span></label>
-                    <select name="division" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>ঢাকা</option>
-                        <option>চট্টগ্রাম</option>
-                        <option>রাজশাহী</option>
-                        <option>খুলনা</option>
-                        <option>বরিশাল</option>
-                        <option>সিলেট</option>
-                        <option>রংপুর</option>
-                        <option>ময়মনসিংহ</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>জেলা <span>*</span></label>
-                    <input type="text" name="district" required>
-                </div>
-
-                <div class="form-group">
-                    <label>উপজেলা/থানা <span>*</span></label>
-                    <input type="text" name="upazila" required>
-                </div>
-
-                <div class="form-group">
-                    <label>ইউনিয়ন/পৌরসভা/সিটি কর্পোরেশন</label>
-                    <input type="text" name="locality">
-                </div>
-
-                <div class="form-group">
-                    <label>ওয়ার্ড নম্বর</label>
-                    <input type="text" name="ward">
-                </div>
-
-                <div class="form-group">
-                    <label>গ্রাম/মহল্লা</label>
-                    <input type="text" name="village">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>বর্তমান ঠিকানা <span>*</span></label>
-                    <textarea name="currentAddress" required></textarea>
-                </div>
-
-                <div class="form-group full-width">
-                    <label>স্থায়ী ঠিকানা</label>
-                    <textarea name="permanentAddress"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>বর্তমান ও স্থায়ী ঠিকানা একই?</label>
-                    <select name="sameAddress">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- EDUCATION -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">03</span>
-                <h3>শিক্ষাগত ও পেশাগত তথ্য</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>সর্বোচ্চ শিক্ষাগত যোগ্যতা <span>*</span></label>
-                    <select name="education" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>প্রাথমিক</option>
-                        <option>JSC/সমমান</option>
-                        <option>SSC/সমমান</option>
-                        <option>HSC/সমমান</option>
-                        <option>স্নাতক অধ্যয়নরত</option>
-                        <option>স্নাতক</option>
-                        <option>স্নাতকোত্তর</option>
-                        <option>অন্যান্য</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>শিক্ষাপ্রতিষ্ঠানের নাম</label>
-                    <input type="text" name="institution">
-                </div>
-
-                <div class="form-group">
-                    <label>বিভাগ/বিষয়</label>
-                    <input type="text" name="department">
-                </div>
-
-                <div class="form-group">
-                    <label>শ্রেণি/বর্ষ/সেমিস্টার</label>
-                    <input type="text" name="studyYear">
-                </div>
-
-                <div class="form-group">
-                    <label>শিক্ষাবর্ষ/পাশের সাল</label>
-                    <input type="text" name="academicYear">
-                </div>
-
-                <div class="form-group">
-                    <label>বর্তমানে পড়াশোনা করছেন?</label>
-                    <select name="currentlyStudying">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>বর্তমান পেশা <span>*</span></label>
-                    <select name="occupation" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>শিক্ষার্থী</option>
-                        <option>চাকরিজীবী</option>
-                        <option>ব্যবসায়ী</option>
-                        <option>ফ্রিল্যান্সার</option>
-                        <option>গৃহিণী</option>
-                        <option>বেকার</option>
-                        <option>অন্যান্য</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>প্রতিষ্ঠানের নাম/পদবি</label>
-                    <input type="text" name="jobDetails">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>পেশাগত অভিজ্ঞতার বিবরণ</label>
-                    <textarea name="jobExperience"></textarea>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ORGANIZATION -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">04</span>
-                <h3>সংগঠনে যোগদান</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <fieldset class="full-width">
-                    <legend>কোন ধরনের সদস্য/ভূমিকায় যুক্ত হতে চান? <span>*</span></legend>
-
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" name="roles" value="General Member"> সাধারণ সদস্য</label>
-                        <label><input type="checkbox" name="roles" value="Active Volunteer"> সক্রিয় স্বেচ্ছাসেবক</label>
-                        <label><input type="checkbox" name="roles" value="Blood Donor"> রক্তদাতা</label>
-                        <label><input type="checkbox" name="roles" value="Promoter"> প্রচারক</label>
-                        <label><input type="checkbox" name="roles" value="Associate Member"> সহযোগী সদস্য</label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="full-width">
-                    <legend>কোন কার্যক্রমে আগ্রহী? (একাধিক নির্বাচন)</legend>
-
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" name="activities" value="Donor Recruitment"> রক্তদাতা সংগ্রহ</label>
-                        <label><input type="checkbox" name="activities" value="Emergency Support"> জরুরি রক্তের অনুরোধে সহায়তা</label>
-                        <label><input type="checkbox" name="activities" value="Awareness"> রক্তদান সচেতনতা</label>
-                        <label><input type="checkbox" name="activities" value="Social Work"> সামাজিক/মানবিক কার্যক্রম</label>
-                        <label><input type="checkbox" name="activities" value="Communication"> প্রচার ও যোগাযোগ</label>
-                        <label><input type="checkbox" name="activities" value="Event Management"> ইভেন্ট ব্যবস্থাপনা</label>
-                        <label><input type="checkbox" name="activities" value="Design/Media"> ডিজাইন/ফটোগ্রাফি/ভিডিও</label>
-                        <label><input type="checkbox" name="activities" value="IT"> ওয়েবসাইট/আইটি</label>
-                        <label><input type="checkbox" name="activities" value="Other"> অন্যান্য</label>
-                    </div>
-                </fieldset>
-
-                <div class="form-group full-width">
-                    <label>কেন Neuron Blood Foundation-এর সদস্য হতে চান? <span>*</span></label>
-                    <textarea name="joinReason" required></textarea>
-                </div>
-
-                <div class="form-group full-width">
-                    <label>সংগঠনের জন্য কীভাবে অবদান রাখতে পারবেন? <span>*</span></label>
-                    <textarea name="contribution" required></textarea>
-                </div>
-
-                <div class="form-group full-width">
-                    <label>ভবিষ্যতে কী ধরনের দায়িত্ব নিতে চান?</label>
-                    <textarea name="futureRole"></textarea>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- BLOOD DONATION -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">05</span>
-                <h3>রক্তদান সম্পর্কিত তথ্য</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>আগে রক্তদান করেছেন? <span>*</span></label>
-                    <select name="donatedBefore" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>মোট কতবার রক্তদান করেছেন?</label>
-                    <input type="number" name="donationCount" min="0">
-                </div>
-
-                <div class="form-group">
-                    <label>সর্বশেষ রক্তদানের তারিখ</label>
-                    <input type="date" name="lastDonation">
-                </div>
-
-                <div class="form-group">
-                    <label>ভবিষ্যতে রক্তদানে আগ্রহী?</label>
-                    <select name="willingToDonate">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                        <option>প্রযোজ্য নয়</option>
-                    </select>
-                </div>
-
-                <div class="form-group full-width">
-                    <label>রক্তদানের বিষয়ে কোনো গুরুত্বপূর্ণ সীমাবদ্ধতা থাকলে (ঐচ্ছিক)</label>
-                    <textarea name="donationNote"></textarea>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- EXPERIENCE -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">06</span>
-                <h3>স্বেচ্ছাসেবার অভিজ্ঞতা</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>আগে কোনো সংগঠনে কাজ করেছেন? <span>*</span></label>
-                    <select name="volunteered" required>
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>সংগঠনের নাম</label>
-                    <input type="text" name="previousOrganization">
-                </div>
-
-                <div class="form-group">
-                    <label>আপনার পদ</label>
-                    <input type="text" name="previousRole">
-                </div>
-
-                <div class="form-group">
-                    <label>কতদিন কাজ করেছেন?</label>
-                    <input type="text" name="duration">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>কী ধরনের কাজ করেছেন? বিস্তারিত</label>
-                    <textarea name="volunteerDetails"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>স্বেচ্ছাসেবার সনদ আছে?</label>
-                    <select name="certificate">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SKILLS -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">07</span>
-                <h3>দক্ষতা ও সময়</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <fieldset class="full-width">
-                    <legend>আপনার দক্ষতা (একাধিক নির্বাচন)</legend>
-
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" name="skills" value="Leadership"> নেতৃত্ব</label>
-                        <label><input type="checkbox" name="skills" value="Communication"> যোগাযোগ</label>
-                        <label><input type="checkbox" name="skills" value="Computer"> কম্পিউটার</label>
-                        <label><input type="checkbox" name="skills" value="Graphic Design"> গ্রাফিক ডিজাইন</label>
-                        <label><input type="checkbox" name="skills" value="Video Editing"> ভিডিও এডিটিং</label>
-                        <label><input type="checkbox" name="skills" value="Writing"> লেখালেখি</label>
-                        <label><input type="checkbox" name="skills" value="Photography"> ফটোগ্রাফি</label>
-                        <label><input type="checkbox" name="skills" value="Web Development"> ওয়েব ডেভেলপমেন্ট</label>
-                        <label><input type="checkbox" name="skills" value="Event Management"> ইভেন্ট পরিচালনা</label>
-                        <label><input type="checkbox" name="skills" value="Other"> অন্যান্য</label>
-                    </div>
-                </fieldset>
-
-                <div class="form-group">
-                    <label>সপ্তাহে কত ঘণ্টা সময় দিতে পারবেন?</label>
-                    <select name="weeklyHours">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>১–৩ ঘণ্টা</option>
-                        <option>৪–৬ ঘণ্টা</option>
-                        <option>৭–১০ ঘণ্টা</option>
-                        <option>১০ ঘণ্টার বেশি</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>কোন দিন সময় দিতে পারবেন?</label>
-                    <input type="text" name="availableDays"
-                           placeholder="যেমন: শুক্রবার, শনিবার">
-                </div>
-
-                <div class="form-group">
-                    <label>সরাসরি কার্যক্রমে অংশ নিতে পারবেন?</label>
-                    <select name="inPerson">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                        <option>পরিস্থিতি অনুযায়ী</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>অনলাইন কার্যক্রমে অংশ নিতে পারবেন?</label>
-                    <select name="online">
-                        <option value="">নির্বাচন করুন</option>
-                        <option>হ্যাঁ</option>
-                        <option>না</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>যোগাযোগের সুবিধাজনক সময়</label>
-                    <input type="text" name="contactTime">
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- EMERGENCY CONTACT -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">08</span>
-                <h3>জরুরি যোগাযোগ</h3>
-            </div>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>জরুরি যোগাযোগের ব্যক্তির নাম <span>*</span></label>
-                    <input type="text" name="emergencyName" required>
-                </div>
-
-                <div class="form-group">
-                    <label>সম্পর্ক <span>*</span></label>
-                    <input type="text" name="emergencyRelation" required>
-                </div>
-
-                <div class="form-group">
-                    <label>মোবাইল নম্বর <span>*</span></label>
-                    <input type="tel" name="emergencyPhone" required>
-                </div>
-
-                <div class="form-group">
-                    <label>বিকল্প নম্বর</label>
-                    <input type="tel" name="emergencyAltPhone">
-                </div>
-
-                <div class="form-group full-width">
-                    <label>ঠিকানা</label>
-                    <textarea name="emergencyAddress"></textarea>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DECLARATION -->
-
-        <section class="form-section">
-
-            <div class="section-title">
-                <span class="section-number">09</span>
-                <h3>ঘোষণা ও সম্মতি</h3>
-            </div>
-
-            <div class="consent-box">
-
-                <label>
-                    <input type="checkbox" name="truthDeclaration" required>
-                    প্রদত্ত তথ্য আমার জ্ঞান অনুযায়ী সঠিক। *
-                </label>
-
-                <label>
-                    <input type="checkbox" name="rulesConsent" required>
-                    সংগঠনের নিয়ম ও নির্দেশনা মেনে চলতে সম্মত। *
-                </label>
-
-                <label>
-                    <input type="checkbox" name="pendingConsent" required>
-                    আবেদন অনুমোদনের আগে Pending থাকবে—এ বিষয়ে সম্মত। *
-                </label>
-
-                <label>
-                    <input type="checkbox" name="contactConsent" required>
-                    তথ্য যাচাইয়ের জন্য সংগঠন আমার সঙ্গে যোগাযোগ করতে পারবে। *
-                </label>
-
-                <label>
-                    <input type="checkbox" name="dataConsent" required>
-                    সদস্য নিবন্ধনের উদ্দেশ্যে প্রয়োজনীয় তথ্য ব্যবহারে সম্মতি দিচ্ছি। *
-                </label>
-
-            </div>
-
-        </section>
-
-
-        <!-- BUTTONS -->
-
-        <div class="form-buttons">
-
-            <button type="submit" id="submitBtn">
-                <i class="fa-solid fa-paper-plane"></i>
-                আবেদন জমা দিন
-            </button>
-
-            <button type="reset" class="reset-btn">
-                <i class="fa-solid fa-rotate-left"></i>
-                ফর্ম মুছুন
-            </button>
-
+        <div>
+          <h2>1. Personal Information</h2>
+          <p>Tell us about yourself</p>
         </div>
 
-        <p id="status" role="status"></p>
+        <div class="heading-line"></div>
+      </div>
 
-    </form>
+      <div class="field-grid">
+
+        <div class="field">
+          <label>Full Name (Bangla) <span class="required">*</span></label>
+          <input type="text" name="nameBangla" placeholder="সম্পূর্ণ নাম" required>
+        </div>
+
+        <div class="field">
+          <label>Full Name (English) <span class="required">*</span></label>
+          <input type="text" name="nameEnglish" placeholder="Your full name" required>
+        </div>
+
+        <div class="field">
+          <label>Father's Name <span class="required">*</span></label>
+          <input type="text" name="fatherName" placeholder="Father's name" required>
+        </div>
+
+        <div class="field">
+          <label>Mother's Name <span class="required">*</span></label>
+          <input type="text" name="motherName" placeholder="Mother's name" required>
+        </div>
+
+        <div class="field">
+          <label>Date of Birth <span class="required">*</span></label>
+          <input type="date" name="dob" required>
+        </div>
+
+        <div class="field">
+          <label>Gender <span class="required">*</span></label>
+          <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Blood Group <span class="optional">(Optional)</span></label>
+          <select name="bloodGroup">
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>NID Number <span class="required">*</span></label>
+          <input type="text" name="nid" placeholder="National ID number" required>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 2 -->
+
+    <section class="form-step">
+
+      <div class="section-heading">
+        <div class="section-icon">☎</div>
+
+        <div>
+          <h2>2. Contact & Address</h2>
+          <p>How can we reach you?</p>
+        </div>
+
+        <div class="heading-line"></div>
+      </div>
+
+      <div class="field-grid">
+
+        <div class="field">
+          <label>Mobile Number <span class="required">*</span></label>
+          <input type="tel" name="mobile" placeholder="01XXXXXXXXX" required>
+        </div>
+
+        <div class="field">
+          <label>Email Address <span class="required">*</span></label>
+          <input type="email" name="email" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="field">
+          <label>WhatsApp Number <span class="optional">(If different)</span></label>
+          <input type="tel" name="whatsapp" placeholder="01XXXXXXXXX">
+        </div>
+
+        <div class="field">
+          <label>Facebook Profile <span class="optional">(Optional)</span></label>
+          <input type="url" name="facebook" placeholder="https://facebook.com/username">
+        </div>
+
+        <div class="field full">
+          <label>Current Address <span class="required">*</span></label>
+          <textarea name="currentAddress" placeholder="House, road, village, union, ward..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Current Division <span class="required">*</span></label>
+          <select name="currentDivision" required>
+            <option value="">Select Division</option>
+            <option>Dhaka</option>
+            <option>Chattogram</option>
+            <option>Rajshahi</option>
+            <option>Khulna</option>
+            <option>Barishal</option>
+            <option>Sylhet</option>
+            <option>Rangpur</option>
+            <option>Mymensingh</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Current District <span class="required">*</span></label>
+          <input type="text" name="currentDistrict" placeholder="District name" required>
+        </div>
+
+        <div class="field">
+          <label>Current Upazila / Thana <span class="required">*</span></label>
+          <input type="text" name="currentUpazila" placeholder="Upazila / Thana" required>
+        </div>
+
+        <div class="field full">
+          <label>Permanent Address <span class="required">*</span></label>
+          <textarea name="permanentAddress" placeholder="Permanent address" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Permanent Division <span class="required">*</span></label>
+          <select name="permanentDivision" required>
+            <option value="">Select Division</option>
+            <option>Dhaka</option>
+            <option>Chattogram</option>
+            <option>Rajshahi</option>
+            <option>Khulna</option>
+            <option>Barishal</option>
+            <option>Sylhet</option>
+            <option>Rangpur</option>
+            <option>Mymensingh</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Permanent District <span class="required">*</span></label>
+          <input type="text" name="permanentDistrict" placeholder="District name" required>
+        </div>
+
+        <div class="field">
+          <label>Permanent Upazila / Thana <span class="required">*</span></label>
+          <input type="text" name="permanentUpazila" placeholder="Upazila / Thana" required>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 3 -->
+
+    <section class="form-step">
+
+      <div class="section-heading">
+        <div class="section-icon">✦</div>
+
+        <div>
+          <h2>3. Education & Additional Information</h2>
+          <p>Your background and preferred role</p>
+        </div>
+
+        <div class="heading-line"></div>
+      </div>
+
+      <div class="field-grid">
+
+        <div class="field">
+          <label>Educational Qualification <span class="required">*</span></label>
+          <select name="education" required>
+            <option value="">Select Qualification</option>
+            <option>SSC</option>
+            <option>HSC</option>
+            <option>Honours</option>
+            <option>Degree</option>
+            <option>Masters</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Institution Name <span class="required">*</span></label>
+          <input type="text" name="institution" placeholder="School / College / University" required>
+        </div>
+
+        <div class="field">
+          <label>Department / Subject</label>
+          <input type="text" name="department" placeholder="Your department">
+        </div>
+
+        <div class="field">
+          <label>Session / Year</label>
+          <input type="text" name="session" placeholder="e.g. 2024-25">
+        </div>
+
+        <div class="field">
+          <label>Preferred Role <span class="required">*</span></label>
+          <select name="preferredRole" required>
+            <option value="">Select Role</option>
+            <option>General Member</option>
+            <option>Active Volunteer</option>
+            <option>Blood Donor</option>
+            <option>Promoter</option>
+            <option>Associate Member</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Have you donated blood before? <span class="required">*</span></label>
+          <select name="donatedBefore" required>
+            <option value="">Select Answer</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Last Blood Donation Date <span class="optional">(If any)</span></label>
+          <input type="date" name="lastDonation">
+        </div>
+
+        <div class="field">
+          <label>Physical Complications <span class="optional">(If any)</span></label>
+          <input type="text" name="physicalComplications" placeholder="Mention only if relevant">
+        </div>
+
+        <div class="field full">
+          <label>Why do you want to join Neuron Blood Foundation? <span class="required">*</span></label>
+          <textarea name="joinReason" placeholder="Write a few lines about your motivation..." required></textarea>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 4 -->
+
+    <section class="form-step">
+
+      <div class="section-heading">
+        <div class="section-icon">▣</div>
+
+        <div>
+          <h2>4. Required Documents & Declaration</h2>
+          <p>Upload your documents to complete registration</p>
+        </div>
+
+        <div class="heading-line"></div>
+      </div>
+
+      <div class="upload-grid">
+
+        <label class="upload-box">
+
+          <input type="file" name="nidCard" accept=".jpg,.jpeg,.png,.pdf" required>
+
+          <div>
+            <div class="upload-icon">▤</div>
+
+            <div class="upload-title">
+              Upload NID Card (Front & Back) *
+            </div>
+
+            <div class="upload-info">
+              Click to upload or drag and drop<br>
+              JPG, PNG or PDF (Max 5MB)
+            </div>
+
+            <span class="file-name"></span>
+          </div>
+
+        </label>
+
+
+        <label class="upload-box">
+
+          <input type="file" name="passportPhoto" accept=".jpg,.jpeg,.png" required>
+
+          <div>
+            <div class="upload-icon">▧</div>
+
+            <div class="upload-title">
+              Upload Passport-size Photo *
+            </div>
+
+            <div class="upload-info">
+              Click to upload or drag and drop<br>
+              JPG or PNG (Max 3MB)
+            </div>
+
+            <span class="file-name"></span>
+          </div>
+
+        </label>
+
+      </div>
+
+
+      <div class="declaration">
+
+        <input type="checkbox" id="declaration" required>
+
+        <label for="declaration">
+          <strong>Declaration</strong><br>
+
+          I hereby declare that all the information provided above
+          is true and correct to the best of my knowledge.
+          I agree to follow the rules and regulations of
+          Neuron Blood Foundation.
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <!-- NAVIGATION BUTTONS -->
+
+    <div class="form-buttons">
+
+      <button type="button" class="btn btn-back" id="backBtn">
+        ← Back
+      </button>
+
+      <button type="button" class="btn btn-next" id="nextBtn">
+        Continue →
+      </button>
+
+      <button type="submit" class="btn btn-submit" id="submitBtn" style="display:none">
+        Register as Member →
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
 
 </main>
 
 
-<footer>
-    <p>© Neuron Blood Foundation</p>
-    <p>With youth; on the path of humanity</p>
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  <div class="footer-brand">
+
+    <img src="neuronlogo.jpg" alt="Neuron Foundation">
+
+    <div>
+      <h3>Neuron Blood Foundation</h3>
+      <p>With youth; on the path of humanity</p>
+    </div>
+
+  </div>
+
+  <div class="footer-message">
+    ♡ Donate Blood<br>
+    Save Lives
+  </div>
+
 </footer>
 
-<script type="module" src="member-registration.js"></script>
+
+<script>
+
+/* ================= MULTI-STEP FORM ================= */
+
+const form = document.getElementById("memberForm");
+const steps = document.querySelectorAll(".form-step");
+
+const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+const submitBtn = document.getElementById("submitBtn");
+
+const progressFill = document.getElementById("progressFill");
+const progressTitle = document.getElementById("progressTitle");
+const progressCount = document.getElementById("progressCount");
+
+const stepNames = [
+  "Personal Information",
+  "Contact & Address",
+  "Education & Additional Information",
+  "Documents & Declaration"
+];
+
+let currentStep = 0;
+
+
+function showStep(index) {
+
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+
+  currentStep = index;
+
+  progressTitle.textContent = stepNames[index];
+
+  progressCount.textContent =
+    "Step " + (index + 1) + " of " + steps.length;
+
+  progressFill.style.width =
+    ((index + 1) / steps.length * 100) + "%";
+
+  backBtn.style.visibility =
+    index === 0 ? "hidden" : "visible";
+
+  nextBtn.style.display =
+    index === steps.length - 1 ? "none" : "block";
+
+  submitBtn.style.display =
+    index === steps.length - 1 ? "block" : "none";
+
+  window.scrollTo({
+    top: document.querySelector(".form-card").offsetTop - 20,
+    behavior: "smooth"
+  });
+}
+
+
+/* NEXT BUTTON */
+
+nextBtn.addEventListener("click", function() {
+
+  const currentFields =
+    steps[currentStep].querySelectorAll(
+      "input[required], select[required], textarea[required]"
+    );
+
+  let valid = true;
+
+  currentFields.forEach(field => {
+
+    if (!field.checkValidity()) {
+      field.reportValidity();
+      valid = false;
+    }
+
+  });
+
+  if (!valid) return;
+
+  if (currentStep < steps.length - 1) {
+    showStep(currentStep + 1);
+  }
+
+});
+
+
+/* BACK BUTTON */
+
+backBtn.addEventListener("click", function() {
+
+  if (currentStep > 0) {
+    showStep(currentStep - 1);
+  }
+
+});
+
+
+/* FILE NAME DISPLAY */
+
+document.querySelectorAll('input[type="file"]').forEach(input => {
+
+  input.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+    const nameBox =
+      this.parentElement.querySelector(".file-name");
+
+    if (!file) {
+      nameBox.textContent = "";
+      return;
+    }
+
+    const maxSize = input.name === "nidCard"
+      ? 5 * 1024 * 1024
+      : 3 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+
+      alert("File size is too large. Please select a smaller file.");
+
+      this.value = "";
+      nameBox.textContent = "";
+
+      return;
+    }
+
+    nameBox.textContent = "✓ " + file.name;
+
+  });
+
+});
+
+
+/* FORM SUBMISSION */
+
+form.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  alert(
+    "Your form design is ready. Firebase submission must be connected before real registration."
+  );
+
+});
+
+
+/* INITIAL STEP */
+
+showStep(0);
+
+</script>
 
 </body>
 </html>
