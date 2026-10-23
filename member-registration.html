@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Member Registration | Neuron Blood Foundation</title>
+
+    <link rel="stylesheet" href="member-registration.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="registration-header">
+
+    <div class="banner">
+        <img src="neuronbanner.jpg" alt="Neuron Blood Foundation Banner">
+    </div>
+
+    <div class="brand-section">
+
+        <div class="logo">
+            <img src="neuronlogo.jpg" alt="Neuron Blood Foundation Logo">
+        </div>
+
+        <div class="brand-info">
+            <h1>Neuron Blood Foundation</h1>
+            <p>With youth; on the path of humanity</p>
+            <h2>Member Registration Form</h2>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN FORM ================= -->
+
+<main class="container">
+
+    <div class="form-intro">
+        <h2>সদস্য নিবন্ধন</h2>
+        <p>
+            Neuron Blood Foundation-এর সদস্য হতে নিচের ফর্মটি
+            সঠিক তথ্য দিয়ে পূরণ করুন।
+        </p>
+
+        <div class="notice">
+            <i class="fa-solid fa-circle-info"></i>
+            আবেদন জমা দেওয়ার পর Admin যাচাই করবেন।
+            অনুমোদনের আগে আবেদন Pending থাকবে।
+        </div>
+    </div>
+
+
+    <form id="memberForm">
+
+        <!-- PERSONAL INFORMATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">01</span>
+                <h3>ব্যক্তিগত তথ্য</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>পূর্ণ নাম (বাংলা) <span>*</span></label>
+                    <input type="text" name="bnName" required
+                           placeholder="বাংলায় পূর্ণ নাম লিখুন">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name (English) <span>*</span></label>
+                    <input type="text" name="enName" required
+                           placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>পিতার নাম <span>*</span></label>
+                    <input type="text" name="fatherName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>মাতার নাম <span>*</span></label>
+                    <input type="text" name="motherName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>জন্ম তারিখ <span>*</span></label>
+                    <input type="date" name="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label>লিঙ্গ <span>*</span></label>
+                    <select name="gender" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>পুরুষ</option>
+                        <option>নারী</option>
+                        <option>অন্যান্য</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>রক্তের গ্রুপ</label>
+                    <select name="bloodGroup">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                        <option>জানা নেই</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>NID নম্বর <span>*</span></label>
+                    <input type="text" name="nid"
+                           inputmode="numeric"
+                           minlength="10"
+                           maxlength="17"
+                           required
+                           placeholder="NID নম্বর লিখুন">
+                </div>
+
+                <div class="form-group">
+                    <label>মোবাইল নম্বর <span>*</span></label>
+                    <input type="tel" name="phone"
+                           pattern="01[0-9]{9}"
+                           placeholder="01XXXXXXXXX"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>ইমেইল</label>
+                    <input type="email" name="email"
+                           placeholder="example@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp নম্বর</label>
+                    <input type="tel" name="whatsapp"
+                           placeholder="01XXXXXXXXX">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Facebook প্রোফাইল লিংক</label>
+                    <input type="url" name="facebook"
+                           placeholder="https://facebook.com/">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>পাসপোর্ট সাইজের ছবি <span>*</span></label>
+                    <input type="file" name="photo"
+                           accept="image/jpeg,image/png,image/webp"
+                           required>
+                    <small>JPG, PNG অথবা WebP | সর্বোচ্চ ৫ MB</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADDRESS -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">02</span>
+                <h3>ঠিকানা</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>বিভাগ <span>*</span></label>
+                    <select name="division" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>ঢাকা</option>
+                        <option>চট্টগ্রাম</option>
+                        <option>রাজশাহী</option>
+                        <option>খুলনা</option>
+                        <option>বরিশাল</option>
+                        <option>সিলেট</option>
+                        <option>রংপুর</option>
+                        <option>ময়মনসিংহ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>জেলা <span>*</span></label>
+                    <input type="text" name="district" required>
+                </div>
+
+                <div class="form-group">
+                    <label>উপজেলা/থানা <span>*</span></label>
+                    <input type="text" name="upazila" required>
+                </div>
+
+                <div class="form-group">
+                    <label>ইউনিয়ন/পৌরসভা/সিটি কর্পোরেশন</label>
+                    <input type="text" name="locality">
+                </div>
+
+                <div class="form-group">
+                    <label>ওয়ার্ড নম্বর</label>
+                    <input type="text" name="ward">
+                </div>
+
+                <div class="form-group">
+                    <label>গ্রাম/মহল্লা</label>
+                    <input type="text" name="village">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>বর্তমান ঠিকানা <span>*</span></label>
+                    <textarea name="currentAddress" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>স্থায়ী ঠিকানা</label>
+                    <textarea name="permanentAddress"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>বর্তমান ও স্থায়ী ঠিকানা একই?</label>
+                    <select name="sameAddress">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EDUCATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">03</span>
+                <h3>শিক্ষাগত ও পেশাগত তথ্য</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>সর্বোচ্চ শিক্ষাগত যোগ্যতা <span>*</span></label>
+                    <select name="education" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>প্রাথমিক</option>
+                        <option>JSC/সমমান</option>
+                        <option>SSC/সমমান</option>
+                        <option>HSC/সমমান</option>
+                        <option>স্নাতক অধ্যয়নরত</option>
+                        <option>স্নাতক</option>
+                        <option>স্নাতকোত্তর</option>
+                        <option>অন্যান্য</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>শিক্ষাপ্রতিষ্ঠানের নাম</label>
+                    <input type="text" name="institution">
+                </div>
+
+                <div class="form-group">
+                    <label>বিভাগ/বিষয়</label>
+                    <input type="text" name="department">
+                </div>
+
+                <div class="form-group">
+                    <label>শ্রেণি/বর্ষ/সেমিস্টার</label>
+                    <input type="text" name="studyYear">
+                </div>
+
+                <div class="form-group">
+                    <label>শিক্ষাবর্ষ/পাশের সাল</label>
+                    <input type="text" name="academicYear">
+                </div>
+
+                <div class="form-group">
+                    <label>বর্তমানে পড়াশোনা করছেন?</label>
+                    <select name="currentlyStudying">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>বর্তমান পেশা <span>*</span></label>
+                    <select name="occupation" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>শিক্ষার্থী</option>
+                        <option>চাকরিজীবী</option>
+                        <option>ব্যবসায়ী</option>
+                        <option>ফ্রিল্যান্সার</option>
+                        <option>গৃহিণী</option>
+                        <option>বেকার</option>
+                        <option>অন্যান্য</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>প্রতিষ্ঠানের নাম/পদবি</label>
+                    <input type="text" name="jobDetails">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>পেশাগত অভিজ্ঞতার বিবরণ</label>
+                    <textarea name="jobExperience"></textarea>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORGANIZATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">04</span>
+                <h3>সংগঠনে যোগদান</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <fieldset class="full-width">
+                    <legend>কোন ধরনের সদস্য/ভূমিকায় যুক্ত হতে চান? <span>*</span></legend>
+
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="roles" value="General Member"> সাধারণ সদস্য</label>
+                        <label><input type="checkbox" name="roles" value="Active Volunteer"> সক্রিয় স্বেচ্ছাসেবক</label>
+                        <label><input type="checkbox" name="roles" value="Blood Donor"> রক্তদাতা</label>
+                        <label><input type="checkbox" name="roles" value="Promoter"> প্রচারক</label>
+                        <label><input type="checkbox" name="roles" value="Associate Member"> সহযোগী সদস্য</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="full-width">
+                    <legend>কোন কার্যক্রমে আগ্রহী? (একাধিক নির্বাচন)</legend>
+
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="activities" value="Donor Recruitment"> রক্তদাতা সংগ্রহ</label>
+                        <label><input type="checkbox" name="activities" value="Emergency Support"> জরুরি রক্তের অনুরোধে সহায়তা</label>
+                        <label><input type="checkbox" name="activities" value="Awareness"> রক্তদান সচেতনতা</label>
+                        <label><input type="checkbox" name="activities" value="Social Work"> সামাজিক/মানবিক কার্যক্রম</label>
+                        <label><input type="checkbox" name="activities" value="Communication"> প্রচার ও যোগাযোগ</label>
+                        <label><input type="checkbox" name="activities" value="Event Management"> ইভেন্ট ব্যবস্থাপনা</label>
+                        <label><input type="checkbox" name="activities" value="Design/Media"> ডিজাইন/ফটোগ্রাফি/ভিডিও</label>
+                        <label><input type="checkbox" name="activities" value="IT"> ওয়েবসাইট/আইটি</label>
+                        <label><input type="checkbox" name="activities" value="Other"> অন্যান্য</label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group full-width">
+                    <label>কেন Neuron Blood Foundation-এর সদস্য হতে চান? <span>*</span></label>
+                    <textarea name="joinReason" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>সংগঠনের জন্য কীভাবে অবদান রাখতে পারবেন? <span>*</span></label>
+                    <textarea name="contribution" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>ভবিষ্যতে কী ধরনের দায়িত্ব নিতে চান?</label>
+                    <textarea name="futureRole"></textarea>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BLOOD DONATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">05</span>
+                <h3>রক্তদান সম্পর্কিত তথ্য</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>আগে রক্তদান করেছেন? <span>*</span></label>
+                    <select name="donatedBefore" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>মোট কতবার রক্তদান করেছেন?</label>
+                    <input type="number" name="donationCount" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>সর্বশেষ রক্তদানের তারিখ</label>
+                    <input type="date" name="lastDonation">
+                </div>
+
+                <div class="form-group">
+                    <label>ভবিষ্যতে রক্তদানে আগ্রহী?</label>
+                    <select name="willingToDonate">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                        <option>প্রযোজ্য নয়</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>রক্তদানের বিষয়ে কোনো গুরুত্বপূর্ণ সীমাবদ্ধতা থাকলে (ঐচ্ছিক)</label>
+                    <textarea name="donationNote"></textarea>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPERIENCE -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">06</span>
+                <h3>স্বেচ্ছাসেবার অভিজ্ঞতা</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>আগে কোনো সংগঠনে কাজ করেছেন? <span>*</span></label>
+                    <select name="volunteered" required>
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>সংগঠনের নাম</label>
+                    <input type="text" name="previousOrganization">
+                </div>
+
+                <div class="form-group">
+                    <label>আপনার পদ</label>
+                    <input type="text" name="previousRole">
+                </div>
+
+                <div class="form-group">
+                    <label>কতদিন কাজ করেছেন?</label>
+                    <input type="text" name="duration">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>কী ধরনের কাজ করেছেন? বিস্তারিত</label>
+                    <textarea name="volunteerDetails"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>স্বেচ্ছাসেবার সনদ আছে?</label>
+                    <select name="certificate">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">07</span>
+                <h3>দক্ষতা ও সময়</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <fieldset class="full-width">
+                    <legend>আপনার দক্ষতা (একাধিক নির্বাচন)</legend>
+
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="skills" value="Leadership"> নেতৃত্ব</label>
+                        <label><input type="checkbox" name="skills" value="Communication"> যোগাযোগ</label>
+                        <label><input type="checkbox" name="skills" value="Computer"> কম্পিউটার</label>
+                        <label><input type="checkbox" name="skills" value="Graphic Design"> গ্রাফিক ডিজাইন</label>
+                        <label><input type="checkbox" name="skills" value="Video Editing"> ভিডিও এডিটিং</label>
+                        <label><input type="checkbox" name="skills" value="Writing"> লেখালেখি</label>
+                        <label><input type="checkbox" name="skills" value="Photography"> ফটোগ্রাফি</label>
+                        <label><input type="checkbox" name="skills" value="Web Development"> ওয়েব ডেভেলপমেন্ট</label>
+                        <label><input type="checkbox" name="skills" value="Event Management"> ইভেন্ট পরিচালনা</label>
+                        <label><input type="checkbox" name="skills" value="Other"> অন্যান্য</label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label>সপ্তাহে কত ঘণ্টা সময় দিতে পারবেন?</label>
+                    <select name="weeklyHours">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>১–৩ ঘণ্টা</option>
+                        <option>৪–৬ ঘণ্টা</option>
+                        <option>৭–১০ ঘণ্টা</option>
+                        <option>১০ ঘণ্টার বেশি</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>কোন দিন সময় দিতে পারবেন?</label>
+                    <input type="text" name="availableDays"
+                           placeholder="যেমন: শুক্রবার, শনিবার">
+                </div>
+
+                <div class="form-group">
+                    <label>সরাসরি কার্যক্রমে অংশ নিতে পারবেন?</label>
+                    <select name="inPerson">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                        <option>পরিস্থিতি অনুযায়ী</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>অনলাইন কার্যক্রমে অংশ নিতে পারবেন?</label>
+                    <select name="online">
+                        <option value="">নির্বাচন করুন</option>
+                        <option>হ্যাঁ</option>
+                        <option>না</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>যোগাযোগের সুবিধাজনক সময়</label>
+                    <input type="text" name="contactTime">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EMERGENCY CONTACT -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">08</span>
+                <h3>জরুরি যোগাযোগ</h3>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>জরুরি যোগাযোগের ব্যক্তির নাম <span>*</span></label>
+                    <input type="text" name="emergencyName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>সম্পর্ক <span>*</span></label>
+                    <input type="text" name="emergencyRelation" required>
+                </div>
+
+                <div class="form-group">
+                    <label>মোবাইল নম্বর <span>*</span></label>
+                    <input type="tel" name="emergencyPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>বিকল্প নম্বর</label>
+                    <input type="tel" name="emergencyAltPhone">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>ঠিকানা</label>
+                    <textarea name="emergencyAddress"></textarea>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DECLARATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <span class="section-number">09</span>
+                <h3>ঘোষণা ও সম্মতি</h3>
+            </div>
+
+            <div class="consent-box">
+
+                <label>
+                    <input type="checkbox" name="truthDeclaration" required>
+                    প্রদত্ত তথ্য আমার জ্ঞান অনুযায়ী সঠিক। *
+                </label>
+
+                <label>
+                    <input type="checkbox" name="rulesConsent" required>
+                    সংগঠনের নিয়ম ও নির্দেশনা মেনে চলতে সম্মত। *
+                </label>
+
+                <label>
+                    <input type="checkbox" name="pendingConsent" required>
+                    আবেদন অনুমোদনের আগে Pending থাকবে—এ বিষয়ে সম্মত। *
+                </label>
+
+                <label>
+                    <input type="checkbox" name="contactConsent" required>
+                    তথ্য যাচাইয়ের জন্য সংগঠন আমার সঙ্গে যোগাযোগ করতে পারবে। *
+                </label>
+
+                <label>
+                    <input type="checkbox" name="dataConsent" required>
+                    সদস্য নিবন্ধনের উদ্দেশ্যে প্রয়োজনীয় তথ্য ব্যবহারে সম্মতি দিচ্ছি। *
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button type="submit" id="submitBtn">
+                <i class="fa-solid fa-paper-plane"></i>
+                আবেদন জমা দিন
+            </button>
+
+            <button type="reset" class="reset-btn">
+                <i class="fa-solid fa-rotate-left"></i>
+                ফর্ম মুছুন
+            </button>
+
+        </div>
+
+        <p id="status" role="status"></p>
+
+    </form>
+
+</main>
+
+
+<footer>
+    <p>© Neuron Blood Foundation</p>
+    <p>With youth; on the path of humanity</p>
+</footer>
+
+<script type="module" src="member-registration.js"></script>
+
+</body>
+</html>
