@@ -10,653 +10,816 @@
 
 <style>
 :root {
-  --green: #087653;
-  --dark-green: #064e3b;
-  --light-green: #e8f7f0;
-  --border: #d9e8e1;
-  --text: #173b30;
-  --muted: #71877e;
-  --white: #ffffff;
+    --green: #087653;
+    --dark-green: #064e3b;
+    --light-green: #e8f7f0;
+    --border: #d9e8e1;
+    --text: #173b30;
+    --muted: #71877e;
+    --red: #d94848;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: #f0f8f4;
-  color: var(--text);
-  font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: #f0f8f4;
+    color: var(--text);
+    font-size: 14px;
 }
 
 /* ================= NAVBAR ================= */
 
 .navbar {
-  height: 78px;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5%;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    min-height: 78px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 5%;
+    gap: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.04);
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
 }
 
 .brand img {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
 }
 
 .brand-name {
-  font-size: 19px;
-  font-weight: 800;
-  color: var(--dark-green);
-  line-height: 1.2;
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--dark-green);
+    line-height: 1.2;
 }
 
 .brand-tagline {
-  font-size: 10px;
-  color: #60776c;
-  margin-top: 4px;
+    font-size: 10px;
+    color: #60776c;
+    margin-top: 4px;
 }
 
 .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: #29473d;
-  font-size: 12px;
-  font-weight: 500;
+    text-decoration: none;
+    color: #29473d;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .login-btn {
-  background: var(--green);
-  color: white !important;
-  padding: 13px 20px;
-  border-radius: 9px;
+    background: var(--green);
+    color: #fff !important;
+    padding: 12px 18px;
+    border-radius: 8px;
 }
 
-/* ================= HERO BANNER ================= */
+/* ================= HEADER BANNER ================= */
 
 .hero {
-  width: 100%;
-  min-height: 250px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(222,247,237,0.98) 0%,
-      rgba(222,247,237,0.93) 42%,
-      rgba(222,247,237,0.05) 100%
-    ),
-    url("neuron-banner-reference-crop.jpg");
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    padding: 40px 6.5%;
 
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  padding: 40px 6.5%;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(222,247,237,.98) 0%,
+            rgba(222,247,237,.90) 48%,
+            rgba(222,247,237,.25) 100%
+        ),
+        url("member-registration-banner.jpg") center/cover no-repeat;
 }
 
 .hero-content {
-  max-width: 650px;
+    max-width: 620px;
 }
 
 .hero-label {
-  color: var(--green);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
 }
 
 .hero h1 {
-  font-size: clamp(28px, 3.5vw, 44px);
-  color: var(--dark-green);
-  font-weight: 800;
-  margin-bottom: 14px;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--dark-green);
+    font-weight: 800;
+    margin-bottom: 14px;
 }
 
 .hero p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #234b3d;
-  max-width: 520px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #234b3d;
+    max-width: 500px;
+}
+
+/* ================= INSTRUCTIONS ================= */
+
+.instructions-section {
+    max-width: 1120px;
+    margin: 28px auto 0;
+    padding: 0 20px;
+}
+
+.instructions-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 28px;
+    box-shadow: 0 6px 24px rgba(12,80,54,.05);
+}
+
+.instructions-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.instructions-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-green);
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.instructions-heading h2 {
+    color: var(--dark-green);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.instructions-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.instructions-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 13px;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+    background: #f7fcf9;
+    border: 1px solid #e3f0e9;
+    border-radius: 10px;
+}
+
+.instruction-number {
+    color: var(--green);
+    background: #e2f5eb;
+    border-radius: 7px;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.instruction-item p {
+    color: #294a3e;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.instructions-note {
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: #edf9f3;
+    border-left: 4px solid var(--green);
+    border-radius: 7px;
+    color: #294a3e;
+    font-size: 12px;
+    line-height: 1.8;
 }
 
 /* ================= MAIN FORM ================= */
 
 .container {
-  max-width: 1120px;
-  margin: 30px auto 55px;
-  padding: 0 20px;
+    max-width: 1120px;
+    margin: 30px auto 55px;
+    padding: 0 20px;
 }
 
 .form-card {
-  background: white;
-  border: 1px solid #e1eee8;
-  border-radius: 15px;
-  padding: 32px;
-  box-shadow: 0 8px 30px rgba(12, 80, 54, 0.07);
+    background: #fff;
+    border: 1px solid #e1eee8;
+    border-radius: 15px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(12,80,54,.07);
 }
 
-/* ================= PROGRESS ================= */
+/* ================= PROGRESS BAR ================= */
 
 .progress-area {
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 .progress-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 13px;
 }
 
 .progress-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--dark-green);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--dark-green);
 }
 
 .progress-count {
-  font-size: 12px;
-  color: var(--muted);
+    font-size: 12px;
+    color: var(--muted);
 }
 
 .progress-track {
-  height: 6px;
-  width: 100%;
-  background: #e6f0eb;
-  border-radius: 20px;
-  overflow: hidden;
+    height: 7px;
+    width: 100%;
+    background: #e6f0eb;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .progress-fill {
-  height: 100%;
-  width: 25%;
-  background: var(--green);
-  border-radius: 20px;
-  transition: width 0.3s ease;
+    height: 100%;
+    width: 25%;
+    background: var(--green);
+    border-radius: 20px;
+    transition: width .3s ease;
 }
 
-/* ================= STEPS ================= */
+/* ================= FORM STEPS ================= */
 
 .form-step {
-  display: none;
+    display: none;
 }
 
 .form-step.active {
-  display: block;
-  animation: fadeIn 0.25s ease;
+    display: block;
+    animation: fadeIn .25s ease;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* ================= SECTION HEADING ================= */
+
 .section-heading {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 28px;
 }
 
 .section-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--green);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 19px;
-  flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
 }
 
 .section-heading h2 {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--dark-green);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--dark-green);
 }
 
 .section-heading p {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 5px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
 }
 
 .heading-line {
-  flex: 1;
-  height: 2px;
-  background: #b6dccc;
-  margin-left: 8px;
+    flex: 1;
+    height: 2px;
+    background: #b6dccc;
+    margin-left: 8px;
 }
 
-/* ================= FIELD GRID ================= */
+/* ================= INPUT FIELDS ================= */
 
 .field-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 23px 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 23px 24px;
 }
 
 .field {
-  min-width: 0;
+    min-width: 0;
 }
 
 .field.full {
-  grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 .field label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: #294a3e;
-  margin-bottom: 9px;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #294a3e;
+    margin-bottom: 9px;
 }
 
 .required {
-  color: #d44848;
+    color: var(--red);
+    font-weight: 800;
 }
 
 .optional {
-  font-size: 11px;
-  color: #82938b;
-  font-weight: 400;
+    font-size: 11px;
+    color: #82938b;
+    font-weight: 400;
 }
 
 input,
 select,
 textarea {
-  width: 100%;
-  border: 1px solid #d5e3dc;
-  background: #fbfdfc;
-  color: #183f30;
-  font-family: inherit;
-  font-size: 13px;
-  border-radius: 9px;
-  outline: none;
-  transition: 0.2s;
+    width: 100%;
+    border: 1px solid #d5e3dc;
+    background: #fbfdfc;
+    color: #183f30;
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: 9px;
+    outline: none;
+    transition: .2s;
 }
 
 input,
 select {
-  height: 49px;
-  padding: 0 15px;
+    height: 49px;
+    padding: 0 15px;
 }
 
 textarea {
-  min-height: 110px;
-  padding: 14px;
-  resize: vertical;
+    min-height: 105px;
+    padding: 14px;
+    resize: vertical;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--green);
-  background: white;
-  box-shadow: 0 0 0 3px rgba(8,118,83,0.09);
+    border-color: var(--green);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(8,118,83,.09);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #9aaba3;
+    color: #9aaba3;
 }
 
-/* ================= SELECT ================= */
-
 select {
-  appearance: none;
-  cursor: pointer;
+    cursor: pointer;
+}
 
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2361786d' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+/* ================= ADDRESS HEADINGS ================= */
 
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 40px;
+.address-heading {
+    grid-column: 1 / -1;
+    padding: 14px 16px;
+    background: #edf9f3;
+    color: var(--dark-green);
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 8px;
 }
 
 /* ================= FILE UPLOAD ================= */
 
 .upload-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 20px;
 }
 
 .upload-box {
-  position: relative;
-  min-height: 160px;
-  border: 1.5px dashed #a8cfc0;
-  background: #f7fcf9;
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
+    position: relative;
+    min-height: 160px;
+    border: 1.5px dashed #a8cfc0;
+    background: #f7fcf9;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .upload-box:hover {
-  border-color: var(--green);
-  background: #effaf4;
+    border-color: var(--green);
+    background: #effaf4;
 }
 
 .upload-box input[type="file"] {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
 }
 
 .upload-icon {
-  font-size: 32px;
-  color: var(--green);
-  margin-bottom: 10px;
+    font-size: 32px;
+    color: var(--green);
+    margin-bottom: 10px;
 }
 
 .upload-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--dark-green);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--dark-green);
 }
 
 .upload-info {
-  font-size: 11px;
-  color: #82938b;
-  margin-top: 8px;
-  line-height: 1.6;
+    font-size: 11px;
+    color: #82938b;
+    margin-top: 8px;
+    line-height: 1.6;
 }
 
 .file-name {
-  display: block;
-  margin-top: 8px;
-  font-size: 11px;
-  color: var(--green);
-  word-break: break-word;
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--green);
+    word-break: break-word;
 }
 
-/* ================= CHECKBOX ================= */
+/* ================= MEMBER TYPE ================= */
+
+.member-types {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+}
+
+.member-type {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #d5e8de;
+    border-radius: 10px;
+    background: #fbfdfc;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.member-type:hover {
+    border-color: var(--green);
+    background: #f1faf5;
+}
+
+.member-type input {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 1px;
+    accent-color: var(--green);
+}
+
+.member-type strong {
+    display: block;
+    font-size: 12px;
+    color: var(--dark-green);
+}
+
+.member-type small {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ================= DECLARATION ================= */
 
 .declaration {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  padding: 19px;
-  background: #edf9f3;
-  border: 1px solid #d4eee1;
-  border-radius: 10px;
-  margin-top: 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 19px;
+    background: #edf9f3;
+    border: 1px solid #d4eee1;
+    border-radius: 10px;
+    margin-top: 25px;
 }
 
 .declaration input {
-  width: 19px;
-  height: 19px;
-  margin-top: 2px;
-  accent-color: var(--green);
-  flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    margin-top: 2px;
+    accent-color: var(--green);
+    flex-shrink: 0;
 }
 
 .declaration label {
-  font-size: 12px;
-  line-height: 1.8;
-  cursor: pointer;
+    font-size: 12px;
+    line-height: 1.8;
+    cursor: pointer;
 }
 
 /* ================= BUTTONS ================= */
 
 .form-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
 }
 
 .btn {
-  min-height: 49px;
-  padding: 0 24px;
-  border-radius: 9px;
-  border: none;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
+    min-height: 49px;
+    padding: 0 24px;
+    border-radius: 9px;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .btn-back {
-  background: white;
-  color: var(--green);
-  border: 1px solid var(--green);
+    background: #fff;
+    color: var(--green);
+    border: 1px solid var(--green);
 }
 
 .btn-back:hover {
-  background: #edf8f2;
+    background: #edf8f2;
 }
 
 .btn-next,
 .btn-submit {
-  background: var(--green);
-  color: white;
+    background: var(--green);
+    color: #fff;
 }
 
 .btn-next:hover,
 .btn-submit:hover {
-  background: var(--dark-green);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    background: var(--dark-green);
 }
 
 /* ================= FOOTER ================= */
 
 .footer {
-  background: #064e3b;
-  color: white;
-  padding: 30px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+    background: #064e3b;
+    color: #fff;
+    padding: 30px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
 .footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .footer-brand img {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
 }
 
 .footer-brand h3 {
-  font-size: 15px;
+    font-size: 15px;
 }
 
 .footer-brand p {
-  font-size: 10px;
-  margin-top: 5px;
-  color: #c9e7d9;
+    font-size: 10px;
+    margin-top: 5px;
+    color: #c9e7d9;
 }
 
 .footer-message {
-  font-size: 14px;
-  font-weight: 600;
-  text-align: right;
-  line-height: 1.6;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.8;
 }
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE DESIGN ================= */
 
 @media (max-width: 768px) {
 
-  .navbar {
-    height: 68px;
-    padding: 0 16px;
-  }
+    .navbar {
+        min-height: 68px;
+        padding: 10px 16px;
+    }
 
-  .brand img {
-    width: 43px;
-    height: 43px;
-  }
+    .brand img {
+        width: 43px;
+        height: 43px;
+    }
 
-  .brand-name {
-    font-size: 15px;
-  }
+    .brand-name {
+        font-size: 15px;
+    }
 
-  .brand-tagline {
-    font-size: 9px;
-  }
+    .brand-tagline {
+        font-size: 9px;
+    }
 
-  .nav-links {
-    display: none;
-  }
+    .nav-links {
+        display: none;
+    }
 
-  .hero {
-    min-height: 175px;
-    padding: 28px 20px;
+    .hero {
+        min-height: 215px;
+        padding: 28px 20px;
 
-    background:
-      linear-gradient(
-        90deg,
-        rgba(222,247,237,0.98) 0%,
-        rgba(222,247,237,0.88) 65%,
-        rgba(222,247,237,0.45) 100%
-      ),
-      url("neuron-banner-reference-crop.jpg");
+        background:
+            linear-gradient(
+                90deg,
+                rgba(222,247,237,.98) 0%,
+                rgba(222,247,237,.92) 65%,
+                rgba(222,247,237,.60) 100%
+            ),
+            url("member-registration-banner.jpg") center/cover no-repeat;
+    }
 
-    background-size: cover;
-    background-position: center;
-  }
+    .hero-label {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
 
-  .hero-label {
-    font-size: 11px;
-    margin-bottom: 8px;
-  }
+    .hero h1 {
+        font-size: 27px;
+        margin-bottom: 8px;
+    }
 
-  .hero h1 {
-    font-size: 27px;
-    margin-bottom: 8px;
-  }
+    .hero p {
+        font-size: 12px;
+        line-height: 1.8;
+        max-width: 320px;
+    }
 
-  .hero p {
-    font-size: 12px;
-    line-height: 1.7;
-    max-width: 320px;
-  }
+    .instructions-section {
+        margin-top: 18px;
+        padding: 0 12px;
+    }
 
-  .container {
-    margin: 18px auto 30px;
-    padding: 0 12px;
-  }
+    .instructions-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
 
-  .form-card {
-    padding: 20px 15px;
-    border-radius: 12px;
-  }
+    .instructions-heading {
+        gap: 11px;
+        margin-bottom: 18px;
+    }
 
-  .section-heading {
-    gap: 10px;
-    margin-bottom: 23px;
-  }
+    .instructions-heading h2 {
+        font-size: 17px;
+    }
 
-  .section-icon {
-    width: 37px;
-    height: 37px;
-    font-size: 16px;
-  }
+    .instructions-content {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
 
-  .section-heading h2 {
-    font-size: 15px;
-  }
+    .instruction-item {
+        padding: 13px;
+    }
 
-  .section-heading p {
-    font-size: 10px;
-  }
+    .container {
+        margin: 18px auto 30px;
+        padding: 0 12px;
+    }
 
-  .heading-line {
-    margin-left: 2px;
-  }
+    .form-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
 
-  .field-grid {
-    grid-template-columns: 1fr;
-    gap: 19px;
-  }
+    .section-heading {
+        gap: 10px;
+        margin-bottom: 23px;
+    }
 
-  .field.full {
-    grid-column: auto;
-  }
+    .section-icon {
+        width: 37px;
+        height: 37px;
+        font-size: 16px;
+    }
 
-  .field label {
-    font-size: 12px;
-    margin-bottom: 8px;
-  }
+    .section-heading h2 {
+        font-size: 14px;
+    }
 
-  input,
-  select {
-    height: 47px;
-    font-size: 12px;
-  }
+    .section-heading p {
+        font-size: 10px;
+    }
 
-  .upload-grid {
-    grid-template-columns: 1fr;
-    gap: 13px;
-  }
+    .heading-line {
+        margin-left: 2px;
+    }
 
-  .upload-box {
-    min-height: 135px;
-  }
+    .field-grid {
+        grid-template-columns: 1fr;
+        gap: 19px;
+    }
 
-  .form-buttons {
-    flex-direction: column-reverse;
-  }
+    .field.full,
+    .address-heading {
+        grid-column: auto;
+    }
 
-  .btn {
-    width: 100%;
-    min-height: 48px;
-  }
+    input,
+    select {
+        height: 47px;
+        font-size: 12px;
+    }
 
-  .footer {
-    padding: 24px 18px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .upload-grid,
+    .member-types {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
 
-  .footer-message {
-    text-align: left;
-  }
+    .upload-box {
+        min-height: 135px;
+    }
+
+    .form-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+        min-height: 48px;
+    }
+
+    .footer {
+        padding: 24px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-message {
+        text-align: left;
+    }
 }
 </style>
 </head>
@@ -667,49 +830,127 @@ select {
 
 <header class="navbar">
 
-  <div class="brand">
-    <img src="neuronlogo.jpg" alt="Neuron Blood Foundation">
+    <div class="brand">
+        <img src="neuronlogo.jpg" alt="Neuron Blood Foundation Logo">
 
-    <div>
-      <div class="brand-name">
-        Neuron Blood<br>Foundation
-      </div>
-
-      <div class="brand-tagline">
-        With youth; on the path of humanity
-      </div>
+        <div>
+            <div class="brand-name">Neuron Blood<br>Foundation</div>
+            <div class="brand-tagline">
+                With youth; on the path of humanity
+            </div>
+        </div>
     </div>
-  </div>
 
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="become-donor.html">Become a Donor</a>
-    <a href="donor-list.html">Donor List</a>
-    <a href="member-list.html">Member List</a>
-    <a href="emergency.html">Emergency</a>
-    <a href="member-login.html" class="login-btn">Member Login</a>
-  </nav>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="become-donor.html">Become a Donor</a>
+        <a href="donor-list.html">Donor List</a>
+        <a href="member-list.html">Member List</a>
+        <a href="emergency.html">Emergency</a>
+        <a href="member-login.html" class="login-btn">Member Login</a>
+    </nav>
 
 </header>
 
-
-<!-- ================= HERO ================= -->
+<!-- ================= HEADER BANNER ================= -->
 
 <section class="hero">
 
-  <div class="hero-content">
-    <div class="hero-label">JOIN OUR MISSION</div>
+    <div class="hero-content">
 
-    <h1>Member Registration</h1>
+        <div class="hero-label">JOIN OUR MISSION</div>
 
-    <p>
-      Be a part of Neuron Blood Foundation and help us
-      build a healthier, kinder and more humanitarian society.
-    </p>
-  </div>
+        <h1>Member Registration</h1>
+
+        <p>
+            Become a part of Neuron Blood Foundation.
+            Join our humanitarian mission and help build
+            a healthier, kinder and more caring society.
+        </p>
+
+    </div>
 
 </section>
 
+<!-- ================= INSTRUCTIONS ================= -->
+
+<section class="instructions-section">
+
+    <div class="instructions-card">
+
+        <div class="instructions-heading">
+
+            <div class="instructions-icon">📋</div>
+
+            <div>
+                <h2>Before You Register</h2>
+                <p>Please read the instructions carefully.</p>
+            </div>
+
+        </div>
+
+        <div class="instructions-content">
+
+            <div class="instruction-item">
+                <span class="instruction-number">01</span>
+                <p>
+                    Complete all four steps of the registration form.
+                    Fields marked with <strong>*</strong> are required.
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-number">02</span>
+                <p>
+                    Enter your personal information accurately.
+                    Your date of birth must meet the minimum age requirement.
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-number">03</span>
+                <p>
+                    Provide valid contact information and your current
+                    and permanent addresses.
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-number">04</span>
+                <p>
+                    Keep your NID card images and a clear passport-size
+                    photograph ready for upload.
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-number">05</span>
+                <p>
+                    Choose one or more membership types that match
+                    your interests and intended involvement.
+                </p>
+            </div>
+
+            <div class="instruction-item">
+                <span class="instruction-number">06</span>
+                <p>
+                    Review your information carefully before submitting
+                    your application.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="instructions-note">
+            <strong>Important:</strong>
+            Submitting this form does not automatically guarantee
+            membership. Your application may require review and approval
+            by the authorized team of Neuron Blood Foundation.
+        </div>
+
+    </div>
+
+</section>
 
 <!-- ================= REGISTRATION FORM ================= -->
 
@@ -717,428 +958,947 @@ select {
 
 <div class="form-card">
 
-  <div class="progress-area">
+    <!-- PROGRESS BAR -->
 
-    <div class="progress-top">
-      <span class="progress-title" id="progressTitle">
-        Personal Information
-      </span>
+    <div class="progress-area">
 
-      <span class="progress-count" id="progressCount">
-        Step 1 of 4
-      </span>
-    </div>
+        <div class="progress-top">
 
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
+            <span class="progress-title" id="progressTitle">
+                Personal Information
+            </span>
 
-  </div>
+            <span class="progress-count" id="progressCount">
+                Step 1 of 4
+            </span>
 
-
-  <form id="memberForm">
-
-    <!-- STEP 1 -->
-
-    <section class="form-step active">
-
-      <div class="section-heading">
-        <div class="section-icon">👤</div>
-
-        <div>
-          <h2>1. Personal Information</h2>
-          <p>Tell us about yourself</p>
         </div>
 
-        <div class="heading-line"></div>
-      </div>
-
-      <div class="field-grid">
-
-        <div class="field">
-          <label>Full Name (Bangla) <span class="required">*</span></label>
-          <input type="text" name="nameBangla" placeholder="সম্পূর্ণ নাম" required>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
-
-        <div class="field">
-          <label>Full Name (English) <span class="required">*</span></label>
-          <input type="text" name="nameEnglish" placeholder="Your full name" required>
-        </div>
-
-        <div class="field">
-          <label>Father's Name <span class="required">*</span></label>
-          <input type="text" name="fatherName" placeholder="Father's name" required>
-        </div>
-
-        <div class="field">
-          <label>Mother's Name <span class="required">*</span></label>
-          <input type="text" name="motherName" placeholder="Mother's name" required>
-        </div>
-
-        <div class="field">
-          <label>Date of Birth <span class="required">*</span></label>
-          <input type="date" name="dob" required>
-        </div>
-
-        <div class="field">
-          <label>Gender <span class="required">*</span></label>
-          <select name="gender" required>
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-            <option>Prefer not to say</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Blood Group <span class="optional">(Optional)</span></label>
-          <select name="bloodGroup">
-            <option value="">Select Blood Group</option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-            <option>O+</option>
-            <option>O-</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>NID Number <span class="required">*</span></label>
-          <input type="text" name="nid" placeholder="National ID number" required>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- STEP 2 -->
-
-    <section class="form-step">
-
-      <div class="section-heading">
-        <div class="section-icon">☎</div>
-
-        <div>
-          <h2>2. Contact & Address</h2>
-          <p>How can we reach you?</p>
-        </div>
-
-        <div class="heading-line"></div>
-      </div>
-
-      <div class="field-grid">
-
-        <div class="field">
-          <label>Mobile Number <span class="required">*</span></label>
-          <input type="tel" name="mobile" placeholder="01XXXXXXXXX" required>
-        </div>
-
-        <div class="field">
-          <label>Email Address <span class="required">*</span></label>
-          <input type="email" name="email" placeholder="example@gmail.com" required>
-        </div>
-
-        <div class="field">
-          <label>WhatsApp Number <span class="optional">(If different)</span></label>
-          <input type="tel" name="whatsapp" placeholder="01XXXXXXXXX">
-        </div>
-
-        <div class="field">
-          <label>Facebook Profile <span class="optional">(Optional)</span></label>
-          <input type="url" name="facebook" placeholder="https://facebook.com/username">
-        </div>
-
-        <div class="field full">
-          <label>Current Address <span class="required">*</span></label>
-          <textarea name="currentAddress" placeholder="House, road, village, union, ward..." required></textarea>
-        </div>
-
-        <div class="field">
-          <label>Current Division <span class="required">*</span></label>
-          <select name="currentDivision" required>
-            <option value="">Select Division</option>
-            <option>Dhaka</option>
-            <option>Chattogram</option>
-            <option>Rajshahi</option>
-            <option>Khulna</option>
-            <option>Barishal</option>
-            <option>Sylhet</option>
-            <option>Rangpur</option>
-            <option>Mymensingh</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Current District <span class="required">*</span></label>
-          <input type="text" name="currentDistrict" placeholder="District name" required>
-        </div>
-
-        <div class="field">
-          <label>Current Upazila / Thana <span class="required">*</span></label>
-          <input type="text" name="currentUpazila" placeholder="Upazila / Thana" required>
-        </div>
-
-        <div class="field full">
-          <label>Permanent Address <span class="required">*</span></label>
-          <textarea name="permanentAddress" placeholder="Permanent address" required></textarea>
-        </div>
-
-        <div class="field">
-          <label>Permanent Division <span class="required">*</span></label>
-          <select name="permanentDivision" required>
-            <option value="">Select Division</option>
-            <option>Dhaka</option>
-            <option>Chattogram</option>
-            <option>Rajshahi</option>
-            <option>Khulna</option>
-            <option>Barishal</option>
-            <option>Sylhet</option>
-            <option>Rangpur</option>
-            <option>Mymensingh</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Permanent District <span class="required">*</span></label>
-          <input type="text" name="permanentDistrict" placeholder="District name" required>
-        </div>
-
-        <div class="field">
-          <label>Permanent Upazila / Thana <span class="required">*</span></label>
-          <input type="text" name="permanentUpazila" placeholder="Upazila / Thana" required>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- STEP 3 -->
-
-    <section class="form-step">
-
-      <div class="section-heading">
-        <div class="section-icon">✦</div>
-
-        <div>
-          <h2>3. Education & Additional Information</h2>
-          <p>Your background and preferred role</p>
-        </div>
-
-        <div class="heading-line"></div>
-      </div>
-
-      <div class="field-grid">
-
-        <div class="field">
-          <label>Educational Qualification <span class="required">*</span></label>
-          <select name="education" required>
-            <option value="">Select Qualification</option>
-            <option>SSC</option>
-            <option>HSC</option>
-            <option>Honours</option>
-            <option>Degree</option>
-            <option>Masters</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Institution Name <span class="required">*</span></label>
-          <input type="text" name="institution" placeholder="School / College / University" required>
-        </div>
-
-        <div class="field">
-          <label>Department / Subject</label>
-          <input type="text" name="department" placeholder="Your department">
-        </div>
-
-        <div class="field">
-          <label>Session / Year</label>
-          <input type="text" name="session" placeholder="e.g. 2024-25">
-        </div>
-
-        <div class="field">
-          <label>Preferred Role <span class="required">*</span></label>
-          <select name="preferredRole" required>
-            <option value="">Select Role</option>
-            <option>General Member</option>
-            <option>Active Volunteer</option>
-            <option>Blood Donor</option>
-            <option>Promoter</option>
-            <option>Associate Member</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Have you donated blood before? <span class="required">*</span></label>
-          <select name="donatedBefore" required>
-            <option value="">Select Answer</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Last Blood Donation Date <span class="optional">(If any)</span></label>
-          <input type="date" name="lastDonation">
-        </div>
-
-        <div class="field">
-          <label>Physical Complications <span class="optional">(If any)</span></label>
-          <input type="text" name="physicalComplications" placeholder="Mention only if relevant">
-        </div>
-
-        <div class="field full">
-          <label>Why do you want to join Neuron Blood Foundation? <span class="required">*</span></label>
-          <textarea name="joinReason" placeholder="Write a few lines about your motivation..." required></textarea>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- STEP 4 -->
-
-    <section class="form-step">
-
-      <div class="section-heading">
-        <div class="section-icon">▣</div>
-
-        <div>
-          <h2>4. Required Documents & Declaration</h2>
-          <p>Upload your documents to complete registration</p>
-        </div>
-
-        <div class="heading-line"></div>
-      </div>
-
-      <div class="upload-grid">
-
-        <label class="upload-box">
-
-          <input type="file" name="nidCard" accept=".jpg,.jpeg,.png,.pdf" required>
-
-          <div>
-            <div class="upload-icon">▤</div>
-
-            <div class="upload-title">
-              Upload NID Card (Front & Back) *
-            </div>
-
-            <div class="upload-info">
-              Click to upload or drag and drop<br>
-              JPG, PNG or PDF (Max 5MB)
-            </div>
-
-            <span class="file-name"></span>
-          </div>
-
-        </label>
-
-
-        <label class="upload-box">
-
-          <input type="file" name="passportPhoto" accept=".jpg,.jpeg,.png" required>
-
-          <div>
-            <div class="upload-icon">▧</div>
-
-            <div class="upload-title">
-              Upload Passport-size Photo *
-            </div>
-
-            <div class="upload-info">
-              Click to upload or drag and drop<br>
-              JPG or PNG (Max 3MB)
-            </div>
-
-            <span class="file-name"></span>
-          </div>
-
-        </label>
-
-      </div>
-
-
-      <div class="declaration">
-
-        <input type="checkbox" id="declaration" required>
-
-        <label for="declaration">
-          <strong>Declaration</strong><br>
-
-          I hereby declare that all the information provided above
-          is true and correct to the best of my knowledge.
-          I agree to follow the rules and regulations of
-          Neuron Blood Foundation.
-        </label>
-
-      </div>
-
-    </section>
-
-
-    <!-- NAVIGATION BUTTONS -->
-
-    <div class="form-buttons">
-
-      <button type="button" class="btn btn-back" id="backBtn">
-        ← Back
-      </button>
-
-      <button type="button" class="btn btn-next" id="nextBtn">
-        Continue →
-      </button>
-
-      <button type="submit" class="btn btn-submit" id="submitBtn" style="display:none">
-        Register as Member →
-      </button>
 
     </div>
 
-  </form>
+    <form id="memberForm">
+
+        <!-- =================================================
+             PAGE 1: PERSONAL INFORMATION
+        ================================================== -->
+
+        <section class="form-step active">
+
+            <div class="section-heading">
+
+                <div class="section-icon">👤</div>
+
+                <div>
+                    <h2>1. Personal Information</h2>
+                    <p>Provide your personal details</p>
+                </div>
+
+                <div class="heading-line"></div>
+
+            </div>
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label for="nameBangla">
+                        Full Name (Bangla) <span class="required">*</span>
+                    </label>
+                    <input
+                        id="nameBangla"
+                        name="nameBangla"
+                        type="text"
+                        placeholder="আপনার সম্পূর্ণ নাম"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="nameEnglish">
+                        Full Name (English) <span class="required">*</span>
+                    </label>
+                    <input
+                        id="nameEnglish"
+                        name="nameEnglish"
+                        type="text"
+                        placeholder="Your full name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="fatherName">
+                        Father's Name <span class="required">*</span>
+                    </label>
+                    <input
+                        id="fatherName"
+                        name="fatherName"
+                        type="text"
+                        placeholder="Father's full name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="motherName">
+                        Mother's Name <span class="required">*</span>
+                    </label>
+                    <input
+                        id="motherName"
+                        name="motherName"
+                        type="text"
+                        placeholder="Mother's full name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="dob">
+                        Date of Birth <span class="required">*</span>
+                    </label>
+                    <input
+                        id="dob"
+                        name="dob"
+                        type="date"
+                        required
+                    >
+                    <small class="optional">
+                        Minimum age: 15 years
+                    </small>
+                </div>
+
+                <div class="field">
+                    <label for="gender">
+                        Gender <span class="required">*</span>
+                    </label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="bloodGroup">
+                        Blood Group <span class="required">*</span>
+                    </label>
+                    <select id="bloodGroup" name="bloodGroup" required>
+                        <option value="">Select Blood Group</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                        <option>Unknown</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="nid">
+                        NID Number <span class="required">*</span>
+                    </label>
+                    <input
+                        id="nid"
+                        name="nid"
+                        type="text"
+                        inputmode="numeric"
+                        placeholder="Enter NID number"
+                        required
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             PAGE 2: CONTACT INFORMATION & ADDRESS
+        ================================================== -->
+
+        <section class="form-step">
+
+            <div class="section-heading">
+
+                <div class="section-icon">☎</div>
+
+                <div>
+                    <h2>2. Contact Information &amp; Address</h2>
+                    <p>Provide your contact details and addresses</p>
+                </div>
+
+                <div class="heading-line"></div>
+
+            </div>
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label for="mobile">
+                        Mobile Number <span class="required">*</span>
+                    </label>
+                    <input
+                        id="mobile"
+                        name="mobile"
+                        type="tel"
+                        inputmode="numeric"
+                        placeholder="01XXXXXXXXX"
+                        pattern="01[0-9]{9}"
+                        title="Enter an 11-digit Bangladesh mobile number beginning with 01"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="whatsapp">
+                        WhatsApp Number <span class="optional">(Optional)</span>
+                    </label>
+                    <input
+                        id="whatsapp"
+                        name="whatsapp"
+                        type="tel"
+                        placeholder="01XXXXXXXXX"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="example@gmail.com"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="facebook">
+                        Facebook Profile Link
+                        <span class="optional">(Optional)</span>
+                    </label>
+                    <input
+                        id="facebook"
+                        name="facebook"
+                        type="url"
+                        placeholder="https://facebook.com/username"
+                    >
+                </div>
+
+                <div class="field full">
+
+                    <label>
+                        Passport-size Photo <span class="required">*</span>
+                    </label>
+
+                    <label class="upload-box">
+
+                        <input
+                            type="file"
+                            id="passportPhoto"
+                            name="passportPhoto"
+                            accept=".jpg,.jpeg,.png"
+                            required
+                        >
+
+                        <div>
+                            <div class="upload-icon">▧</div>
+
+                            <div class="upload-title">
+                                Upload Your Passport-size Photo
+                            </div>
+
+                            <div class="upload-info">
+                                Clear photo, JPG or PNG format<br>
+                                Maximum size: 3MB
+                            </div>
+
+                            <span class="file-name"></span>
+                        </div>
+
+                    </label>
+
+                </div>
+
+                <!-- PRESENT ADDRESS -->
+
+                <div class="address-heading">
+                    📍 Present Address
+                </div>
+
+                <div class="field">
+                    <label for="presentDivision">
+                        Division <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="presentDivision"
+                        name="presentDivision"
+                        required
+                    >
+                        <option value="">Select Division</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="presentDistrict">
+                        District <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="presentDistrict"
+                        name="presentDistrict"
+                        required
+                        disabled
+                    >
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="presentUpazila">
+                        Upazila / Thana <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="presentUpazila"
+                        name="presentUpazila"
+                        required
+                        disabled
+                    >
+                        <option value="">Select Upazila</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="presentVillage">
+                        Village / Area <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="presentVillage"
+                        name="presentVillage"
+                        type="text"
+                        placeholder="Village / Area"
+                        required
+                    >
+                </div>
+
+                <div class="field full">
+                    <label for="presentFullAddress">
+                        Full Present Address <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="presentFullAddress"
+                        name="presentFullAddress"
+                        placeholder="House, road, village, union, ward and other address details"
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- PERMANENT ADDRESS -->
+
+                <div class="address-heading">
+                    🏡 Permanent Address
+                </div>
+
+                <div class="field full">
+
+                    <label class="member-type">
+
+                        <input
+                            type="checkbox"
+                            id="sameAddress"
+                        >
+
+                        <span>
+                            <strong>Same as Present Address</strong>
+                            <small>
+                                Tick this box if your permanent address
+                                is the same as your present address.
+                            </small>
+                        </span>
+
+                    </label>
+
+                </div>
+
+                <div class="field">
+                    <label for="permanentDivision">
+                        Division <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="permanentDivision"
+                        name="permanentDivision"
+                        required
+                    >
+                        <option value="">Select Division</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="permanentDistrict">
+                        District <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="permanentDistrict"
+                        name="permanentDistrict"
+                        required
+                        disabled
+                    >
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="permanentUpazila">
+                        Upazila / Thana <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="permanentUpazila"
+                        name="permanentUpazila"
+                        required
+                        disabled
+                    >
+                        <option value="">Select Upazila</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="permanentVillage">
+                        Village / Area <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="permanentVillage"
+                        name="permanentVillage"
+                        type="text"
+                        placeholder="Village / Area"
+                        required
+                    >
+                </div>
+
+                <div class="field full">
+                    <label for="permanentFullAddress">
+                        Full Permanent Address <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="permanentFullAddress"
+                        name="permanentFullAddress"
+                        placeholder="House, road, village, union, ward and other address details"
+                        required
+                    ></textarea>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             PAGE 3: OTHER INFORMATION
+        ================================================== -->
+
+        <section class="form-step">
+
+            <div class="section-heading">
+
+                <div class="section-icon">✦</div>
+
+                <div>
+                    <h2>3. Other Information</h2>
+                    <p>Educational, professional and donation details</p>
+                </div>
+
+                <div class="heading-line"></div>
+
+            </div>
+
+            <div class="field-grid">
+
+                <div class="field">
+                    <label for="occupation">
+                        Occupation <span class="required">*</span>
+                    </label>
+
+                    <select id="occupation" name="occupation" required>
+                        <option value="">Select Occupation</option>
+                        <option>Student</option>
+                        <option>Service Holder</option>
+                        <option>Business</option>
+                        <option>Teacher</option>
+                        <option>Freelancer</option>
+                        <option>Healthcare Professional</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="education">
+                        Educational Qualification <span class="required">*</span>
+                    </label>
+
+                    <select id="education" name="education" required>
+                        <option value="">Select Qualification</option>
+                        <option>Below SSC</option>
+                        <option>SSC</option>
+                        <option>HSC</option>
+                        <option>Honours</option>
+                        <option>Degree</option>
+                        <option>Masters</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="session">
+                        Session / Year <span class="optional">(Optional)</span>
+                    </label>
+
+                    <input
+                        id="session"
+                        name="session"
+                        type="text"
+                        placeholder="e.g. 2024-2025"
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="institution">
+                        Institution Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="institution"
+                        name="institution"
+                        type="text"
+                        placeholder="School / College / University"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="donatedBefore">
+                        Have You Donated Blood Before?
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="donatedBefore"
+                        name="donatedBefore"
+                        required
+                    >
+                        <option value="">Select Answer</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="lastDonation">
+                        Last Blood Donation Date
+                        <span class="optional">(If applicable)</span>
+                    </label>
+
+                    <input
+                        id="lastDonation"
+                        name="lastDonation"
+                        type="date"
+                    >
+                </div>
+
+                <div class="field full">
+                    <label for="physicalIssues">
+                        Physical Issues / Complications
+                        <span class="optional">(If any)</span>
+                    </label>
+
+                    <textarea
+                        id="physicalIssues"
+                        name="physicalIssues"
+                        placeholder="Mention any relevant physical issues or complications, if applicable."
+                    ></textarea>
+                </div>
+
+                <!-- NID FRONT -->
+
+                <div class="field full">
+                    <label>
+                        NID Card — Front Side
+                        <span class="required">*</span>
+                    </label>
+
+                    <label class="upload-box">
+
+                        <input
+                            type="file"
+                            id="nidFront"
+                            name="nidFront"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            required
+                        >
+
+                        <div>
+                            <div class="upload-icon">▤</div>
+
+                            <div class="upload-title">
+                                Upload NID Front Side
+                            </div>
+
+                            <div class="upload-info">
+                                JPG, PNG or PDF format<br>
+                                Maximum size: 5MB
+                            </div>
+
+                            <span class="file-name"></span>
+                        </div>
+
+                    </label>
+                </div>
+
+                <!-- NID BACK -->
+
+                <div class="field full">
+                    <label>
+                        NID Card — Back Side
+                        <span class="required">*</span>
+                    </label>
+
+                    <label class="upload-box">
+
+                        <input
+                            type="file"
+                            id="nidBack"
+                            name="nidBack"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            required
+                        >
+
+                        <div>
+                            <div class="upload-icon">▤</div>
+
+                            <div class="upload-title">
+                                Upload NID Back Side
+                            </div>
+
+                            <div class="upload-info">
+                                JPG, PNG or PDF format<br>
+                                Maximum size: 5MB
+                            </div>
+
+                            <span class="file-name"></span>
+                        </div>
+
+                    </label>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+             PAGE 4: MEMBERSHIP
+        ================================================== -->
+
+        <section class="form-step">
+
+            <div class="section-heading">
+
+                <div class="section-icon">♡</div>
+
+                <div>
+                    <h2>4. Membership</h2>
+                    <p>Choose your membership type and finish registration</p>
+                </div>
+
+                <div class="heading-line"></div>
+
+            </div>
+
+            <div class="field-grid">
+
+                <!-- MEMBER TYPE -->
+
+                <div class="field full">
+
+                    <label>
+                        Member Type <span class="required">*</span>
+                    </label>
+
+                    <div class="member-types">
+
+                        <label class="member-type">
+                            <input
+                                type="checkbox"
+                                name="memberTypes"
+                                value="Blood Donor"
+                            >
+
+                            <span>
+                                <strong>Blood Donor</strong>
+                                <small>
+                                    Interested in donating blood when eligible.
+                                </small>
+                            </span>
+                        </label>
+
+                        <label class="member-type">
+                            <input
+                                type="checkbox"
+                                name="memberTypes"
+                                value="Active Volunteer"
+                            >
+
+                            <span>
+                                <strong>Active Volunteer</strong>
+                                <small>
+                                    Help coordinate blood donation and activities.
+                                </small>
+                            </span>
+                        </label>
+
+                        <label class="member-type">
+                            <input
+                                type="checkbox"
+                                name="memberTypes"
+                                value="Promoter"
+                            >
+
+                            <span>
+                                <strong>Promoter</strong>
+                                <small>
+                                    Help spread awareness about blood donation.
+                                </small>
+                            </span>
+                        </label>
+
+                        <label class="member-type">
+                            <input
+                                type="checkbox"
+                                name="memberTypes"
+                                value="Associate Member"
+                            >
+
+                            <span>
+                                <strong>Associate Member</strong>
+                                <small>
+                                    Support the foundation's humanitarian mission.
+                                </small>
+                            </span>
+                        </label>
+
+                    </div>
+
+                    <small class="optional">
+                        You may select more than one membership type.
+                    </small>
+
+                </div>
+
+                <!-- REASON FOR JOINING -->
+
+                <div class="field full">
+
+                    <label for="joinReason">
+                        Why Do You Want to Join Neuron Blood Foundation?
+                        <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="joinReason"
+                        name="joinReason"
+                        placeholder="Tell us why you want to join our foundation..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="field">
+
+                    <label for="accountEmail">
+                        Account Email Address <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="accountEmail"
+                        name="accountEmail"
+                        type="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+                <!-- PHONE -->
+
+                <div class="field">
+
+                    <label for="accountPhone">
+                        Account Phone Number <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="accountPhone"
+                        name="accountPhone"
+                        type="tel"
+                        inputmode="numeric"
+                        placeholder="01XXXXXXXXX"
+                        pattern="01[0-9]{9}"
+                        title="Enter an 11-digit Bangladesh mobile number beginning with 01"
+                        required
+                    >
+
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="field">
+
+                    <label for="password">
+                        Password <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        placeholder="At least 8 characters"
+                        required
+                    >
+
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="field">
+
+                    <label for="confirmPassword">
+                        Confirm Password <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type="password"
+                        minlength="8"
+                        autocomplete="new-password"
+                        placeholder="Enter your password again"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- DECLARATION -->
+
+            <div class="declaration">
+
+                <input
+                    type="checkbox"
+                    id="declaration"
+                    name="declaration"
+                    required
+                >
+
+                <label for="declaration">
+                    <strong>Declaration / Agreement</strong><br>
+
+                    I hereby declare that the information provided by me
+                    is true and accurate to the best of my knowledge.
+                    I agree to follow the rules, regulations and policies
+                    of Neuron Blood Foundation. I understand that submitting
+                    this form does not automatically guarantee membership.
+                </label>
+
+            </div>
+
+        </section>
+
+        <!-- NAVIGATION BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button
+                type="button"
+                class="btn btn-back"
+                id="backBtn"
+            >
+                ← Back
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-next"
+                id="nextBtn"
+            >
+                Continue →
+            </button>
+
+            <button
+                type="submit"
+                class="btn btn-submit"
+                id="submitBtn"
+                style="display:none"
+            >
+                Register as Member →
+            </button>
+
+        </div>
+
+    </form>
 
 </div>
 
 </main>
 
-
 <!-- ================= FOOTER ================= -->
 
 <footer class="footer">
 
-  <div class="footer-brand">
+    <div class="footer-brand">
 
-    <img src="neuronlogo.jpg" alt="Neuron Foundation">
+        <img src="neuronlogo.jpg" alt="Neuron Blood Foundation Logo">
 
-    <div>
-      <h3>Neuron Blood Foundation</h3>
-      <p>With youth; on the path of humanity</p>
+        <div>
+            <h3>Neuron Blood Foundation</h3>
+            <p>With youth; on the path of humanity</p>
+        </div>
+
     </div>
 
-  </div>
-
-  <div class="footer-message">
-    ♡ Donate Blood<br>
-    Save Lives
-  </div>
+    <div class="footer-message">
+        Donate Blood<br>
+        Save Lives
+    </div>
 
 </footer>
 
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
-
-/* ================= MULTI-STEP FORM ================= */
-
 const form = document.getElementById("memberForm");
-const steps = document.querySelectorAll(".form-step");
+
+const steps = [
+    ...document.querySelectorAll(".form-step")
+];
 
 const nextBtn = document.getElementById("nextBtn");
 const backBtn = document.getElementById("backBtn");
@@ -1149,146 +1909,611 @@ const progressTitle = document.getElementById("progressTitle");
 const progressCount = document.getElementById("progressCount");
 
 const stepNames = [
-  "Personal Information",
-  "Contact & Address",
-  "Education & Additional Information",
-  "Documents & Declaration"
+    "Personal Information",
+    "Contact Information & Address",
+    "Other Information",
+    "Membership"
 ];
 
 let currentStep = 0;
 
+/* ================= DATE LIMITS ================= */
+
+const dobInput = document.getElementById("dob");
+const today = new Date();
+
+const maxBirthDate = new Date(
+    today.getFullYear() - 15,
+    today.getMonth(),
+    today.getDate()
+);
+
+dobInput.max = [
+    maxBirthDate.getFullYear(),
+    String(maxBirthDate.getMonth() + 1).padStart(2, "0"),
+    String(maxBirthDate.getDate()).padStart(2, "0")
+].join("-");
+
+document.getElementById("lastDonation").max =
+    today.toISOString().split("T")[0];
+
+/* ================= STEP NAVIGATION ================= */
 
 function showStep(index) {
 
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
+    steps.forEach((step, i) => {
+        step.classList.toggle("active", i === index);
+    });
 
-  currentStep = index;
+    currentStep = index;
 
-  progressTitle.textContent = stepNames[index];
+    progressTitle.textContent = stepNames[index];
 
-  progressCount.textContent =
-    "Step " + (index + 1) + " of " + steps.length;
+    progressCount.textContent =
+        `Step ${index + 1} of ${steps.length}`;
 
-  progressFill.style.width =
-    ((index + 1) / steps.length * 100) + "%";
+    progressFill.style.width =
+        `${((index + 1) / steps.length) * 100}%`;
 
-  backBtn.style.visibility =
-    index === 0 ? "hidden" : "visible";
+    backBtn.style.visibility =
+        index === 0 ? "hidden" : "visible";
 
-  nextBtn.style.display =
-    index === steps.length - 1 ? "none" : "block";
+    nextBtn.style.display =
+        index === steps.length - 1 ? "none" : "block";
 
-  submitBtn.style.display =
-    index === steps.length - 1 ? "block" : "none";
+    submitBtn.style.display =
+        index === steps.length - 1 ? "block" : "none";
 
-  window.scrollTo({
-    top: document.querySelector(".form-card").offsetTop - 20,
-    behavior: "smooth"
-  });
+    const card = document.querySelector(".form-card");
+
+    window.scrollTo({
+        top: card.getBoundingClientRect().top + window.scrollY - 20,
+        behavior: "smooth"
+    });
 }
 
+/* ================= STEP VALIDATION ================= */
 
-/* NEXT BUTTON */
+function validateCurrentStep() {
 
-nextBtn.addEventListener("click", function() {
-
-  const currentFields =
-    steps[currentStep].querySelectorAll(
-      "input[required], select[required], textarea[required]"
+    const requiredFields = steps[currentStep].querySelectorAll(
+        "input[required], select[required], textarea[required]"
     );
 
-  let valid = true;
+    for (const field of requiredFields) {
 
-  currentFields.forEach(field => {
+        if (!field.checkValidity()) {
 
-    if (!field.checkValidity()) {
-      field.reportValidity();
-      valid = false;
+            field.reportValidity();
+
+            field.focus({
+                preventScroll: true
+            });
+
+            return false;
+        }
     }
 
-  });
+    /* Age must be at least 15 years */
 
-  if (!valid) return;
+    if (currentStep === 0) {
 
-  if (currentStep < steps.length - 1) {
-    showStep(currentStep + 1);
-  }
+        if (!dobInput.value) {
+            dobInput.reportValidity();
+            return false;
+        }
+
+        const birthDate = new Date(
+            dobInput.value + "T00:00:00"
+        );
+
+        const cutoff = new Date();
+
+        cutoff.setHours(0, 0, 0, 0);
+        cutoff.setFullYear(cutoff.getFullYear() - 15);
+
+        if (birthDate > cutoff) {
+
+            alert("Applicants must be at least 15 years old.");
+
+            dobInput.focus();
+
+            return false;
+        }
+
+        if (birthDate > new Date()) {
+
+            alert("Date of birth cannot be in the future.");
+
+            return false;
+        }
+    }
+
+    /* At least one member type must be selected */
+
+    if (currentStep === 3) {
+
+        const memberTypes = document.querySelectorAll(
+            'input[name="memberTypes"]:checked'
+        );
+
+        if (memberTypes.length === 0) {
+
+            alert("Please select at least one Member Type.");
+
+            document.querySelector(
+                'input[name="memberTypes"]'
+            ).focus();
+
+            return false;
+        }
+
+        /* Password confirmation */
+
+        const password = document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+
+            alert("Password and Confirm Password do not match.");
+
+            document.getElementById("confirmPassword").focus();
+
+            return false;
+        }
+
+        /* Account email must match contact email */
+
+        const contactEmail =
+            document.getElementById("email").value.trim().toLowerCase();
+
+        const accountEmail =
+            document.getElementById("accountEmail").value.trim().toLowerCase();
+
+        if (contactEmail !== accountEmail) {
+
+            alert(
+                "Please use the same email address in Contact Information and Account Email."
+            );
+
+            document.getElementById("accountEmail").focus();
+
+            return false;
+        }
+
+        /* Account phone must match mobile number */
+
+        const mobile =
+            document.getElementById("mobile").value.trim();
+
+        const accountPhone =
+            document.getElementById("accountPhone").value.trim();
+
+        if (mobile !== accountPhone) {
+
+            alert(
+                "Please use the same phone number in Contact Information and Account Phone Number."
+            );
+
+            document.getElementById("accountPhone").focus();
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/* ================= NEXT / BACK ================= */
+
+nextBtn.addEventListener("click", () => {
+
+    if (validateCurrentStep() && currentStep < steps.length - 1) {
+
+        showStep(currentStep + 1);
+
+    }
 
 });
 
+backBtn.addEventListener("click", () => {
 
-/* BACK BUTTON */
+    if (currentStep > 0) {
 
-backBtn.addEventListener("click", function() {
+        showStep(currentStep - 1);
 
-  if (currentStep > 0) {
-    showStep(currentStep - 1);
-  }
+    }
 
 });
 
-
-/* FILE NAME DISPLAY */
+/* ================= FILE SIZE VALIDATION ================= */
 
 document.querySelectorAll('input[type="file"]').forEach(input => {
 
-  input.addEventListener("change", function() {
+    input.addEventListener("change", function() {
 
-    const file = this.files[0];
+        const file = this.files[0];
 
-    const nameBox =
-      this.parentElement.querySelector(".file-name");
+        const nameBox =
+            this.parentElement.querySelector(".file-name");
 
-    if (!file) {
-      nameBox.textContent = "";
-      return;
-    }
+        if (!file) {
 
-    const maxSize = input.name === "nidCard"
-      ? 5 * 1024 * 1024
-      : 3 * 1024 * 1024;
+            nameBox.textContent = "";
 
-    if (file.size > maxSize) {
+            return;
+        }
 
-      alert("File size is too large. Please select a smaller file.");
+        let maxSize;
 
-      this.value = "";
-      nameBox.textContent = "";
+        if (this.id === "passportPhoto") {
 
-      return;
-    }
+            maxSize = 3 * 1024 * 1024;
 
-    nameBox.textContent = "✓ " + file.name;
+        } else {
 
-  });
+            maxSize = 5 * 1024 * 1024;
+
+        }
+
+        if (file.size > maxSize) {
+
+            alert(
+                `File is too large. Maximum size is ${
+                    this.id === "passportPhoto" ? "3MB" : "5MB"
+                }.`
+            );
+
+            this.value = "";
+
+            nameBox.textContent = "";
+
+            return;
+        }
+
+        nameBox.textContent = "✓ " + file.name;
+
+    });
 
 });
 
+/* ================= DONATION DATE ================= */
 
-/* FORM SUBMISSION */
+document.getElementById("donatedBefore").addEventListener(
+    "change",
+    function() {
 
-form.addEventListener("submit", function(event) {
+        const dateInput =
+            document.getElementById("lastDonation");
 
-  event.preventDefault();
+        if (this.value === "No") {
 
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
+            dateInput.value = "";
+
+            dateInput.disabled = true;
+
+        } else {
+
+            dateInput.disabled = false;
+
+        }
+
+    }
+);
+
+/* ================= SAME ADDRESS ================= */
+
+document.getElementById("sameAddress").addEventListener(
+    "change",
+    function() {
+
+        const pairs = [
+            ["presentDivision", "permanentDivision"],
+            ["presentDistrict", "permanentDistrict"],
+            ["presentUpazila", "permanentUpazila"],
+            ["presentVillage", "permanentVillage"],
+            ["presentFullAddress", "permanentFullAddress"]
+        ];
+
+        pairs.forEach(([presentId, permanentId]) => {
+
+            const present =
+                document.getElementById(presentId);
+
+            const permanent =
+                document.getElementById(permanentId);
+
+            if (this.checked) {
+
+                if (present.tagName === "SELECT") {
+
+                    permanent.value = present.value;
+
+                    permanent.dispatchEvent(
+                        new Event("change")
+                    );
+
+                } else {
+
+                    permanent.value = present.value;
+
+                }
+
+            }
+
+        });
+
+    }
+);
+
+/* ================= BANGLADESH ADDRESS DROPDOWNS ================= */
+
+/*
+  Put a Bangladesh geographic JSON file named bangladesh-geo.json
+  in the same folder.
+
+  Expected structure:
+  {
+    "divisions": [
+      {
+        "name": "Dhaka",
+        "districts": [
+          {
+            "name": "Dhaka",
+            "upazilas": ["Savar", "Dhamrai"]
+          }
+        ]
+      }
+    ]
   }
 
-  alert(
-    "Your form design is ready. Firebase submission must be connected before real registration."
-  );
+  If the file is unavailable or uses another structure, the form
+  will display an alert and the address dropdowns will remain disabled.
+*/
+
+async function loadBangladeshAddressData() {
+
+    try {
+
+        const response = await fetch("bangladesh-geo.json");
+
+        if (!response.ok) {
+            throw new Error("Could not load address data");
+        }
+
+        const data = await response.json();
+
+        let divisions = data.divisions || data;
+
+        if (!Array.isArray(divisions)) {
+            throw new Error("Unexpected address data format");
+        }
+
+        function fillDivisions(selectId) {
+
+            const select = document.getElementById(selectId);
+
+            select.innerHTML =
+                '<option value="">Select Division</option>';
+
+            divisions.forEach(division => {
+
+                const name =
+                    division.name ||
+                    division.division ||
+                    division.bn_name;
+
+                if (!name) return;
+
+                const option = document.createElement("option");
+
+                option.value = name;
+                option.textContent = name;
+
+                select.appendChild(option);
+
+            });
+
+        }
+
+        function getDistricts(division) {
+
+            return division.districts ||
+                   division.children ||
+                   [];
+        }
+
+        function getUpazilas(district) {
+
+            return district.upazilas ||
+                   district.areas ||
+                   district.children ||
+                   [];
+        }
+
+        function setupAddress(prefix) {
+
+            const divisionSelect =
+                document.getElementById(prefix + "Division");
+
+            const districtSelect =
+                document.getElementById(prefix + "District");
+
+            const upazilaSelect =
+                document.getElementById(prefix + "Upazila");
+
+            fillDivisions(prefix + "Division");
+
+            divisionSelect.addEventListener("change", () => {
+
+                districtSelect.innerHTML =
+                    '<option value="">Select District</option>';
+
+                upazilaSelect.innerHTML =
+                    '<option value="">Select Upazila</option>';
+
+                districtSelect.disabled = true;
+                upazilaSelect.disabled = true;
+
+                const selectedDivision = divisions.find(division => {
+
+                    const name =
+                        division.name ||
+                        division.division ||
+                        division.bn_name;
+
+                    return name === divisionSelect.value;
+
+                });
+
+                if (!selectedDivision) return;
+
+                getDistricts(selectedDivision).forEach(district => {
+
+                    const name =
+                        typeof district === "string"
+                            ? district
+                            : district.name ||
+                              district.district ||
+                              district.bn_name;
+
+                    if (!name) return;
+
+                    const option = document.createElement("option");
+
+                    option.value = name;
+                    option.textContent = name;
+
+                    districtSelect.appendChild(option);
+
+                });
+
+                districtSelect.disabled = false;
+
+            });
+
+            districtSelect.addEventListener("change", () => {
+
+                upazilaSelect.innerHTML =
+                    '<option value="">Select Upazila</option>';
+
+                upazilaSelect.disabled = true;
+
+                const selectedDivision = divisions.find(division => {
+
+                    const name =
+                        division.name ||
+                        division.division ||
+                        division.bn_name;
+
+                    return name === divisionSelect.value;
+
+                });
+
+                if (!selectedDivision) return;
+
+                const selectedDistrict =
+                    getDistricts(selectedDivision).find(district => {
+
+                        const name =
+                            typeof district === "string"
+                                ? district
+                                : district.name ||
+                                  district.district ||
+                                  district.bn_name;
+
+                        return name === districtSelect.value;
+
+                    });
+
+                if (!selectedDistrict) return;
+
+                getUpazilas(selectedDistrict).forEach(upazila => {
+
+                    const name =
+                        typeof upazila === "string"
+                            ? upazila
+                            : upazila.name ||
+                              upazila.upazila ||
+                              upazila.bn_name;
+
+                    if (!name) return;
+
+                    const option = document.createElement("option");
+
+                    option.value = name;
+                    option.textContent = name;
+
+                    upazilaSelect.appendChild(option);
+
+                });
+
+                upazilaSelect.disabled = false;
+
+            });
+
+        }
+
+        setupAddress("present");
+        setupAddress("permanent");
+
+    } catch (error) {
+
+        console.warn(
+            "Bangladesh address data could not be loaded.",
+            error
+        );
+
+        alert(
+            "Address dropdown data could not be loaded. Please add a compatible bangladesh-geo.json file to the website folder."
+        );
+
+    }
+
+}
+
+loadBangladeshAddressData();
+
+/* ================= FORM SUBMISSION ================= */
+
+/*
+  IMPORTANT:
+  This HTML currently validates the form in the browser only.
+  It does NOT save registration data to Firebase yet.
+
+  Before accepting real applications, connect:
+  - Firebase Authentication for account creation
+  - Firestore for member application information
+  - Firebase Storage for NID and photo uploads
+  - Firebase security rules for private documents and permissions
+
+  Never store plain-text passwords in Firestore or HTML.
+*/
+
+form.addEventListener("submit", event => {
+
+    event.preventDefault();
+
+    if (!validateCurrentStep()) {
+        return;
+    }
+
+    if (!form.checkValidity()) {
+
+        form.reportValidity();
+
+        return;
+    }
+
+    alert(
+        "All required fields have passed browser validation. Firebase submission is not connected yet, so this form has not saved your application."
+    );
 
 });
 
-
-/* INITIAL STEP */
-
 showStep(0);
-
 </script>
 
 </body>
