@@ -2518,5 +2518,116 @@ form.addEventListener("submit", event => {
 showStep(0);
 </script>
 
+    
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+    authDomain: "neuron-blood-foundation.firebaseapp.com",
+    databaseURL: "https://neuron-blood-foundation-default-rtdb.firebaseio.com",
+    projectId: "neuron-blood-foundation",
+    storageBucket: "neuron-blood-foundation.firebasestorage.app",
+    messagingSenderId: "160902995293",
+    appId: "1:160902995293:web:cb9a42dfa4b61d593e5cb4",
+    measurementId: "G-90P3HEZLPJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// Member Registration Submission
+const form = document.querySelector("form");
+
+if (form) {
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const submitButton = form.querySelector(
+            'button[type="submit"], input[type="submit"]'
+        );
+
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+
+        try {
+            const formData = new FormData(form);
+            const memberData = {};
+
+            for (const [key, value] of formData.entries()) {
+                if (value instanceof File) continue;
+                memberData[key] = value;
+            }
+
+            // Upload member photo
+            const photoInput = form.querySelector(
+                '[name="memberPhoto"]'
+            );
+
+            let photoURL = "";
+            let photoPath = "";
+
+            if (photoInput && photoInput.files.length > 0) {
+                const photo = photoInput.files[0];
+
+                photoPath = `memberPhotos/${Date.now()}_${photo.name}`;
+
+                const photoRef = ref(storage, photoPath);
+
+                await uploadBytes(photoRef, photo);
+
+                photoURL = await getDownloadURL(photoRef);
+            }
+
+            // Save application in Firestore
+            await addDoc(collection(db, "memberApplications"), {
+                ...memberData,
+                photoURL: photoURL,
+                photoPath: photoPath,
+                status: "Pending",
+                memberID: null,
+                createdAt: serverTimestamp()
+            });
+
+            alert(
+                "Your membership application has been submitted successfully. Please wait for Admin approval."
+            );
+
+            form.reset();
+
+        } catch (error) {
+            console.error("Registration Error:", error);
+
+            alert(
+                "Registration failed. Please try again. Error: " +
+                error.message
+            );
+
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+            }
+        }
+    });
+}
+</script>
+
 </body>
 </html>
