@@ -821,6 +821,95 @@ select {
         text-align: left;
     }
 }
+
+    /* ================= SUCCESS POPUP ================= */
+
+.success-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 30, 20, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.success-overlay.show {
+    display: flex;
+    animation: popupFade .25s ease;
+}
+
+.success-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+    animation: popupScale .3s ease;
+}
+
+.success-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    background: #e5f7ed;
+    color: #087653;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.success-modal h2 {
+    color: #064e3b;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.success-modal p {
+    color: #71877e;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.success-close {
+    width: 100%;
+    min-height: 48px;
+    background: #087653;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.success-close:hover {
+    background: #064e3b;
+}
+
+@keyframes popupFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupScale {
+    from {
+        transform: scale(.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+        }
+    
 </style>
 </head>
 
@@ -1888,6 +1977,35 @@ select {
 
 </footer>
 
+    
+<!-- ================= SUCCESS NOTIFICATION ================= -->
+
+<div class="success-overlay" id="successOverlay">
+
+    <div class="success-modal">
+
+        <div class="success-icon">✓</div>
+
+        <h2>Application Submitted!</h2>
+
+        <p>
+            Your membership application has been submitted successfully.
+            Your application is now pending Admin approval.
+            Thank you for joining Neuron Blood Foundation.
+        </p>
+
+        <button
+            type="button"
+            class="success-close"
+            id="successClose"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
@@ -2475,48 +2593,9 @@ async function loadBangladeshAddressData() {
 
 loadBangladeshAddressData();
 
-/* ================= FORM SUBMISSION ================= */
-
-/*
-  IMPORTANT:
-  This HTML currently validates the form in the browser only.
-  It does NOT save registration data to Firebase yet.
-
-  Before accepting real applications, connect:
-  - Firebase Authentication for account creation
-  - Firestore for member application information
-  - Firebase Storage for NID and photo uploads
-  - Firebase security rules for private documents and permissions
-
-  Never store plain-text passwords in Firestore or HTML.
-*/
-
-form.addEventListener("submit", event => {
-
-    event.preventDefault();
-
-    if (!validateCurrentStep()) {
-        return;
-    }
-
-    if (!form.checkValidity()) {
-
-        form.reportValidity();
-
-        return;
-    }
-
-    alert(
-        "All required fields have passed browser validation. Firebase submission is not connected yet, so this form has not saved your application."
-    );
-
-});
-
-showStep(0);
 </script>
 
-    
-<script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
@@ -2525,13 +2604,6 @@ import {
     addDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -2547,84 +2619,93 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
-// Member Registration Submission
-const form = document.querySelector("form");
+const form = document.getElementById("memberForm");
+const submitButton = document.getElementById("submitBtn");
 
-if (form) {
-    form.addEventListener("submit", async function(e) {
-        e.preventDefault();
+form.addEventListener("submit", async function(e) {
 
-        const submitButton = form.querySelector(
-            'button[type="submit"], input[type="submit"]'
-        );
+    e.preventDefault();
 
-        if (submitButton) {
-            submitButton.disabled = true;
-        }
+    if (!validateCurrentStep()) return;
 
-        try {
-            const formData = new FormData(form);
-            const memberData = {};
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
 
-            for (const [key, value] of formData.entries()) {
-                if (value instanceof File) continue;
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    try {
+
+        const formData = new FormData(form);
+        const memberData = {};
+
+        for (const [key, value] of formData.entries()) {
+
+            // Never save passwords as plain text in Firestore
+            if (key === "password" || key === "confirmPassword") {
+                continue;
+            }
+
+            if (value instanceof File) continue;
+
+            if (key === "memberTypes") {
+                if (!memberData.memberTypes) {
+                    memberData.memberTypes = [];
+                }
+
+                memberData.memberTypes.push(value);
+            } else {
                 memberData[key] = value;
             }
-
-            // Upload member photo
-            const photoInput = form.querySelector(
-                '[name="memberPhoto"]'
-            );
-
-            let photoURL = "";
-            let photoPath = "";
-
-            if (photoInput && photoInput.files.length > 0) {
-                const photo = photoInput.files[0];
-
-                photoPath = `memberPhotos/${Date.now()}_${photo.name}`;
-
-                const photoRef = ref(storage, photoPath);
-
-                await uploadBytes(photoRef, photo);
-
-                photoURL = await getDownloadURL(photoRef);
-            }
-
-            // Save application in Firestore
-            await addDoc(collection(db, "memberApplications"), {
-                ...memberData,
-                photoURL: photoURL,
-                photoPath: photoPath,
-                status: "Pending",
-                memberID: null,
-                createdAt: serverTimestamp()
-            });
-
-            alert(
-                "Your membership application has been submitted successfully. Please wait for Admin approval."
-            );
-
-            form.reset();
-
-        } catch (error) {
-            console.error("Registration Error:", error);
-
-            alert(
-                "Registration failed. Please try again. Error: " +
-                error.message
-            );
-
-        } finally {
-            if (submitButton) {
-                submitButton.disabled = false;
-            }
         }
+
+        await addDoc(collection(db, "memberApplications"), {
+
+            ...memberData,
+
+            status: "Pending",
+            memberID: null,
+            createdAt: serverTimestamp()
+
+        });
+
+        // Show success notification only after Firebase saves data
+        form.reset();
+
+        showStep(0);
+
+        document.getElementById("successOverlay")
+            .classList.add("show");
+
+    } catch (error) {
+
+        console.error("Registration Error:", error);
+
+        alert(
+            "Registration failed. Please try again. Error: " +
+            error.message
+        );
+
+    } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Register as Member →";
+
+    }
+
+});
+
+// Close success notification
+document.getElementById("successClose")
+    .addEventListener("click", function() {
+
+        document.getElementById("successOverlay")
+            .classList.remove("show");
+
     });
-}
-</script>
 
 </body>
 </html>
