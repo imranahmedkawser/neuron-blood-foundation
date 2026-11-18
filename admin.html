@@ -168,149 +168,267 @@ body{
 }
 
     
-/* Professional Member Details View */
+/* PROFESSIONAL MEMBER DETAILS SHEET */
 
-.details-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 30, 25, 0.58);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    padding: 24px;
+.details-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,30,25,.58);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:24px;
 }
 
-.details-panel {
-    width: 82%;
-    max-width: 900px;
-    max-height: 82vh;
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.22);
+.details-panel{
+    width:82%;
+    max-width:900px;
+    max-height:82vh;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 15px 45px rgba(0,0,0,.22);
 }
 
-.details-header {
-    background: #087653;
-    color: white;
-    padding: 17px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.details-header{
+    background:#087653;
+    color:white;
+    padding:18px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.details-header h2 {
-    margin: 0;
-    font-size: 19px;
-    font-weight: 700;
+.details-header h2{
+    font-size:19px;
+    margin:0;
 }
 
-.details-header button {
-    background: rgba(255,255,255,0.15);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    width: 34px;
-    height: 34px;
-    font-size: 21px;
-    cursor: pointer;
+.details-header button{
+    background:rgba(255,255,255,.15);
+    color:white;
+    border:0;
+    border-radius:6px;
+    width:34px;
+    height:34px;
+    font-size:21px;
+    cursor:pointer;
 }
 
-.details-content {
-    padding: 22px;
-    overflow-y: auto;
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    align-content: start;
-    background: #f7f9f8;
+.details-content{
+    padding:24px;
+    overflow-y:auto;
+    background:#f7f9f8;
+    flex:1;
 }
 
-.details-content > div {
-    background: white;
-    border: 1px solid #e5ebe8;
-    border-radius: 9px;
-    padding: 13px 15px;
-    margin: 0 !important;
-    border-left: 3px solid #0b8762 !important;
+.sheet-brand{
+    text-align:center;
+    padding:4px 0 18px;
+    border-bottom:2px solid #087653;
 }
 
-.details-content strong {
-    font-size: 12px;
-    color: #68756f !important;
-    font-weight: 600;
+.sheet-brand h3{
+    color:#087653;
+    font-size:21px;
+    letter-spacing:.7px;
 }
 
-.details-content div div {
-    font-size: 14px;
-    color: #202a25 !important;
-    line-height: 1.5;
+.sheet-brand p{
+    color:#68756f;
+    font-size:12px;
+    margin-top:5px;
 }
 
-.details-actions {
-    padding: 14px 22px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    border-top: 1px solid #e5ebe8;
-    background: white;
+.sheet-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin:18px 0;
 }
 
-.details-actions button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 600;
+.sheet-title h3{
+    color:#24352d;
+    font-size:19px;
 }
 
-.details-actions button:nth-child(1) {
-    background: #087653;
-    color: white;
+.sheet-status{
+    background:#fff4d6;
+    color:#986900;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
 }
 
-.details-actions button:nth-child(2) {
-    background: #dc3545;
-    color: white;
+.applicant-summary{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px;
+    background:#edf6f1;
+    border-left:4px solid #087653;
+    margin-bottom:22px;
 }
 
-.details-actions button:nth-child(3) {
-    background: #edf1ef;
-    color: #34423b;
+.applicant-avatar{
+    width:58px;
+    height:58px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:#087653;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    font-weight:bold;
 }
 
-@media (max-width: 600px) {
-    .details-overlay {
-        padding: 14px;
+.applicant-summary h3{
+    color:#183d2e;
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.applicant-summary p{
+    color:#53665c;
+    font-size:13px;
+    margin-top:3px;
+}
+
+.info-section{
+    margin-bottom:22px;
+    background:white;
+    border:1px solid #e1e9e4;
+}
+
+.info-section-title{
+    background:#edf4f0;
+    color:#087653;
+    padding:12px 15px;
+    font-size:14px;
+    font-weight:bold;
+    border-bottom:1px solid #dce8e1;
+}
+
+.info-row{
+    display:grid;
+    grid-template-columns:34% 66%;
+    border-bottom:1px solid #edf0ee;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-label,
+.info-value{
+    padding:11px 15px;
+    font-size:13px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+}
+
+.info-label{
+    color:#68756f;
+    font-weight:600;
+    background:#fcfdfc;
+}
+
+.info-value{
+    color:#25332c;
+}
+
+.details-actions{
+    padding:14px 22px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    border-top:1px solid #e5ebe8;
+    background:white;
+}
+
+.details-actions button{
+    padding:10px 20px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.details-actions button:nth-child(1){
+    background:#087653;
+    color:white;
+}
+
+.details-actions button:nth-child(2){
+    background:#dc3545;
+    color:white;
+}
+
+.details-actions button:nth-child(3){
+    background:#edf1ef;
+    color:#34423b;
+}
+
+@media(max-width:600px){
+
+    .details-overlay{
+        padding:10px;
     }
 
-    .details-panel {
-        width: 100%;
-        max-height: 88vh;
+    .details-panel{
+        width:100%;
+        max-height:92vh;
     }
 
-    .details-content {
-        grid-template-columns: 1fr;
-        padding: 14px;
-        gap: 9px;
+    .details-content{
+        padding:14px;
     }
 
-    .details-header {
-        padding: 14px 16px;
+    .details-header{
+        padding:14px 16px;
     }
 
-    .details-actions {
-        padding: 12px;
-        gap: 7px;
+    .details-header h2{
+        font-size:16px;
     }
 
-    .details-actions button {
-        padding: 9px 13px;
-        font-size: 12px;
+    .sheet-brand h3{
+        font-size:17px;
+    }
+
+    .sheet-title h3{
+        font-size:16px;
+    }
+
+    .applicant-summary{
+        padding:12px;
+    }
+
+    .info-row{
+        grid-template-columns:40% 60%;
+    }
+
+    .info-label,
+    .info-value{
+        padding:9px 10px;
+        font-size:12px;
+    }
+
+    .details-actions{
+        padding:10px;
+        gap:7px;
+    }
+
+    .details-actions button{
+        padding:10px 13px;
+        font-size:12px;
     }
 }
 
@@ -408,7 +526,9 @@ updateDoc,
 deleteDoc,
 doc,
 setDoc,
-getDoc
+getDoc,
+runTransaction,
+serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -945,30 +1065,79 @@ async function(id){
 };
 
     
-/* APPROVE MEMBER */
+
+/* APPROVE MEMBER + GENERATE UNIQUE MEMBER ID */
 
 window.approveMember = async function(id){
+
+    if(!confirm("Approve this member application?")){
+        return;
+    }
 
     try{
 
         const applicationRef = doc(db, "memberApplications", id);
+        const memberRef = doc(db, "members", id);
+        const counterRef = doc(db, "settings", "memberIdCounters");
 
-        const applicationSnap = await getDoc(applicationRef);
+        await runTransaction(db, async (transaction) => {
 
-        if(!applicationSnap.exists()){
-            alert("Application not found!");
-            return;
-        }
+            // Read application and yearly counter
+            const applicationSnap = await transaction.get(applicationRef);
+            const counterSnap = await transaction.get(counterRef);
 
-        const memberData = applicationSnap.data();
+            if(!applicationSnap.exists()){
+                throw new Error("Application not found!");
+            }
 
-        await setDoc(doc(db, "members", id), {
-            ...memberData,
-            status: "Approved",
-            approvedAt: new Date()
+            if(applicationSnap.data().status !== "Pending"){
+                throw new Error("This application is no longer pending.");
+            }
+
+            // Approval year in Bangladesh
+            const year = Number(
+                new Intl.DateTimeFormat("en-US", {
+                    timeZone: "Asia/Dhaka",
+                    year: "numeric"
+                }).format(new Date())
+            );
+
+            const counterField = "y" + year;
+
+            const previousNumber = counterSnap.exists()
+                ? Number(counterSnap.data()[counterField] || 0)
+                : 0;
+
+            const nextNumber = previousNumber + 1;
+
+            if(nextNumber > 9999){
+                throw new Error("Yearly Member ID limit reached!");
+            }
+
+            // Example: 260001, 260002...
+            const memberID =
+                String(year).slice(-2) +
+                String(nextNumber).padStart(4, "0");
+
+            const memberData = applicationSnap.data();
+
+            // Save approved member
+            transaction.set(memberRef, {
+                ...memberData,
+                memberID: memberID,
+                status: "Approved",
+                approvedAt: serverTimestamp()
+            });
+
+            // Update yearly counter
+            transaction.set(counterRef, {
+                [counterField]: nextNumber
+            }, { merge: true });
+
+            // Remove pending application
+            transaction.delete(applicationRef);
+
         });
-
-        await deleteDoc(applicationRef);
 
         alert("Member Approved Successfully!");
 
@@ -982,6 +1151,7 @@ window.approveMember = async function(id){
     }
 
 };
+
     
 /* DECLINE MEMBER */
 
