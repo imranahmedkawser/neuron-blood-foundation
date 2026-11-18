@@ -229,7 +229,9 @@ collection,
 onSnapshot,
 updateDoc,
 deleteDoc,
-doc
+doc,
+setDoc,
+getDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -316,102 +318,101 @@ message.innerHTML =
 
 function loadPending(){
 
-const list =
-document.getElementById("pendingList");
+    const list = document.getElementById("pendingList");
 
-list.innerHTML="Loading...";
+    list.innerHTML = "Loading...";
 
+    onSnapshot(
+        collection(db, "memberApplications"),
 
-onSnapshot(
-collection(db,"members"),
+        snapshot => {
 
-snapshot=>{
+            list.innerHTML = "";
 
-list.innerHTML="";
+            let found = false;
+            let count = 0;
 
-let found=false;
-    let count=0; 
+            snapshot.forEach(item => {
 
+                const data = item.data();
 
-snapshot.forEach(item=>{
+                if(data.status === "Pending"){
 
-const data=item.data();
+                    found = true;
+                    count++;
 
+                    const div = document.createElement("div");
 
-if(data.status==="Pending"){
-    count++;
+                    div.className = "pending-card";
 
-found=true;
+                    div.innerHTML = `
 
+                        <h3>
+                            ${data.fullNameEnglish || data.fullNameBangla || "Name Not Given"}
+                        </h3>
 
-const div =
-document.createElement("div");
+                        <p>
+                            <b>Phone:</b>
+                            ${data.mobile || data.mobileNumber || ""}
+                        </p>
 
-div.className="pending-card";
+                        <p>
+                            <b>Email:</b>
+                            ${data.email || ""}
+                        </p>
 
+                        <p>
+                            <b>Role:</b>
+                            ${Array.isArray(data.memberTypes)
+                                ? data.memberTypes.join(", ")
+                                : data.interestedRole || data.memberTypes || ""}
+                        </p>
 
-div.innerHTML=`
+                        <p><b>Status:</b> Pending</p>
 
-<h3>
-${data.fullNameEnglish || data.fullNameBangla}
-</h3>
+                        <div class="action-buttons">
 
-<p>
-<b>Phone:</b>
-${data.mobileNumber || ""}
-</p>
+                            <button
+                                class="approve-btn"
+                                onclick="approveMember('${item.id}')">
+                                Approve
+                            </button>
 
-<p>
-<b>Email:</b>
-${data.email || ""}
-</p>
+                            <button
+                                class="decline-btn"
+                                onclick="deleteMember('${item.id}')">
+                                Decline
+                            </button>
 
-<p>
-<b>Role:</b>
-${data.interestedRole || ""}
-</p>
+                        </div>
+                    `;
 
+                    list.appendChild(div);
 
-<div class="action-buttons">
+                }
 
-<button
-class="approve-btn"
-onclick="approveMember('${item.id}')">
+            });
 
-Approve
+            document.getElementById("memberCount").textContent = count;
 
-</button>
+            if(!found){
 
+                list.innerHTML =
+                    "<div class='no-data'>No Pending Members</div>";
 
-<button
-class="decline-btn"
-onclick="deleteMember('${item.id}')">
+            }
 
-Decline
+        },
 
-</button>
+        error => {
 
-</div>
+            console.error(error);
 
-`;
+            list.innerHTML =
+                "<div class='no-data'>Unable to load Member Requests</div>";
 
-
-list.appendChild(div);
-
-}
-
-});
-    
-document.getElementById("memberCount").textContent = count;
-
-if(!found){
-
-list.innerHTML =
-"<div class='no-data'>No Pending Members</div>";
-
-}
-
-});
+        }
+    );
 
 }
 
@@ -655,63 +656,71 @@ async function(id){
 
 };
 
-/* APPROVE */
+    
+/* APPROVE MEMBER */
 
-window.approveMember =
-async function(id){
+window.approveMember = async function(id){
 
-try{
+    try{
 
-await updateDoc(
-doc(db,"members",id),
-{
-status:"Approved"
-}
-);
+        const applicationRef = doc(db, "memberApplications", id);
 
-alert("Member Approved");
+        const applicationSnap = await getDoc(applicationRef);
 
-}
-catch(error){
+        if(!applicationSnap.exists()){
+            alert("Application not found!");
+            return;
+        }
 
-alert("Error approving member.");
+        const memberData = applicationSnap.data();
 
-}
+        await setDoc(doc(db, "members", id), {
+            ...memberData,
+            status: "Approved",
+            approvedAt: new Date()
+        });
 
-};
+        await deleteDoc(applicationRef);
 
+        alert("Member Approved Successfully!");
 
-/* DECLINE */
+    }
+    catch(error){
 
-window.deleteMember =
-async function(id){
+        console.error(error);
 
-if(
-!confirm("Delete this member?")
-){
+        alert("Error approving member: " + error.message);
 
-return;
-
-}
-
-
-try{
-
-await deleteDoc(
-doc(db,"members",id)
-);
-
-alert("Member Deleted");
-
-}
-catch(error){
-
-alert("Error deleting member.");
-
-}
+    }
 
 };
+    
+/* DECLINE MEMBER */
 
+window.deleteMember = async function(id){
+
+    if(!confirm("Are you sure you want to reject this application?")){
+        return;
+    }
+
+    try{
+
+        await deleteDoc(
+            doc(db, "memberApplications", id)
+        );
+
+        alert("Member Application Rejected!");
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert("Error rejecting application: " + error.message);
+
+    }
+
+};
     
     /* SHOW EMERGENCY REQUESTS */
 
