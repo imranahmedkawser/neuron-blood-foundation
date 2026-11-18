@@ -538,6 +538,118 @@ function loadPending(){
 
 }
 
+    
+window.showMemberDetails = async function(id){
+
+    const view = document.getElementById("memberDetailsView");
+    const content = document.getElementById("memberDetailsContent");
+
+    view.style.display = "flex";
+    content.textContent = "Loading details...";
+
+    try {
+
+        const applicationRef = doc(db, "memberApplications", id);
+        const applicationSnap = await getDoc(applicationRef);
+
+        if(!applicationSnap.exists()){
+            content.textContent = "Application not found!";
+            return;
+        }
+
+        const data = applicationSnap.data();
+
+        const labels = {
+            nameBangla: "নাম (বাংলা)",
+            nameEnglish: "Name (English)",
+            fatherName: "Father's Name",
+            motherName: "Mother's Name",
+            dateOfBirth: "Date of Birth",
+            gender: "Gender",
+            bloodGroup: "Blood Group",
+            nid: "NID Number",
+            mobile: "Mobile Number",
+            mobileNumber: "Mobile Number",
+            email: "Email",
+            whatsapp: "WhatsApp",
+            facebook: "Facebook",
+            currentAddress: "Current Address",
+            permanentAddress: "Permanent Address",
+            lastDonation: "Last Blood Donation",
+            lastDonationDate: "Last Donation Date",
+            interestedRole: "Interested Role",
+            memberTypes: "Member Types",
+            status: "Application Status"
+        };
+
+        content.innerHTML = "";
+
+        Object.entries(data).forEach(([key, value]) => {
+
+            if(
+                key.toLowerCase().includes("password") ||
+                value === null ||
+                value === undefined ||
+                value === ""
+            ) return;
+
+            const section = document.createElement("div");
+            section.style.cssText =
+                "background:#f0f8f5;padding:12px 15px;margin-bottom:10px;border-left:4px solid #087653;border-radius:8px;";
+
+            const heading = document.createElement("strong");
+            heading.style.cssText =
+                "display:block;color:#087653;margin-bottom:5px;";
+
+            heading.textContent = labels[key] ||
+                key.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
+
+            const detail = document.createElement("div");
+            detail.style.cssText = "color:#333;word-break:break-word;";
+
+            let displayValue = value;
+
+            if(Array.isArray(value)){
+                displayValue = value.join(", ");
+            } else if(value && typeof value.toDate === "function"){
+                displayValue = value.toDate().toLocaleString();
+            } else if(value instanceof Date){
+                displayValue = value.toLocaleString();
+            } else if(typeof value === "object"){
+                displayValue = JSON.stringify(value, null, 2);
+            }
+
+            detail.textContent = String(displayValue);
+
+            section.appendChild(heading);
+            section.appendChild(detail);
+            content.appendChild(section);
+
+        });
+
+        document.getElementById("detailsApproveBtn").onclick = function(){
+            closeMemberDetails();
+            approveMember(id);
+        };
+
+        document.getElementById("detailsRejectBtn").onclick = function(){
+            closeMemberDetails();
+            deleteMember(id);
+        };
+
+    } catch(error){
+
+        console.error(error);
+        content.textContent = "Unable to load application details.";
+
+    }
+};
+
+window.closeMemberDetails = function(){
+    document.getElementById("memberDetailsView").style.display = "none";
+};
+
+
     /* SHOW MEMBERS */
 
 window.showMembers = function(){
