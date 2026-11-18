@@ -719,15 +719,16 @@ function loadPending(){
 }
 
     
+
 window.showMemberDetails = async function(id){
 
     const view = document.getElementById("memberDetailsView");
     const content = document.getElementById("memberDetailsContent");
 
     view.style.display = "flex";
-    content.textContent = "Loading details...";
+    content.textContent = "Loading member details...";
 
-    try {
+    try{
 
         const applicationRef = doc(db, "memberApplications", id);
         const applicationSnap = await getDoc(applicationRef);
@@ -739,92 +740,212 @@ window.showMemberDetails = async function(id){
 
         const data = applicationSnap.data();
 
-        const labels = {
-            nameBangla: "নাম (বাংলা)",
-            nameEnglish: "Name (English)",
-            fatherName: "Father's Name",
-            motherName: "Mother's Name",
-            dateOfBirth: "Date of Birth",
-            gender: "Gender",
-            bloodGroup: "Blood Group",
-            nid: "NID Number",
-            mobile: "Mobile Number",
-            mobileNumber: "Mobile Number",
-            email: "Email",
-            whatsapp: "WhatsApp",
-            facebook: "Facebook",
-            currentAddress: "Current Address",
-            permanentAddress: "Permanent Address",
-            lastDonation: "Last Blood Donation",
-            lastDonationDate: "Last Donation Date",
-            interestedRole: "Interested Role",
-            memberTypes: "Member Types",
-            status: "Application Status"
-        };
+        // Safe value formatting
+        function showValue(value){
 
-        content.innerHTML = "";
+            if(value === null || value === undefined || value === ""){
+                return "Not provided";
+            }
 
-        Object.entries(data).forEach(([key, value]) => {
+            if(Array.isArray(value)){
+                return value.length ? value.join(", ") : "Not provided";
+            }
+
+            if(value && typeof value.toDate === "function"){
+                return value.toDate().toLocaleDateString("en-GB");
+            }
+
+            if(value instanceof Date){
+                return value.toLocaleDateString("en-GB");
+            }
+
+            if(typeof value === "object"){
+                return JSON.stringify(value);
+            }
+
+            return String(value);
+        }
+
+        // Create one information row
+        function infoRow(label, value){
 
             if(
-                key.toLowerCase().includes("password") ||
                 value === null ||
                 value === undefined ||
                 value === ""
-            ) return;
-
-            const section = document.createElement("div");
-            section.style.cssText =
-                "background:#f0f8f5;padding:12px 15px;margin-bottom:10px;border-left:4px solid #087653;border-radius:8px;";
-
-            const heading = document.createElement("strong");
-            heading.style.cssText =
-                "display:block;color:#087653;margin-bottom:5px;";
-
-            heading.textContent = labels[key] ||
-                key.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
-
-            const detail = document.createElement("div");
-            detail.style.cssText = "color:#333;word-break:break-word;";
-
-            let displayValue = value;
-
-            if(Array.isArray(value)){
-                displayValue = value.join(", ");
-            } else if(value && typeof value.toDate === "function"){
-                displayValue = value.toDate().toLocaleString();
-            } else if(value instanceof Date){
-                displayValue = value.toLocaleString();
-            } else if(typeof value === "object"){
-                displayValue = JSON.stringify(value, null, 2);
+            ){
+                return "";
             }
 
-            detail.textContent = String(displayValue);
+            return `
+                <div class="info-row">
+                    <div class="info-label">${label}</div>
+                    <div class="info-value">${showValue(value)}</div>
+                </div>
+            `;
+        }
 
-            section.appendChild(heading);
-            section.appendChild(detail);
-            content.appendChild(section);
+        // Create information section
+        function infoSection(number, title, rows){
 
-        });
+            return `
+                <section class="info-section">
+
+                    <div class="info-section-title">
+                        ${number} &nbsp; ${title}
+                    </div>
+
+                    ${rows}
+
+                </section>
+            `;
+        }
+
+        const applicantName =
+            data.nameEnglish ||
+            data.nameBangla ||
+            "Name Not Given";
+
+        const firstLetter = applicantName.charAt(0).toUpperCase();
+
+        const presentAddress = [
+            data.presentVillage,
+            data.presentUpazila,
+            data.presentDistrict,
+            data.presentDivision,
+            data.presentFullAddress
+        ].filter(Boolean).join(", ");
+
+        const permanentAddress = [
+            data.permanentVillage,
+            data.permanentUpazila,
+            data.permanentDistrict,
+            data.permanentDivision,
+            data.permanentFullAddress
+        ].filter(Boolean).join(", ");
+
+        // 01 Personal Information
+        const personalRows =
+            infoRow("Name (Bangla)", data.nameBangla) +
+            infoRow("Name (English)", data.nameEnglish) +
+            infoRow("Father's Name", data.fatherName) +
+            infoRow("Mother's Name", data.motherName) +
+            infoRow("Date of Birth", data.dob) +
+            infoRow("Gender", data.gender) +
+            infoRow("Blood Group", data.bloodGroup) +
+            infoRow("NID Number", data.nid);
+
+        // 02 Contact Information
+        const contactRows =
+            infoRow("Mobile Number", data.mobile) +
+            infoRow("WhatsApp Number", data.whatsapp) +
+            infoRow("Email Address", data.email) +
+            infoRow("Facebook Profile", data.facebook);
+
+        // 03 Address Information
+        const addressRows =
+            infoRow("Present Address", presentAddress) +
+            infoRow("Permanent Address", permanentAddress);
+
+        // 04 Other Information
+        const otherRows =
+            infoRow("Occupation", data.occupation) +
+            infoRow("Education", data.education) +
+            infoRow("Academic Session", data.session) +
+            infoRow("Institution", data.institution) +
+            infoRow("Donated Blood Before", data.donatedBefore) +
+            infoRow("Last Donation Date", data.lastDonation) +
+            infoRow("Physical Issues", data.physicalIssues);
+
+        // 05 Membership Information
+        const membershipRows =
+            infoRow("Membership Types", data.memberTypes) +
+            infoRow("Reason for Joining", data.joinReason) +
+            infoRow("Account Email", data.accountEmail) +
+            infoRow("Account Phone", data.accountPhone);
+
+        content.innerHTML = `
+
+            <div class="sheet-brand">
+
+                <h3>NEURON BLOOD FOUNDATION</h3>
+
+                <p>With youth; on the path of humanity</p>
+
+            </div>
+
+            <div class="sheet-title">
+
+                <h3>Member Application</h3>
+
+                <span class="sheet-status">
+                    ${showValue(data.status)}
+                </span>
+
+            </div>
+
+            <div class="applicant-summary">
+
+                <div class="applicant-avatar">
+                    ${firstLetter}
+                </div>
+
+                <div>
+
+                    <h3>${showValue(applicantName)}</h3>
+
+                    <p>
+                        Blood Group:
+                        <strong>${showValue(data.bloodGroup)}</strong>
+                    </p>
+
+                    <p>
+                        Application ID:
+                        ${id}
+                    </p>
+
+                </div>
+
+            </div>
+
+            ${infoSection("01", "Personal Information", personalRows)}
+
+            ${infoSection("02", "Contact Information", contactRows)}
+
+            ${infoSection("03", "Address Information", addressRows)}
+
+            ${infoSection("04", "Other Information", otherRows)}
+
+            ${infoSection("05", "Membership Information", membershipRows)}
+
+        `;
 
         document.getElementById("detailsApproveBtn").onclick = function(){
+
             closeMemberDetails();
             approveMember(id);
+
         };
 
         document.getElementById("detailsRejectBtn").onclick = function(){
+
             closeMemberDetails();
             deleteMember(id);
+
         };
 
-    } catch(error){
+    }
+    catch(error){
 
         console.error(error);
+
         content.textContent = "Unable to load application details.";
 
     }
+
 };
 
+    
 window.closeMemberDetails = function(){
     document.getElementById("memberDetailsView").style.display = "none";
 };
