@@ -2595,8 +2595,9 @@ loadBangladeshAddressData();
 
 </script>
 
+
 <script type="module">
-    
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
@@ -2605,6 +2606,13 @@ import {
     addDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signOut,
+    deleteUser
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -2620,6 +2628,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 const form = document.getElementById("memberForm");
 const submitButton = document.getElementById("submitBtn");
@@ -2636,7 +2645,9 @@ form.addEventListener("submit", async function(e) {
     }
 
     submitButton.disabled = true;
-    submitButton.textContent = "Submitting...";
+    submitButton.textContent = "Creating Account...";
+
+    let createdUser = null;
 
     try {
 
@@ -2645,7 +2656,7 @@ form.addEventListener("submit", async function(e) {
 
         for (const [key, value] of formData.entries()) {
 
-            // Never save passwords as plain text in Firestore
+            // Password কখনো Firestore-এ সংরক্ষণ হবে না
             if (key === "password" || key === "confirmPassword") {
                 continue;
             }
@@ -2658,14 +2669,48 @@ form.addEventListener("submit", async function(e) {
                 }
 
                 memberData.memberTypes.push(value);
+
             } else {
                 memberData[key] = value;
             }
         }
 
+        // Email ও Password সংগ্রহ
+        const email = String(
+            memberData.email || memberData.accountEmail || ""
+        ).trim().toLowerCase();
+
+        const password = formData.get("password");
+        const confirmPassword = formData.get("confirmPassword");
+
+        if (!email || !password) {
+            throw new Error("Email and Password are required.");
+        }
+
+        if (password !== confirmPassword) {
+            throw new Error("Passwords do not match.");
+        }
+
+        // Step 1: Firebase Authentication Account তৈরি
+        submitButton.textContent = "Creating Login Account...";
+
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        createdUser = userCredential.user;
+
+        // Step 2: Firestore-এ Member Application জমা
+        submitButton.textContent = "Saving Application...";
+
         await addDoc(collection(db, "memberApplications"), {
 
             ...memberData,
+
+            email: email,
+            accountEmail: email,
 
             status: "Pending",
             memberID: null,
@@ -2673,9 +2718,15 @@ form.addEventListener("submit", async function(e) {
 
         });
 
-        // Show success notification only after Firebase saves data
-        form.reset();
+        // Step 3: Registration শেষে Sign Out
+        try {
+            await signOut(auth);
+        } catch (signOutError) {
+            console.warn("Sign out warning:", signOutError);
+        }
 
+        // Success
+        form.reset();
         showStep(0);
 
         document.getElementById("successOverlay")
@@ -2685,10 +2736,31 @@ form.addEventListener("submit", async function(e) {
 
         console.error("Registration Error:", error);
 
-        alert(
-            "Registration failed. Please try again. Error: " +
-            error.message
-        );
+        // Firestore-এ Application জমা না হলে
+        // সদ্য তৈরি Auth Account মুছে ফেলার চেষ্টা
+        if (createdUser) {
+            try {
+                await deleteUser(createdUser);
+            } catch (deleteError) {
+                console.error("Account cleanup failed:", deleteError);
+            }
+        }
+
+        let message = error.message;
+
+        if (error.code === "auth/email-already-in-use") {
+            message = "This email already has an account. Please use another email or reset your password.";
+        } else if (error.code === "auth/weak-password") {
+            message = "Password must contain at least 6 characters.";
+        } else if (error.code === "auth/invalid-email") {
+            message = "Please enter a valid email address.";
+        } else if (error.code === "auth/network-request-failed") {
+            message = "Network error. Please check your internet connection.";
+        } else if (error.code === "permission-denied") {
+            message = "Database permission denied. Please contact the administrator.";
+        }
+
+        alert("Registration failed: " + message);
 
     } finally {
 
@@ -2707,7 +2779,9 @@ document.getElementById("successClose")
             .classList.remove("show");
 
     });
+
 </script>
+
     
 </body>
 </html>
