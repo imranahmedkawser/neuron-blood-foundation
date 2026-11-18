@@ -187,17 +187,17 @@ Login
 
     <button id="memberBtn" class="btn" onclick="showMembers()">
         👤 Pending Members
-        (<span id="memberCount">0</span>)
+        (<span id="memberCount">...</span>)
     </button>
 
     <button id="donorBtn" class="btn" onclick="showDonors()">
         🩸 Pending Donors
-        (<span id="donorCount">0</span>)
+        (<span id="donorCount">...</span>)
     </button>
 
     <button id="emergencyBtn" class="btn" onclick="showEmergencies()">
         🚨 Emergency Requests
-        (<span id="emergencyCount">0</span>)
+        (<span id="emergencyCount">...</span>)
     </button>
 
 </div>
@@ -571,33 +571,27 @@ onSnapshot(
 /* MEMBER COUNT */
 
 onSnapshot(
-    collection(db,"members"),
+    collection(db, "memberApplications"),
 
-    snapshot=>{
+    snapshot => {
 
-        let count=0;
+        let count = 0;
 
-        snapshot.forEach(item=>{
+        snapshot.forEach(item => {
 
-            if(item.data().status==="Pending"){
-
+            if(item.data().status === "Pending"){
                 count++;
-
             }
 
         });
 
-        const el =
-        document.getElementById("memberCount");
+        document.getElementById("memberCount").textContent = count;
 
-        if(el){
+    },
 
-            el.textContent=count;
-
-        }
-
+    error => {
+        console.error("Member Count Error:", error);
     }
-
 );
 
 
