@@ -104,6 +104,16 @@ body{
     margin-top:10px;
 }
 
+.details-btn{
+    flex:1;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+    
 .approve-btn{
     flex:1;
     background:green;
@@ -370,6 +380,12 @@ function loadPending(){
                         <p><b>Status:</b> Pending</p>
 
                         <div class="action-buttons">
+
+                            <button
+                                class="details-btn"
+                                onclick="showMemberDetails('${item.id}')">
+                                View Details
+                            </button>
 
                             <button
                                 class="approve-btn"
