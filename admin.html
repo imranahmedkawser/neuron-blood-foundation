@@ -166,6 +166,95 @@ body{
     }
 
 }
+
+    /* Member Details View */
+.details-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.details-panel {
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.details-header {
+    background: #087653;
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.details-header button {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.details-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.details-actions {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.details-actions button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .details-overlay {
+        padding: 10px;
+    }
+
+    .details-panel {
+        width: 100%;
+        max-height: 94vh;
+    }
+
+    .details-header h2 {
+        font-size: 17px;
+    }
+
+    .details-content {
+        padding: 14px;
+    }
+}
+    
 </style>
 </head>
 
