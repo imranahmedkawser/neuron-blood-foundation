@@ -413,6 +413,59 @@
         width: 100%;
       }
     }
+
+
+    .donation-date-box {
+  background: #effaf2;
+  border: 1px solid #b9dfc5;
+  grid-column: span 2;
+}
+
+.last-donation-date {
+  color: #087443;
+  font-size: 25px !important;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.donation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.donation-actions .btn {
+  font-size: 13px;
+}
+
+#dateUpdateArea input {
+  width: 100%;
+  padding: 11px;
+  margin: 8px 0;
+  border: 1px solid #d5dfd8;
+  border-radius: 8px;
+  background: white;
+}
+
+@media (max-width: 550px) {
+  .donation-date-box {
+    grid-column: span 1;
+  }
+
+  .donation-actions {
+    flex-direction: column;
+  }
+
+  .donation-actions .btn {
+    width: 100%;
+  }
+
+  .last-donation-date {
+    font-size: 23px !important;
+  }
+}
+    
   </style>
 </head>
 
@@ -507,10 +560,40 @@
           <p id="weight">--</p>
         </div>
 
-        <div class="info-box">
-          <label>সর্বশেষ রক্তদানের তারিখ</label>
-          <p id="lastDonation">--</p>
-        </div>
+        <div class="info-box donation-date-box">
+  <label>🩸 সর্বশেষ রক্তদানের তারিখ</label>
+
+  <p id="lastDonation" class="last-donation-date">--</p>
+
+  <div class="donation-actions">
+
+    <button class="btn btn-green" id="updateDonationDate" type="button">
+      📅 তারিখ আপডেট করুন
+    </button>
+
+    <button class="btn btn-light" id="donatedToday" type="button">
+      🩸 I Have Donated Today
+    </button>
+
+  </div>
+
+  <div id="dateUpdateArea" style="display:none; margin-top:12px;">
+
+    <label for="newDonationDate">নতুন রক্তদানের তারিখ নির্বাচন করুন</label>
+
+    <input type="date" id="newDonationDate">
+
+    <button class="btn btn-green" id="saveDonationDate" type="button">
+      Save Date
+    </button>
+
+    <button class="btn btn-light" id="cancelDonationDate" type="button">
+      Cancel
+    </button>
+
+  </div>
+
+</div>
 
       </div>
 
