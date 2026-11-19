@@ -1,1 +1,1310 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | Neuron Blood Foundation</title>
+
+<style>
+:root{
+    --primary:#087653;
+    --dark:#064b37;
+    --light:#eaf5ee;
+    --bg:#f3f7f4;
+    --text:#263b32;
+    --muted:#78877f;
+    --border:#d4e1d8;
+    --card:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+body.theme-female{
+    --primary:#87506e;
+    --dark:#543247;
+    --light:#f8edf3;
+}
+
+body.theme-neutral{
+    --primary:#087653;
+    --dark:#064b37;
+    --light:#eaf5ee;
+}
+
+button,input,textarea,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* HEADER */
+
+.header{
+    background:var(--dark);
+    color:white;
+    padding:18px 20px;
+}
+
+.header-inner{
+    max-width:1050px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:800;
+    background:rgba(255,255,255,.10);
+}
+
+.header-name{
+    font-size:17px;
+    font-weight:800;
+}
+
+.header-tagline{
+    font-size:11px;
+    margin-top:5px;
+    color:#d5e8dc;
+}
+
+/* PAGE */
+
+.container{
+    max-width:1050px;
+    margin:28px auto;
+    padding:0 16px 35px;
+}
+
+/* WELCOME */
+
+.welcome{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:22px;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.welcome h1{
+    color:var(--dark);
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.status{
+    display:inline-block;
+    padding:7px 13px;
+    border-radius:20px;
+    background:#e4f5e9;
+    color:#087653;
+    font-size:12px;
+    font-weight:800;
+}
+
+/* SUMMARY */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+    margin-bottom:22px;
+}
+
+.summary-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:17px;
+}
+
+.summary-card small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:9px;
+}
+
+.summary-card strong{
+    display:block;
+    color:var(--dark);
+    font-size:17px;
+    overflow-wrap:anywhere;
+}
+
+/* ACTIONS */
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:23px;
+}
+
+.action-btn{
+    border:1px solid var(--primary);
+    background:var(--primary);
+    color:white;
+    border-radius:7px;
+    padding:11px 16px;
+    font-size:12px;
+    font-weight:800;
+}
+
+.action-btn:hover{
+    background:var(--dark);
+}
+
+.action-btn.secondary{
+    background:white;
+    color:var(--primary);
+}
+
+.action-btn.secondary:hover{
+    background:var(--light);
+}
+
+.action-btn.danger{
+    background:#fff;
+    border-color:#d9aaaa;
+    color:#b52c2c;
+}
+
+/* INFORMATION SECTIONS */
+
+.section{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:11px;
+    margin-bottom:17px;
+    overflow:hidden;
+}
+
+.section-title{
+    background:var(--light);
+    color:var(--dark);
+    padding:15px 18px;
+    font-size:14px;
+    font-weight:800;
+    border-bottom:1px solid var(--border);
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    padding:8px 18px;
+}
+
+.info-item{
+    padding:13px 8px;
+    border-bottom:1px solid #edf1ed;
+    min-width:0;
+}
+
+.info-item.full{
+    grid-column:1/-1;
+}
+
+.info-label{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.info-value{
+    display:block;
+    color:var(--text);
+    font-size:13px;
+    font-weight:700;
+    overflow-wrap:anywhere;
+    white-space:pre-wrap;
+    line-height:1.6;
+}
+
+/* EDIT PANEL */
+
+.edit-panel{
+    display:none;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.edit-panel.show{
+    display:block;
+}
+
+.edit-panel h2{
+    color:var(--dark);
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.edit-note{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+    margin-bottom:18px;
+}
+
+.edit-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.edit-field label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.edit-field input,
+.edit-field textarea,
+.edit-field select{
+    width:100%;
+    border:1px solid #b9cbbf;
+    border-radius:7px;
+    padding:10px;
+    outline:none;
+    font-size:13px;
+    background:white;
+    color:var(--text);
+}
+
+.edit-field input:focus,
+.edit-field textarea:focus,
+.edit-field select:focus{
+    border-color:var(--primary);
+}
+
+.edit-field textarea{
+    min-height:75px;
+    resize:vertical;
+}
+
+.edit-field.full{
+    grid-column:1/-1;
+}
+
+.edit-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+/* PASSWORD */
+
+.password-panel{
+    display:none;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.password-panel.show{
+    display:block;
+}
+
+.password-panel h2{
+    color:var(--dark);
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.password-panel input{
+    width:100%;
+    height:44px;
+    padding:10px;
+    margin-bottom:12px;
+    border:1px solid #b9cbbf;
+    border-radius:7px;
+}
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    padding:12px;
+    border-radius:7px;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.message.error{
+    display:block;
+    background:#fff1f1;
+    border:1px solid #edcaca;
+    color:#a92b2b;
+}
+
+.message.success{
+    display:block;
+    background:#edf8f1;
+    border:1px solid #b9dfc6;
+    color:#087653;
+}
+
+/* FOOTER */
+
+.footer{
+    background:var(--dark);
+    color:#d5e8dc;
+    text-align:center;
+    padding:22px 15px;
+    font-size:11px;
+    line-height:1.8;
+}
+
+.footer strong{
+    color:white;
+    font-size:13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:650px){
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-item.full{
+        grid-column:auto;
+    }
+
+    .edit-grid{
+        grid-template-columns:1fr;
+    }
+
+    .edit-field.full{
+        grid-column:auto;
+    }
+
+    .welcome h1{
+        font-size:20px;
+    }
+
+    .container{
+        margin:18px auto;
+    }
+
+}
+
+@media(max-width:360px){
+
+    .summary-card{
+        padding:12px;
+    }
+
+    .summary-card strong{
+        font-size:14px;
+    }
+
+    .header-name{
+        font-size:14px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <div class="logo">N</div>
+
+        <div>
+            <div class="header-name">NEURON BLOOD FOUNDATION</div>
+            <div class="header-tagline">
+                With youth; on the path of humanity
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div id="pageMessage" class="message"></div>
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div>
+            <h1>Welcome, <span id="welcomeName">Member</span></h1>
+            <p>Your personal member dashboard</p>
+        </div>
+
+        <span class="status" id="accountStatus">Loading...</span>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+            <small>Member ID</small>
+            <strong id="memberID">Loading...</strong>
+        </div>
+
+        <div class="summary-card">
+            <small>Join Date</small>
+            <strong id="joinDate">Loading...</strong>
+        </div>
+
+        <div class="summary-card">
+            <small>Position</small>
+            <strong id="position">Member</strong>
+        </div>
+
+        <div class="summary-card">
+            <small>Blood Group</small>
+            <strong id="bloodGroup">-</strong>
+        </div>
+
+    </section>
+
+
+    <!-- ACTION BUTTONS -->
+
+    <div class="actions">
+
+        <button class="action-btn" id="editBtn">
+            Edit My Information
+        </button>
+
+        <button class="action-btn secondary" id="structureBtn">
+            View Organizational Structure
+        </button>
+
+        <button class="action-btn secondary" id="passwordBtn">
+            Change Password
+        </button>
+
+        <button class="action-btn danger" id="logoutBtn">
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- EDIT FORM -->
+
+    <section class="edit-panel" id="editPanel">
+
+        <h2>Edit My Information</h2>
+
+        <p class="edit-note" id="editNote">
+            You can update your editable information once every 30 days.
+            Make all required changes before saving.
+        </p>
+
+        <div class="edit-grid" id="editGrid"></div>
+
+        <div class="edit-buttons">
+
+            <button class="action-btn" id="saveEditBtn">
+                Save Changes
+            </button>
+
+            <button class="action-btn secondary" id="cancelEditBtn">
+                Cancel
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PASSWORD FORM -->
+
+    <section class="password-panel" id="passwordPanel">
+
+        <h2>Change Password</h2>
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="Enter new password"
+            autocomplete="new-password"
+        >
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm new password"
+            autocomplete="new-password"
+        >
+
+        <div class="edit-buttons">
+
+            <button class="action-btn" id="changePasswordBtn">
+                Update Password
+            </button>
+
+            <button class="action-btn secondary" id="cancelPasswordBtn">
+                Cancel
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERSONAL INFORMATION -->
+
+    <section class="section">
+        <div class="section-title">01. Personal Information</div>
+        <div class="info-grid" id="personalInfo"></div>
+    </section>
+
+
+    <!-- CONTACT INFORMATION -->
+
+    <section class="section">
+        <div class="section-title">02. Contact Information</div>
+        <div class="info-grid" id="contactInfo"></div>
+    </section>
+
+
+    <!-- PRESENT ADDRESS -->
+
+    <section class="section">
+        <div class="section-title">03. Present Address</div>
+        <div class="info-grid" id="presentAddress"></div>
+    </section>
+
+
+    <!-- PERMANENT ADDRESS -->
+
+    <section class="section">
+        <div class="section-title">04. Permanent Address</div>
+        <div class="info-grid" id="permanentAddress"></div>
+    </section>
+
+
+    <!-- OTHER INFORMATION -->
+
+    <section class="section">
+        <div class="section-title">05. Other Information</div>
+        <div class="info-grid" id="otherInfo"></div>
+    </section>
+
+
+    <!-- MEMBERSHIP -->
+
+    <section class="section">
+        <div class="section-title">06. Membership Information</div>
+        <div class="info-grid" id="membershipInfo"></div>
+    </section>
+
+
+    <!-- ACCOUNT -->
+
+    <section class="section">
+        <div class="section-title">07. Account Information</div>
+        <div class="info-grid" id="accountInfo"></div>
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <strong>NEURON BLOOD FOUNDATION</strong>
+    <br>
+    With youth; on the path of humanity
+    <br>
+    Humanity • Unity • Service
+
+</footer>
+
+
+<script type="module">
+
+/* FIREBASE IMPORTS */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    updatePassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    updateDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+    authDomain: "neuron-blood-foundation.firebaseapp.com",
+    projectId: "neuron-blood-foundation",
+    storageBucket: "neuron-blood-foundation.firebasestorage.app",
+    messagingSenderId: "160902995293",
+    appId: "1:160902995293:web:cb9a42dfa4b61d593e5cb4",
+    measurementId: "G-90P3HEZLPJ"
+};
+
+
+/* INITIALIZE */
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* ELEMENTS */
+
+const pageMessage = document.getElementById("pageMessage");
+const editPanel = document.getElementById("editPanel");
+const passwordPanel = document.getElementById("passwordPanel");
+
+let currentUser = null;
+let currentMember = null;
+let memberDocId = null;
+let memberData = null;
+
+
+/* HELPERS */
+
+function showMessage(text,type){
+
+    pageMessage.textContent = text;
+    pageMessage.className = "message " + type;
+
+    window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+function displayValue(value){
+
+    if(value === undefined || value === null || value === ""){
+        return "Not provided";
+    }
+
+    if(Array.isArray(value)){
+        return value.length ? value.join(", ") : "Not provided";
+    }
+
+    if(typeof value === "object" && value.toDate){
+        return formatDate(value);
+    }
+
+    if(typeof value === "boolean"){
+        return value ? "Yes" : "No";
+    }
+
+    return String(value);
+
+}
+
+function formatDate(value){
+
+    if(!value) return "Not provided";
+
+    let date;
+
+    if(value.toDate){
+        date = value.toDate();
+    }else{
+        date = new Date(value);
+    }
+
+    if(isNaN(date.getTime())) return "Not provided";
+
+    return date.toLocaleDateString("en-GB",{
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+    });
+
+}
+
+function addInfo(containerId,fields){
+
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+
+    fields.forEach(field=>{
+
+        const item = document.createElement("div");
+        item.className = "info-item" + (field.full ? " full" : "");
+
+        const label = document.createElement("span");
+        label.className = "info-label";
+        label.textContent = field.label;
+
+        const value = document.createElement("span");
+        value.className = "info-value";
+        value.textContent = displayValue(memberData[field.key]);
+
+        item.append(label,value);
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* LOAD MEMBER INFORMATION */
+
+async function loadMember(user){
+
+    const memberQuery = query(
+        collection(db,"members"),
+        where("uid","==",user.uid)
+    );
+
+    const snapshot = await getDocs(memberQuery);
+
+    let approvedDoc = null;
+
+    snapshot.forEach(memberDoc=>{
+
+        if(memberDoc.data().status === "Approved"){
+            approvedDoc = memberDoc;
+        }
+
+    });
+
+    if(!approvedDoc){
+
+        await signOut(auth);
+        window.location.replace("member-login.html");
+        return;
+
+    }
+
+    memberDocId = approvedDoc.id;
+    memberData = approvedDoc.data();
+    currentMember = approvedDoc;
+
+    /* GENDER THEME */
+
+    const gender = memberData.gender;
+
+    if(gender === "Female"){
+        document.body.classList.add("theme-female");
+    }
+    else if(
+        gender === "Other" ||
+        gender === "Prefer not to say"
+    ){
+        document.body.classList.add("theme-neutral");
+    }
+
+    /* WELCOME */
+
+    document.getElementById("welcomeName").textContent =
+        memberData.nameEnglish ||
+        memberData.nameBangla ||
+        "Member";
+
+    document.getElementById("accountStatus").textContent =
+        memberData.status || "Approved";
+
+    document.getElementById("memberID").textContent =
+        displayValue(memberData.memberID);
+
+    document.getElementById("position").textContent =
+        displayValue(memberData.position || "Member");
+
+    document.getElementById("bloodGroup").textContent =
+        displayValue(memberData.bloodGroup);
+
+    document.getElementById("joinDate").textContent =
+        formatDate(
+            memberData.approvedAt ||
+            memberData.createdAt
+        );
+
+
+    /* PERSONAL INFORMATION */
+
+    addInfo("personalInfo",[
+        {label:"Name in Bangla",key:"nameBangla"},
+        {label:"Name in English",key:"nameEnglish"},
+        {label:"Father's Name",key:"fatherName"},
+        {label:"Mother's Name",key:"motherName"},
+        {label:"Date of Birth",key:"dob"},
+        {label:"Gender",key:"gender"},
+        {label:"Blood Group",key:"bloodGroup"},
+        {label:"NID Number",key:"nid"}
+    ]);
+
+
+    /* CONTACT */
+
+    addInfo("contactInfo",[
+        {label:"Mobile Number",key:"mobile"},
+        {label:"WhatsApp Number",key:"whatsapp"},
+        {label:"Email Address",key:"email"},
+        {label:"Facebook Profile",key:"facebook",full:true}
+    ]);
+
+
+    /* PRESENT ADDRESS */
+
+    addInfo("presentAddress",[
+        {label:"Division",key:"presentDivision"},
+        {label:"District",key:"presentDistrict"},
+        {label:"Upazila",key:"presentUpazila"},
+        {label:"Village",key:"presentVillage"},
+        {label:"Full Address",key:"presentFullAddress",full:true}
+    ]);
+
+
+    /* PERMANENT ADDRESS */
+
+    addInfo("permanentAddress",[
+        {label:"Division",key:"permanentDivision"},
+        {label:"District",key:"permanentDistrict"},
+        {label:"Upazila",key:"permanentUpazila"},
+        {label:"Village",key:"permanentVillage"},
+        {label:"Full Address",key:"permanentFullAddress",full:true}
+    ]);
+
+
+    /* OTHER INFORMATION */
+
+    addInfo("otherInfo",[
+        {label:"Occupation",key:"occupation"},
+        {label:"Education",key:"education"},
+        {label:"Session",key:"session"},
+        {label:"Institution",key:"institution"},
+        {label:"Donated Blood Before",key:"donatedBefore"},
+        {label:"Last Donation Date",key:"lastDonation"},
+        {label:"Physical Issues",key:"physicalIssues",full:true}
+    ]);
+
+
+    /* MEMBERSHIP */
+
+    addInfo("membershipInfo",[
+        {label:"Member Types",key:"memberTypes",full:true},
+        {label:"Reason for Joining",key:"joinReason",full:true}
+    ]);
+
+
+    /* ACCOUNT */
+
+    addInfo("accountInfo",[
+        {label:"Account Email",key:"accountEmail"},
+        {label:"Account Phone",key:"accountPhone"},
+        {label:"Member ID",key:"memberID"},
+        {label:"Account Status",key:"status"},
+        {label:"Join Date",key:"approvedAt"}
+    ]);
+
+}
+
+
+/* AUTH CHECK */
+
+onAuthStateChanged(auth,async user=>{
+
+    if(!user){
+
+        window.location.replace("member-login.html");
+        return;
+
+    }
+
+    currentUser = user;
+
+    try{
+
+        await loadMember(user);
+
+    }
+    catch(error){
+
+        console.error("Profile loading error:",error);
+
+        showMessage(
+            "Unable to load your profile. Please check your internet connection or contact the Foundation.",
+            "error"
+        );
+
+    }
+
+});
+
+
+/* EDITABLE FIELDS */
+
+const editableFields = [
+
+    ["nameBangla","Name in Bangla","text"],
+    ["nameEnglish","Name in English","text"],
+    ["fatherName","Father's Name","text"],
+    ["motherName","Mother's Name","text"],
+    ["mobile","Mobile Number","tel"],
+    ["whatsapp","WhatsApp Number","tel"],
+    ["email","Email Address","email"],
+    ["facebook","Facebook Profile Link","url"],
+    ["presentVillage","Present Village","text"],
+    ["presentFullAddress","Present Full Address","textarea"],
+    ["permanentVillage","Permanent Village","text"],
+    ["permanentFullAddress","Permanent Full Address","textarea"],
+    ["occupation","Occupation","text"],
+    ["education","Education","text"],
+    ["institution","Institution","text"],
+    ["physicalIssues","Physical Issues","textarea"],
+    ["joinReason","Reason for Joining","textarea"]
+
+];
+
+
+/* BUILD EDIT FORM */
+
+function buildEditForm(){
+
+    const grid = document.getElementById("editGrid");
+    grid.innerHTML = "";
+
+    editableFields.forEach(([key,label,type])=>{
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "edit-field";
+
+        if(type === "textarea"){
+            wrapper.classList.add("full");
+        }
+
+        const labelElement = document.createElement("label");
+        labelElement.textContent = label;
+
+        let input;
+
+        if(type === "textarea"){
+            input = document.createElement("textarea");
+        }else{
+            input = document.createElement("input");
+            input.type = type;
+        }
+
+        input.dataset.field = key;
+        input.value = memberData[key] || "";
+
+        wrapper.append(labelElement,input);
+        grid.appendChild(wrapper);
+
+    });
+
+}
+
+document.getElementById("editBtn").onclick = function(){
+
+    if(!memberData) return;
+
+    const lastEdit = memberData.lastProfileEditAt;
+
+    if(lastEdit){
+
+        const lastDate = lastEdit.toDate
+            ? lastEdit.toDate()
+            : new Date(lastEdit);
+
+        const daysPassed =
+            (Date.now() - lastDate.getTime()) /
+            (1000 * 60 * 60 * 24);
+
+        if(daysPassed < 30){
+
+            const remaining = Math.ceil(30-daysPassed);
+
+            showMessage(
+                "You can edit your profile again after " +
+                remaining + " day(s).",
+                "error"
+            );
+
+            return;
+
+        }
+
+    }
+
+    buildEditForm();
+    editPanel.classList.add("show");
+    passwordPanel.classList.remove("show");
+
+    editPanel.scrollIntoView({behavior:"smooth"});
+
+};
+
+
+/* CANCEL EDIT */
+
+document.getElementById("cancelEditBtn").onclick = function(){
+
+    editPanel.classList.remove("show");
+
+};
+
+
+/* SAVE EDIT */
+
+document.getElementById("saveEditBtn").onclick = async function(){
+
+    const saveBtn = this;
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Saving...";
+
+    try{
+
+        const updates = {};
+
+        document.querySelectorAll("[data-field]").forEach(input=>{
+
+            updates[input.dataset.field] = input.value.trim();
+
+        });
+
+        updates.lastProfileEditAt = serverTimestamp();
+
+        await updateDoc(
+            doc(db,"members",memberDocId),
+            updates
+        );
+
+        await loadMember(currentUser);
+
+        editPanel.classList.remove("show");
+
+        showMessage(
+            "Your profile information has been updated successfully.",
+            "success"
+        );
+
+    }
+    catch(error){
+
+        console.error("Profile update error:",error);
+
+        showMessage(
+            "Unable to update profile. Please try again.",
+            "error"
+        );
+
+    }
+    finally{
+
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save Changes";
+
+    }
+
+};
+
+
+/* CHANGE PASSWORD PANEL */
+
+document.getElementById("passwordBtn").onclick = function(){
+
+    passwordPanel.classList.toggle("show");
+    editPanel.classList.remove("show");
+
+    passwordPanel.scrollIntoView({behavior:"smooth"});
+
+};
+
+document.getElementById("cancelPasswordBtn").onclick = function(){
+
+    passwordPanel.classList.remove("show");
+
+};
+
+
+/* UPDATE PASSWORD */
+
+document.getElementById("changePasswordBtn").onclick = async function(){
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if(newPassword.length < 6){
+
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(newPassword !== confirmPassword){
+
+        showMessage(
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    try{
+
+        await updatePassword(currentUser,newPassword);
+
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmPassword").value = "";
+
+        passwordPanel.classList.remove("show");
+
+        showMessage(
+            "Your password has been changed successfully.",
+            "success"
+        );
+
+    }
+    catch(error){
+
+        console.error("Password update error:",error);
+
+        if(error.code === "auth/requires-recent-login"){
+
+            showMessage(
+                "For security, please log out and log in again before changing your password.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "Unable to change password. Please try again.",
+                "error"
+            );
+
+        }
+
+    }
+
+};
+
+
+/* ORGANIZATIONAL STRUCTURE */
+
+document.getElementById("structureBtn").onclick = function(){
+
+    window.location.href = "organizational-structure.html";
+
+};
+
+
+/* LOGOUT */
+
+async function logout(){
+
+    try{
+
+        await signOut(auth);
+
+        window.location.replace("member-login.html");
+
+    }
+    catch(error){
+
+        console.error("Logout error:",error);
+
+        showMessage(
+            "Unable to logout. Please try again.",
+            "error"
+        );
+
+    }
+
+}
+
+document.getElementById("logoutBtn").onclick = logout;
+
+
+/* BACK BUTTON */
+
+window.addEventListener("popstate",async function(){
+
+    await logout();
+
+});
+
+history.pushState({profile:true},"","#profile");
+
+</script>
+
+</body>
+</html>
