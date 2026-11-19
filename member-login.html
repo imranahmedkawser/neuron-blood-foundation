@@ -12,11 +12,11 @@
     --green:#087653;
     --dark:#064b37;
     --deep:#033b2c;
-    --light:#e9f5ef;
-    --text:#203b30;
-    --muted:#82938a;
-    --border:#dce9e1;
-    --red:#d93636;
+    --text:#263b32;
+    --muted:#78877f;
+    --border:#dce7e0;
+    --red:#c93636;
+    --gold:#c69a42;
 }
 
 *{
@@ -28,142 +28,171 @@
 
 body{
     min-height:100vh;
-    background:
-        radial-gradient(circle at 10% 15%,rgba(31,157,110,.18),transparent 32%),
-        radial-gradient(circle at 90% 85%,rgba(8,118,83,.16),transparent 32%),
-        linear-gradient(135deg,#eaf5ef,#f7fbf8);
+    background:#f3f7f4;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:24px 16px;
-    position:relative;
-    overflow-x:hidden;
+    padding:25px 16px;
+    color:var(--text);
 }
 
-/* BACKGROUND DECORATION */
+/* PAGE */
 
-.bg-circle{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    border:1px solid rgba(8,118,83,.10);
-}
-
-.circle-one{
-    width:280px;
-    height:280px;
-    top:-120px;
-    right:-90px;
-}
-
-.circle-two{
-    width:380px;
-    height:380px;
-    bottom:-210px;
-    left:-160px;
-}
-
-/* MAIN CARD */
-
-.login-card{
+.page-wrapper{
     width:100%;
-    max-width:440px;
-    background:rgba(255,255,255,.96);
-    border:1px solid rgba(255,255,255,.8);
-    border-radius:22px;
-    padding:34px 30px 27px;
-    box-shadow:0 22px 65px rgba(4,75,55,.13);
+    max-width:1050px;
+    min-height:590px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 15px 45px rgba(4,65,45,.10);
+    border:1px solid #e4ece6;
+}
+
+/* LEFT BRAND PANEL */
+
+.brand-panel{
+    background:linear-gradient(145deg,#064b37,#087653);
+    color:white;
+    padding:55px 42px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     position:relative;
-    z-index:1;
     overflow:hidden;
 }
 
-.login-card::before{
+.brand-panel::before{
     content:"";
     position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:5px;
-    background:linear-gradient(90deg,#064b37,#12a276,#064b37);
+    width:330px;
+    height:330px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:50%;
+    right:-170px;
+    top:-120px;
 }
 
-/* BRAND */
-
-.brand{
-    text-align:center;
-    margin-bottom:29px;
+.brand-panel::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:50%;
+    left:-150px;
+    bottom:-120px;
 }
 
-.logo{
-    width:70px;
-    height:70px;
-    margin:0 auto 13px;
-    border-radius:21px;
-    background:linear-gradient(145deg,#0a956b,#04533b);
-    color:white;
+.brand-content,
+.brand-bottom{
+    position:relative;
+    z-index:1;
+}
+
+.brand-logo{
+    width:65px;
+    height:65px;
+    border:2px solid rgba(255,255,255,.75);
+    border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:31px;
+    font-size:30px;
     font-weight:800;
-    box-shadow:0 9px 22px rgba(8,118,83,.24);
-    position:relative;
+    margin-bottom:25px;
+    background:rgba(255,255,255,.10);
 }
 
-.logo::after{
-    content:"+";
-    position:absolute;
-    font-size:17px;
-    font-weight:bold;
-    top:8px;
-    right:11px;
-    color:#c7ffe5;
-}
-
-.brand h2{
-    font-size:19px;
+.brand-name{
+    font-size:23px;
+    line-height:1.35;
+    font-weight:800;
     letter-spacing:.5px;
-    color:var(--dark);
-    font-weight:800;
+    margin-bottom:12px;
 }
 
-.brand p{
+.brand-tagline{
+    font-size:13px;
+    color:#d6eee2;
+    line-height:1.7;
+}
+
+.brand-divider{
+    width:55px;
+    height:3px;
+    background:var(--gold);
+    margin:27px 0;
+    border-radius:5px;
+}
+
+.brand-heading{
+    font-size:27px;
+    line-height:1.35;
+    margin-bottom:12px;
+}
+
+.brand-description{
+    color:#d7e9df;
+    font-size:13px;
+    line-height:1.8;
+    max-width:340px;
+}
+
+.brand-bottom{
+    color:#c5dfd1;
     font-size:11px;
-    color:var(--muted);
-    margin-top:7px;
-    letter-spacing:.3px;
+    line-height:1.7;
 }
 
-/* TITLE */
+/* RIGHT LOGIN PANEL */
 
-.login-title{
-    text-align:center;
-    color:var(--text);
-    font-size:25px;
+.login-panel{
+    padding:55px 48px 35px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.form-heading{
+    margin-bottom:32px;
+}
+
+.form-heading .small-title{
+    color:var(--green);
+    font-size:11px;
     font-weight:800;
-    margin-bottom:8px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:12px;
 }
 
-.subtitle{
-    text-align:center;
+.form-heading h1{
+    font-size:29px;
+    color:var(--dark);
+    margin-bottom:10px;
+    font-weight:800;
+}
+
+.form-heading p{
     color:var(--muted);
     font-size:13px;
-    line-height:1.6;
-    margin-bottom:27px;
+    line-height:1.7;
 }
 
-/* FORM */
+/* INPUTS */
 
 .field{
-    margin-bottom:19px;
+    margin-bottom:21px;
 }
 
 .field label{
     display:block;
     font-size:13px;
     font-weight:700;
-    color:#344e40;
+    color:#344b3e;
     margin-bottom:9px;
 }
 
@@ -175,35 +204,38 @@ body{
     width:100%;
     height:49px;
     border:1px solid var(--border);
-    border-radius:10px;
+    border-radius:8px;
+    background:#fff;
     padding:0 14px;
     outline:none;
     font-size:14px;
     color:var(--text);
-    background:#fbfdfb;
     transition:.2s;
 }
 
 .field input:focus{
     border-color:var(--green);
-    background:white;
-    box-shadow:0 0 0 3px rgba(8,118,83,.09);
+    box-shadow:0 0 0 3px rgba(8,118,83,.08);
+}
+
+.field input::placeholder{
+    color:#a4afa8;
 }
 
 .password-input{
-    padding-right:52px !important;
+    padding-right:50px !important;
 }
 
 .eye-btn{
     position:absolute;
-    right:13px;
+    right:12px;
     top:50%;
     transform:translateY(-50%);
-    width:28px;
-    height:28px;
-    border:none;
-    background:none;
-    color:#71877a;
+    width:30px;
+    height:30px;
+    border:0;
+    background:transparent;
+    color:#72847a;
     cursor:pointer;
     display:flex;
     align-items:center;
@@ -224,20 +256,22 @@ body{
 .forgot-row{
     display:flex;
     justify-content:flex-end;
-    margin-top:-3px;
-    margin-bottom:23px;
+    margin-top:-7px;
+    margin-bottom:24px;
 }
 
 .forgot-btn{
-    border:none;
+    border:0;
     background:none;
     color:var(--green);
     font-size:12px;
     font-weight:700;
     cursor:pointer;
+    padding:4px 0;
 }
 
 .forgot-btn:hover{
+    color:var(--deep);
     text-decoration:underline;
 }
 
@@ -245,22 +279,22 @@ body{
 
 .login-btn{
     width:100%;
-    height:51px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(110deg,#087653,#07543c);
+    min-height:50px;
+    border:0;
+    border-radius:8px;
+    background:var(--green);
     color:white;
-    font-size:15px;
+    font-size:14px;
     font-weight:800;
-    letter-spacing:.3px;
+    letter-spacing:.4px;
     cursor:pointer;
-    box-shadow:0 7px 17px rgba(8,118,83,.20);
     transition:.2s;
+    box-shadow:0 5px 13px rgba(8,118,83,.16);
 }
 
 .login-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 22px rgba(8,118,83,.26);
+    background:var(--deep);
+    transform:translateY(-1px);
 }
 
 .login-btn:disabled{
@@ -280,59 +314,59 @@ body{
     border-radius:50%;
     animation:spin .7s linear infinite;
     vertical-align:middle;
-    margin-right:7px;
+    margin-right:8px;
 }
 
 @keyframes spin{
     to{transform:rotate(360deg);}
 }
 
-/* MESSAGE */
+/* MESSAGE INSIDE FORM */
 
 .message{
     display:none;
-    margin-top:16px;
-    padding:11px 12px;
-    border-radius:8px;
+    margin-top:15px;
+    padding:12px;
+    border-radius:7px;
     font-size:12px;
-    text-align:center;
     line-height:1.6;
+    text-align:left;
 }
 
 .message.error{
     display:block;
-    background:#fff0f0;
-    color:var(--red);
-    border:1px solid #ffdada;
+    color:#b52c2c;
+    background:#fff1f1;
+    border:1px solid #f3d0d0;
 }
 
 .message.success{
     display:block;
-    background:#eaf8f0;
-    color:var(--green);
-    border:1px solid #d0eddd;
+    color:#087653;
+    background:#edf8f1;
+    border:1px solid #cce8d6;
 }
 
-/* REGISTRATION LINK */
+/* APPLY LINK */
 
 .apply-box{
+    margin-top:28px;
+    padding-top:21px;
+    border-top:1px solid #edf1ed;
     text-align:center;
-    margin-top:24px;
-    padding-top:19px;
-    border-top:1px solid #edf2ee;
-    color:#718078;
     font-size:12px;
+    color:#78877f;
 }
 
-.apply-box a{
+.apply-link{
     display:inline-block;
+    margin-left:4px;
     color:var(--green);
     font-weight:800;
     text-decoration:none;
-    margin-left:4px;
 }
 
-.apply-box a:hover{
+.apply-link:hover{
     text-decoration:underline;
 }
 
@@ -340,12 +374,12 @@ body{
 
 .back-btn{
     width:100%;
-    height:44px;
-    margin-top:16px;
-    border:1px solid var(--border);
-    border-radius:9px;
-    background:white;
-    color:#52665a;
+    height:43px;
+    margin-top:15px;
+    border:1px solid #cbdcd1;
+    border-radius:8px;
+    background:#fff;
+    color:#3c5948;
     font-size:13px;
     font-weight:700;
     cursor:pointer;
@@ -353,40 +387,91 @@ body{
 }
 
 .back-btn:hover{
-    background:#f1f8f4;
-    border-color:#b8d8c7;
+    background:#edf6f0;
+    border-color:var(--green);
     color:var(--green);
+}
+
+.back-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 /* FOOTER */
 
 .footer{
+    margin-top:25px;
     text-align:center;
-    margin-top:22px;
-    color:#98a69e;
     font-size:10px;
-    line-height:1.7;
+    line-height:1.8;
+    color:#9aa69e;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media(max-width:420px){
+@media(max-width:750px){
 
     body{
         padding:18px 13px;
+        align-items:center;
     }
 
-    .login-card{
-        padding:29px 21px 23px;
-        border-radius:18px;
+    .page-wrapper{
+        max-width:470px;
+        min-height:auto;
+        grid-template-columns:1fr;
     }
 
-    .brand h2{
-        font-size:17px;
+    .brand-panel{
+        padding:25px 25px 22px;
+        min-height:auto;
     }
 
-    .login-title{
+    .brand-logo{
+        width:48px;
+        height:48px;
         font-size:23px;
+        margin-bottom:13px;
+    }
+
+    .brand-name{
+        font-size:17px;
+        margin-bottom:5px;
+    }
+
+    .brand-tagline{
+        font-size:11px;
+    }
+
+    .brand-divider,
+    .brand-heading,
+    .brand-description,
+    .brand-bottom{
+        display:none;
+    }
+
+    .login-panel{
+        padding:30px 25px 25px;
+    }
+
+    .form-heading{
+        margin-bottom:25px;
+    }
+
+    .form-heading h1{
+        font-size:25px;
+    }
+
+}
+
+@media(max-width:360px){
+
+    .login-panel{
+        padding:25px 18px 22px;
+    }
+
+    .brand-panel{
+        padding:22px 18px;
     }
 
 }
@@ -395,149 +480,190 @@ body{
 
 <body>
 
-<div class="bg-circle circle-one"></div>
-<div class="bg-circle circle-two"></div>
+<div class="page-wrapper">
 
-<div class="login-card">
+    <!-- LEFT BRAND PANEL -->
 
-    <div class="brand">
+    <section class="brand-panel">
 
-        <div class="logo">N</div>
+        <div class="brand-content">
 
-        <h2>NEURON BLOOD FOUNDATION</h2>
+            <div class="brand-logo">N</div>
 
-        <p>With youth; on the path of humanity</p>
-
-    </div>
-
-    <h1 class="login-title">Member Login</h1>
-
-    <p class="subtitle">
-        Welcome back! Login to access your member account.
-    </p>
-
-
-    <form id="loginForm">
-
-        <div class="field">
-
-            <label for="email">Email Address</label>
-
-            <div class="input-wrap">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your registered email"
-                    autocomplete="username"
-                    required
-                >
-
+            <div class="brand-name">
+                NEURON BLOOD FOUNDATION
             </div>
+
+            <p class="brand-tagline">
+                With youth; on the path of humanity
+            </p>
+
+            <div class="brand-divider"></div>
+
+            <h2 class="brand-heading">
+                Together, We Make a Difference.
+            </h2>
+
+            <p class="brand-description">
+                A community built on humanity, compassion
+                and the spirit of voluntary blood donation.
+                Your contribution can help save lives.
+            </p>
+
+        </div>
+
+        <div class="brand-bottom">
+            © Neuron Blood Foundation
+            <br>
+            Humanity • Unity • Service
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT LOGIN PANEL -->
+
+    <section class="login-panel">
+
+        <div class="form-heading">
+
+            <div class="small-title">
+                MEMBER PORTAL
+            </div>
+
+            <h1>Member Login</h1>
+
+            <p>
+                Enter your registered email and password
+                to access your member account.
+            </p>
 
         </div>
 
 
-        <div class="field">
+        <form id="loginForm">
 
-            <label for="password">Password</label>
+            <div class="field">
 
-            <div class="input-wrap">
+                <label for="email">Email Address</label>
 
-                <input
-                    type="password"
-                    id="password"
-                    class="password-input"
-                    placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required
-                >
+                <div class="input-wrap">
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email address"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="password">Password</label>
+
+                <div class="input-wrap">
+
+                    <input
+                        type="password"
+                        id="password"
+                        class="password-input"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="eye-btn"
+                        id="showPassword"
+                        aria-label="Show password"
+                        title="Show password"
+                    >
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+                            <circle cx="12" cy="12" r="3"/>
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="forgot-row">
 
                 <button
                     type="button"
-                    class="eye-btn"
-                    id="showPassword"
-                    aria-label="Show password"
-                    title="Show password"
+                    class="forgot-btn"
+                    id="forgotPassword"
                 >
-
-                    <svg id="eyeIcon"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="2"
-                         stroke-linecap="round"
-                         stroke-linejoin="round">
-
-                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
-                        <circle cx="12" cy="12" r="3"/>
-
-                    </svg>
-
+                    Forgot Password?
                 </button>
 
             </div>
 
-        </div>
-
-
-        <div class="forgot-row">
 
             <button
-                type="button"
-                class="forgot-btn"
-                id="forgotPassword"
+                type="submit"
+                class="login-btn"
+                id="loginBtn"
             >
-                Forgot Password?
+                LOGIN TO MY ACCOUNT
             </button>
+
+
+            <!-- ERROR / SUCCESS MESSAGE -->
+
+            <div id="message" class="message"></div>
+
+        </form>
+
+
+        <div class="apply-box">
+
+            Not a member yet?
+
+            <a
+                href="member-registration.html"
+                class="apply-link"
+            >
+                Apply as Member
+            </a>
 
         </div>
 
 
         <button
-            type="submit"
-            class="login-btn"
-            id="loginBtn"
-            disabled
+            type="button"
+            class="back-btn"
+            id="backBtn"
         >
-            Preparing Login...
+            ← Back
         </button>
 
-        <div id="message" class="message"></div>
 
-    </form>
+        <div class="footer">
+            Neuron Blood Foundation
+            <br>
+            With youth; on the path of humanity
+        </div>
 
-
-    <div class="apply-box">
-
-        Not a member yet?
-
-        <a href="member-registration.html">
-            Apply as Member
-        </a>
-
-    </div>
-
-
-    <button
-        type="button"
-        class="back-btn"
-        id="backBtn"
-    >
-        ← Back
-    </button>
-
-
-    <div class="footer">
-
-        © Neuron Blood Foundation
-
-        <br>
-
-        With youth; on the path of humanity
-
-    </div>
+    </section>
 
 </div>
 
@@ -584,27 +710,20 @@ const firebaseConfig = {
 /* INITIALIZE */
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
 
 /* ELEMENTS */
 
 const form = document.getElementById("loginForm");
-
 const emailInput = document.getElementById("email");
-
 const passwordInput = document.getElementById("password");
-
 const loginBtn = document.getElementById("loginBtn");
-
 const message = document.getElementById("message");
-
 const forgotBtn = document.getElementById("forgotPassword");
-
 const eyeBtn = document.getElementById("showPassword");
+const backBtn = document.getElementById("backBtn");
 
 
 /* MESSAGE */
@@ -612,7 +731,6 @@ const eyeBtn = document.getElementById("showPassword");
 function showMessage(text,type){
 
     message.textContent = text;
-
     message.className = "message " + type;
 
 }
@@ -620,13 +738,29 @@ function showMessage(text,type){
 function clearMessage(){
 
     message.textContent = "";
-
     message.className = "message";
 
 }
 
 
-/* EYE ICON */
+/* FRESH LOGIN PREPARATION */
+
+let freshSessionReady = signOut(auth);
+
+window.addEventListener("pageshow",function(event){
+
+    if(event.persisted){
+
+        freshSessionReady = signOut(auth);
+
+        clearMessage();
+
+    }
+
+});
+
+
+/* SHOW / HIDE PASSWORD */
 
 const eyeOpen = `
 <svg xmlns="http://www.w3.org/2000/svg"
@@ -648,27 +782,20 @@ stroke-linecap="round" stroke-linejoin="round">
 <path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7c1.2 0 2.3-.3 3.3-.7"/>
 </svg>`;
 
-
 eyeBtn.onclick = function(){
 
     if(passwordInput.type === "password"){
 
         passwordInput.type = "text";
-
         eyeBtn.innerHTML = eyeClosed;
-
         eyeBtn.setAttribute("aria-label","Hide password");
-
         eyeBtn.title = "Hide password";
 
     }else{
 
         passwordInput.type = "password";
-
         eyeBtn.innerHTML = eyeOpen;
-
         eyeBtn.setAttribute("aria-label","Show password");
-
         eyeBtn.title = "Show password";
 
     }
@@ -676,55 +803,11 @@ eyeBtn.onclick = function(){
 };
 
 
-/* FRESH LOGIN ON EVERY ENTRY */
-
-async function prepareFreshLogin(){
-
-    loginBtn.disabled = true;
-
-    loginBtn.textContent = "Preparing Login...";
-
-    try{
-
-        await signOut(auth);
-
-        loginBtn.disabled = false;
-
-        loginBtn.textContent = "Login to My Account";
-
-    }
-    catch(error){
-
-        console.error("Session reset error:",error);
-
-        showMessage(
-            "Unable to prepare a fresh login. Please refresh the page.",
-            "error"
-        );
-
-        loginBtn.disabled = true;
-
-        loginBtn.textContent = "Login Unavailable";
-
-    }
-
-}
-
-
-/* RUN WHEN PAGE OPENS OR RETURNS FROM BROWSER BACK */
-
-window.addEventListener("pageshow",function(){
-
-    prepareFreshLogin();
-
-});
-
-
 /* BACK BUTTON */
 
-document.getElementById("backBtn").onclick = async function(){
+backBtn.onclick = async function(){
 
-    this.disabled = true;
+    backBtn.disabled = true;
 
     try{
 
@@ -732,7 +815,7 @@ document.getElementById("backBtn").onclick = async function(){
 
     }catch(error){
 
-        console.error(error);
+        console.error("Sign out error:",error);
 
     }
 
@@ -763,7 +846,6 @@ forgotBtn.onclick = async function(){
         );
 
         emailInput.focus();
-
         return;
 
     }
@@ -787,10 +869,10 @@ forgotBtn.onclick = async function(){
     }
     catch(error){
 
-        console.error(error);
+        console.error("Password reset error:",error);
 
         showMessage(
-            "Unable to send reset email. Please check your email address and try again.",
+            "Unable to send reset email. Please try again.",
             "error"
         );
 
@@ -811,7 +893,6 @@ form.addEventListener("submit",async function(e){
     e.preventDefault();
 
     const email = emailInput.value.trim();
-
     const password = passwordInput.value;
 
     if(!email || !password){
@@ -828,13 +909,19 @@ form.addEventListener("submit",async function(e){
     loginBtn.disabled = true;
 
     loginBtn.innerHTML =
-        '<span class="spinner"></span>Logging in...';
+        '<span class="spinner"></span>VERIFYING ACCOUNT...';
 
     clearMessage();
 
+    let signedInUser = null;
+
     try{
 
-        /* USE SESSION-ONLY PERSISTENCE */
+        /* WAIT FOR FRESH SESSION */
+
+        await freshSessionReady;
+
+        /* SESSION-ONLY LOGIN */
 
         await setPersistence(
             auth,
@@ -842,7 +929,7 @@ form.addEventListener("submit",async function(e){
         );
 
 
-        /* FIREBASE AUTH LOGIN */
+        /* FIREBASE AUTHENTICATION */
 
         const result = await signInWithEmailAndPassword(
             auth,
@@ -850,10 +937,10 @@ form.addEventListener("submit",async function(e){
             password
         );
 
-        const signedInUser = result.user;
+        signedInUser = result.user;
 
 
-        /* FIND MEMBER BY UID */
+        /* FIND MEMBER USING UID */
 
         const memberQuery = query(
             collection(db,"members"),
@@ -867,8 +954,10 @@ form.addEventListener("submit",async function(e){
 
             await signOut(auth);
 
+            signedInUser = null;
+
             showMessage(
-                "No approved member profile found for this account.",
+                "No approved member profile was found for this account.",
                 "error"
             );
 
@@ -877,7 +966,7 @@ form.addEventListener("submit",async function(e){
         }
 
 
-        /* CHECK APPROVAL */
+        /* CHECK APPROVAL STATUS */
 
         let approvedMember = false;
 
@@ -898,8 +987,10 @@ form.addEventListener("submit",async function(e){
 
             await signOut(auth);
 
+            signedInUser = null;
+
             showMessage(
-                "Your member account is not approved yet.",
+                "Your membership application is not approved yet.",
                 "error"
             );
 
@@ -936,17 +1027,31 @@ form.addEventListener("submit",async function(e){
 
         }
 
-        showMessage(
-            "Login failed. Please check your email and password or try again.",
-            "error"
-        );
+        let errorText =
+            "Login failed. Please check your email and password.";
+
+        if(error.code === "auth/too-many-requests"){
+
+            errorText =
+                "Too many attempts. Please try again later.";
+
+        }
+
+        if(error.code === "auth/network-request-failed"){
+
+            errorText =
+                "Network error. Please check your internet connection.";
+
+        }
+
+        showMessage(errorText,"error");
 
     }
     finally{
 
         loginBtn.disabled = false;
 
-        loginBtn.textContent = "Login to My Account";
+        loginBtn.textContent = "LOGIN TO MY ACCOUNT";
 
     }
 
