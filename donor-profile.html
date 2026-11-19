@@ -774,10 +774,13 @@ import {
   getDocs,
   query,
   where,
-  updateDoc
+  updateDoc,
+  runTransaction,
+  setDoc,
+  serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+  
 
 const firebaseConfig = {
   apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
@@ -849,6 +852,102 @@ function formatDate(value) {
   });
 }
 
+
+  // Date-কে YYYY-MM-DD ফরম্যাটে নেওয়া
+function getLocalDateString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+
+// রক্তদানের তারিখ থেকে কত দিন পার হয়েছে
+function getDaysSinceDonation(value) {
+
+  if (!value) return null;
+
+  let donationDate;
+
+  if (typeof value.toDate === "function") {
+    donationDate = value.toDate();
+  } else if (
+    typeof value === "string" &&
+    /^\d{4}-\d{2}-\d{2}$/.test(value)
+  ) {
+    const [year, month, day] = value.split("-").map(Number);
+    donationDate = new Date(year, month - 1, day);
+  } else {
+    donationDate = new Date(value);
+  }
+
+  if (isNaN(donationDate.getTime())) return null;
+
+  const today = new Date();
+
+  const todayUTC = Date.UTC(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  const donationUTC = Date.UTC(
+    donationDate.getFullYear(),
+    donationDate.getMonth(),
+    donationDate.getDate()
+  );
+
+  return Math.floor(
+    (todayUTC - donationUTC) / (1000 * 60 * 60 * 24)
+  );
+}
+
+
+// ৯০ দিনের Eligibility ও Button Control
+function updateDonationEligibility() {
+
+  const button = document.getElementById("donatedToday");
+
+  if (!button || !donorData) return;
+
+  const lastDonation =
+    donorData.lastDonation || donorData.lastDonationDate;
+
+  const days = getDaysSinceDonation(lastDonation);
+
+  if (days === null || days < 0) {
+
+    button.disabled = true;
+    button.textContent = "🩸 Donation Date যাচাই প্রয়োজন";
+    button.style.opacity = "0.6";
+
+    return;
+  }
+
+  if (days < 90) {
+
+    const remaining = 90 - days;
+
+    button.disabled = true;
+
+    button.textContent =
+      `🩸 আরও ${remaining} দিন অপেক্ষা করুন`;
+
+    button.style.opacity = "0.6";
+
+  } else {
+
+    button.disabled = false;
+
+    button.textContent = "🩸 I Have Donated Today";
+
+    button.style.opacity = "1";
+
+  }
+
+}
+  
 
 // Donor Profile খুঁজে বের করা
 async function findDonor(user) {
@@ -956,6 +1055,9 @@ if (dob) {
   display("statBloodGroup", data.bloodGroup || data.blood);
   display("statDonations", data.totalDonations || 0);
 
+  updateDonationEligibility();
+}
+  
   // Edit Form-এ তথ্য বসানো
   document.getElementById("editName").value =
     data.name || data.fullName || "";
@@ -1103,6 +1205,127 @@ document.getElementById("editProfile").addEventListener("click", function() {
 });
 
 
+  // I Have Donated Today
+document.getElementById("donatedToday").addEventListener(
+  "click",
+  async function () {
+
+    if (!currentUser || !donorDocumentId || !donorData) {
+      showNotice("আপনার Donor Profile পাওয়া যায়নি।");
+      return;
+    }
+
+    const button = document.getElementById("donatedToday");
+
+    if (button.disabled) return;
+
+    const confirmed = confirm(
+      "আপনি কি আজ সত্যিই রক্তদান করেছেন?\n\nনিশ্চিত করলে আপনার Donation Date ও Total Donations আপডেট হবে।"
+    );
+
+    if (!confirmed) return;
+
+    button.disabled = true;
+    button.textContent = "Updating...";
+
+    const today = getLocalDateString();
+
+    const donorRef = doc(db, "donors", donorDocumentId);
+
+    // একই Donor-এর একই দিনের জন্য একটি History ID
+    const historyRef = doc(
+      db,
+      "donationHistory",
+      `${currentUser.uid}_${today}`
+    );
+
+    try {
+
+      await runTransaction(db, async (transaction) => {
+
+        const donorSnapshot = await transaction.get(donorRef);
+        const historySnapshot = await transaction.get(historyRef);
+
+        if (!donorSnapshot.exists()) {
+          throw new Error("Donor Profile পাওয়া যায়নি।");
+        }
+
+        if (historySnapshot.exists()) {
+          throw new Error("আজকের Donation ইতোমধ্যে সংরক্ষিত হয়েছে।");
+        }
+
+        const latestData = donorSnapshot.data();
+
+        if (
+          String(latestData.status || "").toLowerCase() !== "approved"
+        ) {
+          throw new Error("শুধু Approved Donor এই সুবিধা ব্যবহার করতে পারবেন।");
+        }
+
+        const previousDate =
+          latestData.lastDonation || latestData.lastDonationDate;
+
+        const passedDays = getDaysSinceDonation(previousDate);
+
+        if (passedDays === null || passedDays < 90) {
+          throw new Error("৯০ দিন পূর্ণ না হওয়ায় এখনো Update করা যাবে না।");
+        }
+
+        const totalDonations =
+          Number(latestData.totalDonations || 0) + 1;
+
+        transaction.update(donorRef, {
+          lastDonation: today,
+          totalDonations: totalDonations
+        });
+
+        transaction.set(historyRef, {
+          donorId: currentUser.uid,
+          donorDocumentId: donorDocumentId,
+          date: today,
+          location:
+            latestData.district ||
+            latestData.upazila ||
+            latestData.address ||
+            "",
+          status: "Completed",
+          createdAt: serverTimestamp()
+        });
+
+      });
+
+      // Dashboard-এর তথ্য Refresh
+      const refreshedDoc = await getDoc(donorRef);
+
+      donorData = refreshedDoc.data();
+
+      loadProfile(donorData, donorDocumentId, currentUser);
+
+      await loadDonationHistory(currentUser, donorDocumentId);
+
+      showNotice(
+        "আজকের রক্তদানের তথ্য সফলভাবে সংরক্ষিত হয়েছে! ✅",
+        true
+      );
+
+    } catch (error) {
+
+      console.error("Donation update error:", error);
+
+      showNotice(
+        error.message || "Donation Update করা যায়নি।"
+      );
+
+    } finally {
+
+      updateDonationEligibility();
+
+    }
+
+  }
+);
+
+  
 // Edit Cancel
 document.getElementById("cancelEdit").addEventListener("click", function() {
 
