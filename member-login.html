@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Member Login | Neuron Blood Foundation</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#e8f5ef,#f7fbf8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-card{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:32px 27px;
+    border-radius:16px;
+    box-shadow:0 12px 35px rgba(0,70,45,.12);
+}
+
+.brand{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#087653;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    font-weight:bold;
+    margin:0 auto 12px;
+}
+
+.brand h2{
+    color:#087653;
+    font-size:21px;
+}
+
+.brand p{
+    color:#718078;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.login-title{
+    text-align:center;
+    color:#263c32;
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#7a8981;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.field{
+    margin-bottom:17px;
+}
+
+.field label{
+    display:block;
+    color:#344b3e;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.field input{
+    width:100%;
+    padding:13px;
+    border:1px solid #dce7e0;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+}
+
+.field input:focus{
+    border-color:#087653;
+    box-shadow:0 0 0 3px rgba(8,118,83,.08);
+}
+
+.password-wrap{
+    position:relative;
+}
+
+.password-wrap input{
+    padding-right:65px;
+}
+
+.show-btn{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:none;
+    color:#087653;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin:5px 0 22px;
+    font-size:12px;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#56675d;
+}
+
+.forgot{
+    color:#087653;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    background:none;
+    font-size:12px;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    background:#087653;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+.message{
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.error{
+    color:#d62828;
+}
+
+.success{
+    color:#087653;
+}
+
+.links{
+    text-align:center;
+    margin-top:22px;
+    font-size:13px;
+    color:#69786f;
+    line-height:2;
+}
+
+.links a{
+    color:#087653;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.back-btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-top:20px;
+    border:1px solid #dce7e0;
+    border-radius:8px;
+    background:white;
+    color:#42564a;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.footer{
+    text-align:center;
+    color:#94a198;
+    font-size:11px;
+    margin-top:22px;
+}
+
+@media(max-width:400px){
+    .login-card{
+        padding:25px 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+    <div class="brand">
+        <div class="logo">N</div>
+        <h2>NEURON BLOOD FOUNDATION</h2>
+        <p>With youth; on the path of humanity</p>
+    </div>
+
+    <h2 class="login-title">Member Login</h2>
+
+    <p class="subtitle">
+        Login to access your member account
+    </p>
+
+    <form id="loginForm">
+
+        <div class="field">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="show-btn"
+                    id="showPassword"
+                >
+                    Show
+                </button>
+            </div>
+        </div>
+
+        <div class="options">
+
+            <label class="remember">
+                <input type="checkbox" id="rememberMe" checked>
+                Remember Me
+            </label>
+
+            <button
+                type="button"
+                class="forgot"
+                id="forgotPassword"
+            >
+                Forgot Password?
+            </button>
+
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+            Login
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </form>
+
+    <div class="links">
+        Not a member yet?
+        <a href="member-registration.html">Apply as Member</a>
+    </div>
+
+    <button type="button" class="back-btn" id="backBtn">
+        ← Back
+    </button>
+
+    <div class="footer">
+        © Neuron Blood Foundation
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBj65RM91KmaoARYOfSH1hs-6TY5Qo2SzA",
+    authDomain: "neuron-blood-foundation.firebaseapp.com",
+    projectId: "neuron-blood-foundation",
+    storageBucket: "neuron-blood-foundation.firebasestorage.app",
+    messagingSenderId: "160902995293",
+    appId: "1:160902995293:web:cb9a42dfa4b61d593e5cb4",
+    measurementId: "G-90P3HEZLPJ"
+};
+
+
+/* INITIALIZE */
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* ELEMENTS */
+
+const form = document.getElementById("loginForm");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const rememberMe = document.getElementById("rememberMe");
+const loginBtn = document.getElementById("loginBtn");
+const message = document.getElementById("message");
+
+
+/* MESSAGE */
+
+function showMessage(text,type){
+
+    message.textContent = text;
+    message.className = "message " + type;
+
+}
+
+
+/* SHOW / HIDE PASSWORD */
+
+document.getElementById("showPassword").onclick = function(){
+
+    if(passwordInput.type === "password"){
+
+        passwordInput.type = "text";
+        this.textContent = "Hide";
+
+    }else{
+
+        passwordInput.type = "password";
+        this.textContent = "Show";
+
+    }
+
+};
+
+
+/* BACK BUTTON */
+
+document.getElementById("backBtn").onclick = function(){
+
+    if(window.history.length > 1){
+        window.history.back();
+    }else{
+        window.location.href = "index.html";
+    }
+
+};
+
+
+/* FORGOT PASSWORD */
+
+document.getElementById("forgotPassword").onclick = async function(){
+
+    const email = emailInput.value.trim();
+
+    if(!email){
+
+        showMessage(
+            "Please enter your registered email address first.",
+            "error"
+        );
+
+        emailInput.focus();
+        return;
+
+    }
+
+    this.disabled = true;
+    showMessage("Sending password reset email...", "success");
+
+    try{
+
+        await sendPasswordResetEmail(auth,email);
+
+        showMessage(
+            "Password reset email sent. Please check your inbox.",
+            "success"
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "Unable to send reset email. Please check your email address.",
+            "error"
+        );
+
+    }
+
+    this.disabled = false;
+
+};
+
+
+/* MEMBER LOGIN */
+
+form.addEventListener("submit",async function(e){
+
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if(!email || !password){
+
+        showMessage("Please enter Email and Password.","error");
+        return;
+
+    }
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Logging in...";
+
+    showMessage("Please wait...","success");
+
+    let signedInUser = null;
+
+    try{
+
+        /* REMEMBER ME */
+
+        await setPersistence(
+            auth,
+            rememberMe.checked
+                ? browserLocalPersistence
+                : browserSessionPersistence
+        );
+
+
+        /* FIREBASE LOGIN */
+
+        const result = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        signedInUser = result.user;
+
+
+        /* FIND MEMBER BY UID */
+
+        const memberQuery = query(
+            collection(db,"members"),
+            where("uid","==",signedInUser.uid)
+        );
+
+        const memberSnapshot = await getDocs(memberQuery);
+
+
+        if(memberSnapshot.empty){
+
+            await signOut(auth);
+
+            showMessage(
+                "No approved member profile found for this account.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        let approvedMember = false;
+
+        memberSnapshot.forEach(memberDoc=>{
+
+            const data = memberDoc.data();
+
+            if(data.status === "Approved"){
+                approvedMember = true;
+            }
+
+        });
+
+
+        if(!approvedMember){
+
+            await signOut(auth);
+
+            showMessage(
+                "Your member account is not approved yet.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* LOGIN SUCCESS */
+
+        showMessage("Login successful! Redirecting...","success");
+
+        window.location.href = "member-profile.html";
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        if(signedInUser && auth.currentUser){
+
+            try{
+                await signOut(auth);
+            }catch(signOutError){
+                console.error(signOutError);
+            }
+
+        }
+
+        showMessage(
+            "Login failed. Please check your email and password or try again.",
+            "error"
+        );
+
+    }
+    finally{
+
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Login";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
