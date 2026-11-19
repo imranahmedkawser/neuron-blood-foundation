@@ -11,12 +11,9 @@
 :root{
     --green:#087653;
     --dark:#064b37;
-    --deep:#033b2c;
     --text:#263b32;
     --muted:#78877f;
     --border:#dce7e0;
-    --red:#c93636;
-    --gold:#c69a42;
 }
 
 *{
@@ -28,152 +25,101 @@
 
 body{
     min-height:100vh;
-    background:#f3f7f4;
     display:flex;
-    justify-content:center;
     align-items:center;
-    padding:25px 16px;
+    justify-content:center;
+    padding:25px 15px;
     color:var(--text);
-}
-
-/* PAGE */
-
-.page-wrapper{
-    width:100%;
-    max-width:1050px;
-    min-height:590px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    background:white;
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 15px 45px rgba(4,65,45,.10);
-    border:1px solid #e4ece6;
-}
-
-/* LEFT BRAND PANEL */
-
-.brand-panel{
-    background:linear-gradient(145deg,#064b37,#087653);
-    color:white;
-    padding:55px 42px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    background:
+        radial-gradient(circle at 10% 15%,#dcefe3 0,transparent 28%),
+        radial-gradient(circle at 90% 85%,#d9eee2 0,transparent 30%),
+        #f1f7f3;
     position:relative;
-    overflow:hidden;
 }
 
-.brand-panel::before{
+/* OPTIONAL BACKGROUND IMAGE
+   Put your image in the same folder and name it login-bg.jpg
+   Adjust opacity to make it lighter or darker.
+*/
+
+body::before{
     content:"";
-    position:absolute;
-    width:330px;
-    height:330px;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:50%;
-    right:-170px;
-    top:-120px;
+    position:fixed;
+    inset:0;
+    background-image:url("login-bg.jpg");
+    background-size:cover;
+    background-position:center;
+    opacity:.12;
+    pointer-events:none;
+    z-index:0;
 }
 
-.brand-panel::after{
-    content:"";
-    position:absolute;
-    width:260px;
-    height:260px;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:50%;
-    left:-150px;
-    bottom:-120px;
-}
+/* MAIN LOGIN CARD */
 
-.brand-content,
-.brand-bottom{
+.login-card{
     position:relative;
     z-index:1;
+    width:100%;
+    max-width:455px;
+    background:#fff;
+    border:1px solid #e3ece6;
+    border-radius:15px;
+    padding:38px 38px 27px;
+    box-shadow:0 12px 38px rgba(15,75,49,.12);
+}
+
+/* BRAND */
+
+.brand{
+    text-align:center;
+    margin-bottom:30px;
 }
 
 .brand-logo{
-    width:65px;
-    height:65px;
-    border:2px solid rgba(255,255,255,.75);
+    width:58px;
+    height:58px;
+    margin:0 auto 12px;
     border-radius:14px;
+    background:var(--green);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:30px;
+    font-size:29px;
     font-weight:800;
-    margin-bottom:25px;
-    background:rgba(255,255,255,.10);
 }
 
 .brand-name{
-    font-size:23px;
-    line-height:1.35;
+    color:var(--dark);
+    font-size:17px;
     font-weight:800;
     letter-spacing:.5px;
-    margin-bottom:12px;
 }
 
 .brand-tagline{
-    font-size:13px;
-    color:#d6eee2;
-    line-height:1.7;
-}
-
-.brand-divider{
-    width:55px;
-    height:3px;
-    background:var(--gold);
-    margin:27px 0;
-    border-radius:5px;
-}
-
-.brand-heading{
-    font-size:27px;
-    line-height:1.35;
-    margin-bottom:12px;
-}
-
-.brand-description{
-    color:#d7e9df;
-    font-size:13px;
-    line-height:1.8;
-    max-width:340px;
-}
-
-.brand-bottom{
-    color:#c5dfd1;
+    margin-top:6px;
     font-size:11px;
-    line-height:1.7;
+    color:var(--muted);
 }
 
-/* RIGHT LOGIN PANEL */
-
-.login-panel{
-    padding:55px 48px 35px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
+/* HEADING */
 
 .form-heading{
-    margin-bottom:32px;
+    margin-bottom:25px;
 }
 
-.form-heading .small-title{
+.small-title{
     color:var(--green);
     font-size:11px;
     font-weight:800;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    margin-bottom:12px;
+    letter-spacing:1.4px;
+    margin-bottom:9px;
 }
 
 .form-heading h1{
-    font-size:29px;
     color:var(--dark);
-    margin-bottom:10px;
-    font-weight:800;
+    font-size:27px;
+    margin-bottom:9px;
 }
 
 .form-heading p{
@@ -185,15 +131,15 @@ body{
 /* INPUTS */
 
 .field{
-    margin-bottom:21px;
+    margin-bottom:19px;
 }
 
 .field label{
     display:block;
     font-size:13px;
     font-weight:700;
+    margin-bottom:8px;
     color:#344b3e;
-    margin-bottom:9px;
 }
 
 .input-wrap{
@@ -205,17 +151,17 @@ body{
     height:49px;
     border:1px solid var(--border);
     border-radius:8px;
-    background:#fff;
     padding:0 14px;
     outline:none;
     font-size:14px;
     color:var(--text);
+    background:#fff;
     transition:.2s;
 }
 
 .field input:focus{
     border-color:var(--green);
-    box-shadow:0 0 0 3px rgba(8,118,83,.08);
+    box-shadow:0 0 0 3px rgba(8,118,83,.09);
 }
 
 .field input::placeholder{
@@ -223,27 +169,20 @@ body{
 }
 
 .password-input{
-    padding-right:50px !important;
+    padding-right:48px !important;
 }
 
 .eye-btn{
     position:absolute;
-    right:12px;
+    right:10px;
     top:50%;
     transform:translateY(-50%);
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
     border:0;
     background:transparent;
-    color:#72847a;
+    color:#718278;
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.eye-btn:hover{
-    color:var(--green);
 }
 
 .eye-btn svg{
@@ -257,7 +196,7 @@ body{
     display:flex;
     justify-content:flex-end;
     margin-top:-7px;
-    margin-bottom:24px;
+    margin-bottom:22px;
 }
 
 .forgot-btn{
@@ -267,11 +206,9 @@ body{
     font-size:12px;
     font-weight:700;
     cursor:pointer;
-    padding:4px 0;
 }
 
 .forgot-btn:hover{
-    color:var(--deep);
     text-decoration:underline;
 }
 
@@ -279,28 +216,24 @@ body{
 
 .login-btn{
     width:100%;
-    min-height:50px;
+    min-height:49px;
     border:0;
     border-radius:8px;
     background:var(--green);
     color:white;
     font-size:14px;
     font-weight:800;
-    letter-spacing:.4px;
     cursor:pointer;
     transition:.2s;
-    box-shadow:0 5px 13px rgba(8,118,83,.16);
 }
 
 .login-btn:hover{
-    background:var(--deep);
-    transform:translateY(-1px);
+    background:var(--dark);
 }
 
 .login-btn:disabled{
     opacity:.65;
     cursor:not-allowed;
-    transform:none;
 }
 
 /* LOADING */
@@ -321,16 +254,15 @@ body{
     to{transform:rotate(360deg);}
 }
 
-/* MESSAGE INSIDE FORM */
+/* MESSAGE */
 
 .message{
     display:none;
-    margin-top:15px;
-    padding:12px;
+    margin-top:14px;
+    padding:11px;
     border-radius:7px;
     font-size:12px;
     line-height:1.6;
-    text-align:left;
 }
 
 .message.error{
@@ -350,16 +282,15 @@ body{
 /* APPLY LINK */
 
 .apply-box{
-    margin-top:28px;
-    padding-top:21px;
+    margin-top:25px;
+    padding-top:19px;
     border-top:1px solid #edf1ed;
     text-align:center;
     font-size:12px;
-    color:#78877f;
+    color:var(--muted);
 }
 
 .apply-link{
-    display:inline-block;
     margin-left:4px;
     color:var(--green);
     font-weight:800;
@@ -374,8 +305,8 @@ body{
 
 .back-btn{
     width:100%;
-    height:43px;
-    margin-top:15px;
+    height:42px;
+    margin-top:14px;
     border:1px solid #cbdcd1;
     border-radius:8px;
     background:#fff;
@@ -389,7 +320,6 @@ body{
 .back-btn:hover{
     background:#edf6f0;
     border-color:var(--green);
-    color:var(--green);
 }
 
 .back-btn:disabled{
@@ -400,78 +330,50 @@ body{
 /* FOOTER */
 
 .footer{
-    margin-top:25px;
+    margin-top:23px;
     text-align:center;
     font-size:10px;
     line-height:1.8;
     color:#9aa69e;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
-@media(max-width:750px){
+@media(max-width:480px){
 
     body{
         padding:18px 13px;
-        align-items:center;
     }
 
-    .page-wrapper{
-        max-width:470px;
-        min-height:auto;
-        grid-template-columns:1fr;
+    .login-card{
+        padding:29px 22px 23px;
+        border-radius:13px;
     }
 
-    .brand-panel{
-        padding:25px 25px 22px;
-        min-height:auto;
-    }
-
-    .brand-logo{
-        width:48px;
-        height:48px;
-        font-size:23px;
-        margin-bottom:13px;
-    }
-
-    .brand-name{
-        font-size:17px;
-        margin-bottom:5px;
-    }
-
-    .brand-tagline{
-        font-size:11px;
-    }
-
-    .brand-divider,
-    .brand-heading,
-    .brand-description,
-    .brand-bottom{
-        display:none;
-    }
-
-    .login-panel{
-        padding:30px 25px 25px;
-    }
-
-    .form-heading{
+    .brand{
         margin-bottom:25px;
     }
 
-    .form-heading h1{
+    .brand-logo{
+        width:51px;
+        height:51px;
         font-size:25px;
+    }
+
+    .brand-name{
+        font-size:15px;
+    }
+
+    .form-heading h1{
+        font-size:24px;
     }
 
 }
 
-@media(max-width:360px){
+@media(max-width:340px){
 
-    .login-panel{
-        padding:25px 18px 22px;
-    }
-
-    .brand-panel{
-        padding:22px 18px;
+    .login-card{
+        padding:25px 17px 20px;
     }
 
 }
@@ -480,192 +382,168 @@ body{
 
 <body>
 
-<div class="page-wrapper">
+<main class="login-card">
 
-    <!-- LEFT BRAND PANEL -->
+    <!-- BRAND -->
 
-    <section class="brand-panel">
+    <div class="brand">
 
-        <div class="brand-content">
+        <div class="brand-logo">NBF</div>
 
-            <div class="brand-logo">N</div>
-
-            <div class="brand-name">
-                NEURON BLOOD FOUNDATION
-            </div>
-
-            <p class="brand-tagline">
-                With youth; on the path of humanity
-            </p>
-
-            <div class="brand-divider"></div>
-
-            <h2 class="brand-heading">
-                Together, We Make a Difference.
-            </h2>
-
-            <p class="brand-description">
-                A community built on humanity, compassion
-                and the spirit of voluntary blood donation.
-                Your contribution can help save lives.
-            </p>
-
+        <div class="brand-name">
+            NEURON BLOOD FOUNDATION
         </div>
 
-        <div class="brand-bottom">
-            © Neuron Blood Foundation
-            <br>
-            Humanity • Unity • Service
-        </div>
+        <p class="brand-tagline">
+            With youth; on the path of humanity
+        </p>
 
-    </section>
+    </div>
 
 
-    <!-- RIGHT LOGIN PANEL -->
+    <!-- LOGIN HEADING -->
 
-    <section class="login-panel">
+    <div class="form-heading">
 
-        <div class="form-heading">
+        <div class="small-title">MEMBER PORTAL</div>
 
-            <div class="small-title">
-                MEMBER PORTAL
-            </div>
+        <h1>Member Login</h1>
 
-            <h1>Member Login</h1>
+        <p>
+            Enter your registered email and password
+            to access your member account.
+        </p>
 
-            <p>
-                Enter your registered email and password
-                to access your member account.
-            </p>
+    </div>
+
+
+    <!-- LOGIN FORM -->
+
+    <form id="loginForm">
+
+        <div class="field">
+
+            <label for="email">Email Address</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                autocomplete="username"
+                required
+            >
 
         </div>
 
 
-        <form id="loginForm">
+        <div class="field">
 
-            <div class="field">
+            <label for="password">Password</label>
 
-                <label for="email">Email Address</label>
+            <div class="input-wrap">
 
-                <div class="input-wrap">
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email address"
-                        autocomplete="username"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="password">Password</label>
-
-                <div class="input-wrap">
-
-                    <input
-                        type="password"
-                        id="password"
-                        class="password-input"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="eye-btn"
-                        id="showPassword"
-                        aria-label="Show password"
-                        title="Show password"
-                    >
-
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="2"
-                             stroke-linecap="round"
-                             stroke-linejoin="round">
-
-                            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
-                            <circle cx="12" cy="12" r="3"/>
-
-                        </svg>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="forgot-row">
+                <input
+                    type="password"
+                    id="password"
+                    class="password-input"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
 
                 <button
                     type="button"
-                    class="forgot-btn"
-                    id="forgotPassword"
+                    class="eye-btn"
+                    id="showPassword"
+                    aria-label="Show password"
+                    title="Show password"
                 >
-                    Forgot Password?
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+
+                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+                        <circle cx="12" cy="12" r="3"/>
+
+                    </svg>
+
                 </button>
 
             </div>
 
+        </div>
+
+
+        <div class="forgot-row">
 
             <button
-                type="submit"
-                class="login-btn"
-                id="loginBtn"
+                type="button"
+                class="forgot-btn"
+                id="forgotPassword"
             >
-                LOGIN TO MY ACCOUNT
+                Forgot Password?
             </button>
-
-
-            <!-- ERROR / SUCCESS MESSAGE -->
-
-            <div id="message" class="message"></div>
-
-        </form>
-
-
-        <div class="apply-box">
-
-            Not a member yet?
-
-            <a
-                href="member-registration.html"
-                class="apply-link"
-            >
-                Apply as Member
-            </a>
 
         </div>
 
 
         <button
-            type="button"
-            class="back-btn"
-            id="backBtn"
+            type="submit"
+            class="login-btn"
+            id="loginBtn"
         >
-            ← Back
+            LOGIN 
         </button>
 
 
-        <div class="footer">
-            Neuron Blood Foundation
-            <br>
-            With youth; on the path of humanity
-        </div>
+        <div id="message" class="message"></div>
 
-    </section>
+    </form>
 
-</div>
+
+    <!-- APPLY -->
+
+    <div class="apply-box">
+
+        Not a member yet?
+
+        <a
+            href="member-registration.html"
+            class="apply-link"
+        >
+            Sign Up
+        </a>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <button
+        type="button"
+        class="back-btn"
+        id="backBtn"
+    >
+        ← Back
+    </button>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Neuron Blood Foundation
+        <br>
+        With youth; on the path of humanity
+
+    </div>
+
+</main>
 
 
 <script type="module">
@@ -752,7 +630,6 @@ window.addEventListener("pageshow",function(event){
     if(event.persisted){
 
         freshSessionReady = signOut(auth);
-
         clearMessage();
 
     }
@@ -917,11 +794,7 @@ form.addEventListener("submit",async function(e){
 
     try{
 
-        /* WAIT FOR FRESH SESSION */
-
         await freshSessionReady;
-
-        /* SESSION-ONLY LOGIN */
 
         await setPersistence(
             auth,
@@ -953,7 +826,6 @@ form.addEventListener("submit",async function(e){
         if(memberSnapshot.empty){
 
             await signOut(auth);
-
             signedInUser = null;
 
             showMessage(
@@ -975,9 +847,7 @@ form.addEventListener("submit",async function(e){
             const data = memberDoc.data();
 
             if(data.status === "Approved"){
-
                 approvedMember = true;
-
             }
 
         });
@@ -986,7 +856,6 @@ form.addEventListener("submit",async function(e){
         if(!approvedMember){
 
             await signOut(auth);
-
             signedInUser = null;
 
             showMessage(
@@ -1016,13 +885,9 @@ form.addEventListener("submit",async function(e){
         if(auth.currentUser){
 
             try{
-
                 await signOut(auth);
-
             }catch(signOutError){
-
                 console.error(signOutError);
-
             }
 
         }
@@ -1031,17 +896,13 @@ form.addEventListener("submit",async function(e){
             "Login failed. Please check your email and password.";
 
         if(error.code === "auth/too-many-requests"){
-
             errorText =
                 "Too many attempts. Please try again later.";
-
         }
 
         if(error.code === "auth/network-request-failed"){
-
             errorText =
                 "Network error. Please check your internet connection.";
-
         }
 
         showMessage(errorText,"error");
@@ -1050,7 +911,6 @@ form.addEventListener("submit",async function(e){
     finally{
 
         loginBtn.disabled = false;
-
         loginBtn.textContent = "LOGIN TO MY ACCOUNT";
 
     }
