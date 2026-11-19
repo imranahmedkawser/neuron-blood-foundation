@@ -13,7 +13,8 @@
     --dark:#064b37;
     --text:#263b32;
     --muted:#78877f;
-    --border:#dce7e0;
+    --border:#b9cbbf;
+    --light:#f2f8f4;
 }
 
 *{
@@ -26,21 +27,15 @@
 body{
     min-height:100vh;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     padding:25px 15px;
     color:var(--text);
-    background:
-        radial-gradient(circle at 10% 15%,#dcefe3 0,transparent 28%),
-        radial-gradient(circle at 90% 85%,#d9eee2 0,transparent 30%),
-        #f1f7f3;
+    background:#f1f7f3;
     position:relative;
 }
 
-/* OPTIONAL BACKGROUND IMAGE
-   Put your image in the same folder and name it login-bg.jpg
-   Adjust opacity to make it lighter or darker.
-*/
+/* BACKGROUND IMAGE */
 
 body::before{
     content:"";
@@ -49,96 +44,98 @@ body::before{
     background-image:url("login-bg.jpg");
     background-size:cover;
     background-position:center;
-    opacity:.12;
+    opacity:.10;
     pointer-events:none;
     z-index:0;
 }
 
-/* MAIN LOGIN CARD */
+/* LOGIN CARD */
 
 .login-card{
     position:relative;
     z-index:1;
     width:100%;
-    max-width:455px;
+    max-width:430px;
     background:#fff;
-    border:1px solid #e3ece6;
-    border-radius:15px;
-    padding:38px 38px 27px;
-    box-shadow:0 12px 38px rgba(15,75,49,.12);
+    border:1.5px solid #c6d8cc;
+    border-radius:13px;
+    padding:30px 30px 23px;
+    box-shadow:0 8px 25px rgba(20,75,48,.12);
 }
 
 /* BRAND */
 
 .brand{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom:27px;
 }
 
 .brand-logo{
-    width:58px;
-    height:58px;
-    margin:0 auto 12px;
-    border-radius:14px;
-    background:var(--green);
-    color:white;
+    width:55px;
+    height:55px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    background:#e7f4eb;
+    color:var(--green);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:29px;
+    font-size:27px;
     font-weight:800;
+    border:1px solid #c9e3d1;
 }
 
 .brand-name{
-    color:var(--dark);
+    color:var(--green);
     font-size:17px;
     font-weight:800;
-    letter-spacing:.5px;
+    letter-spacing:.3px;
 }
 
 .brand-tagline{
     margin-top:6px;
     font-size:11px;
-    color:var(--muted);
+    color:#7c8981;
 }
 
 /* HEADING */
 
 .form-heading{
-    margin-bottom:25px;
+    text-align:center;
+    margin-bottom:24px;
 }
 
 .small-title{
     color:var(--green);
     font-size:11px;
     font-weight:800;
-    letter-spacing:1.4px;
-    margin-bottom:9px;
+    letter-spacing:1.3px;
+    margin-bottom:7px;
 }
 
 .form-heading h1{
     color:var(--dark);
-    font-size:27px;
-    margin-bottom:9px;
+    font-size:25px;
+    margin-bottom:8px;
 }
 
 .form-heading p{
     color:var(--muted);
-    font-size:13px;
+    font-size:12px;
     line-height:1.7;
 }
 
 /* INPUTS */
 
 .field{
-    margin-bottom:19px;
+    margin-bottom:17px;
 }
 
 .field label{
     display:block;
     font-size:13px;
     font-weight:700;
-    margin-bottom:8px;
+    margin-bottom:7px;
     color:#344b3e;
 }
 
@@ -148,12 +145,12 @@ body::before{
 
 .field input{
     width:100%;
-    height:49px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:0 14px;
+    height:46px;
+    border:1.5px solid var(--border);
+    border-radius:7px;
+    padding:0 13px;
     outline:none;
-    font-size:14px;
+    font-size:13px;
     color:var(--text);
     background:#fff;
     transition:.2s;
@@ -161,20 +158,20 @@ body::before{
 
 .field input:focus{
     border-color:var(--green);
-    box-shadow:0 0 0 3px rgba(8,118,83,.09);
+    box-shadow:0 0 0 2px rgba(8,118,83,.10);
 }
 
 .field input::placeholder{
-    color:#a4afa8;
+    color:#9ba79f;
 }
 
 .password-input{
-    padding-right:48px !important;
+    padding-right:45px !important;
 }
 
 .eye-btn{
     position:absolute;
-    right:10px;
+    right:8px;
     top:50%;
     transform:translateY(-50%);
     width:32px;
@@ -183,11 +180,14 @@ body::before{
     background:transparent;
     color:#718278;
     cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .eye-btn svg{
-    width:21px;
-    height:21px;
+    width:20px;
+    height:20px;
 }
 
 /* FORGOT PASSWORD */
@@ -195,15 +195,15 @@ body::before{
 .forgot-row{
     display:flex;
     justify-content:flex-end;
-    margin-top:-7px;
-    margin-bottom:22px;
+    margin-top:-5px;
+    margin-bottom:20px;
 }
 
 .forgot-btn{
     border:0;
     background:none;
     color:var(--green);
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
     cursor:pointer;
 }
@@ -216,9 +216,9 @@ body::before{
 
 .login-btn{
     width:100%;
-    min-height:49px;
-    border:0;
-    border-radius:8px;
+    min-height:46px;
+    border:1px solid #056344;
+    border-radius:7px;
     background:var(--green);
     color:white;
     font-size:14px;
@@ -240,14 +240,14 @@ body::before{
 
 .spinner{
     display:inline-block;
-    width:15px;
-    height:15px;
+    width:14px;
+    height:14px;
     border:2px solid rgba(255,255,255,.35);
     border-top-color:white;
     border-radius:50%;
     animation:spin .7s linear infinite;
     vertical-align:middle;
-    margin-right:8px;
+    margin-right:7px;
 }
 
 @keyframes spin{
@@ -258,7 +258,7 @@ body::before{
 
 .message{
     display:none;
-    margin-top:14px;
+    margin-top:13px;
     padding:11px;
     border-radius:7px;
     font-size:12px;
@@ -267,31 +267,32 @@ body::before{
 
 .message.error{
     display:block;
-    color:#b52c2c;
+    color:#a92b2b;
     background:#fff1f1;
-    border:1px solid #f3d0d0;
+    border:1px solid #e9bebe;
 }
 
 .message.success{
     display:block;
     color:#087653;
     background:#edf8f1;
-    border:1px solid #cce8d6;
+    border:1px solid #b9dfc6;
 }
 
 /* APPLY LINK */
 
 .apply-box{
-    margin-top:25px;
-    padding-top:19px;
-    border-top:1px solid #edf1ed;
+    margin-top:22px;
+    padding-top:17px;
+    border-top:1px solid #e0e9e3;
     text-align:center;
     font-size:12px;
     color:var(--muted);
 }
 
 .apply-link{
-    margin-left:4px;
+    display:inline-block;
+    margin-top:7px;
     color:var(--green);
     font-weight:800;
     text-decoration:none;
@@ -305,16 +306,15 @@ body::before{
 
 .back-btn{
     width:100%;
-    height:42px;
-    margin-top:14px;
-    border:1px solid #cbdcd1;
-    border-radius:8px;
+    height:40px;
+    margin-top:13px;
+    border:1.5px solid #b9cbbf;
+    border-radius:7px;
     background:#fff;
     color:#3c5948;
-    font-size:13px;
+    font-size:12px;
     font-weight:700;
     cursor:pointer;
-    transition:.2s;
 }
 
 .back-btn:hover{
@@ -330,7 +330,7 @@ body::before{
 /* FOOTER */
 
 .footer{
-    margin-top:23px;
+    margin-top:20px;
     text-align:center;
     font-size:10px;
     line-height:1.8;
@@ -346,18 +346,18 @@ body::before{
     }
 
     .login-card{
-        padding:29px 22px 23px;
-        border-radius:13px;
+        max-width:380px;
+        padding:25px 21px 20px;
     }
 
     .brand{
-        margin-bottom:25px;
+        margin-bottom:23px;
     }
 
     .brand-logo{
-        width:51px;
-        height:51px;
-        font-size:25px;
+        width:49px;
+        height:49px;
+        font-size:24px;
     }
 
     .brand-name{
@@ -365,15 +365,14 @@ body::before{
     }
 
     .form-heading h1{
-        font-size:24px;
+        font-size:23px;
     }
-
 }
 
 @media(max-width:340px){
 
     .login-card{
-        padding:25px 17px 20px;
+        padding:22px 16px 18px;
     }
 
 }
@@ -388,7 +387,7 @@ body::before{
 
     <div class="brand">
 
-        <div class="brand-logo">NBF</div>
+        <div class="brand-logo">N</div>
 
         <div class="brand-name">
             NEURON BLOOD FOUNDATION
@@ -401,7 +400,7 @@ body::before{
     </div>
 
 
-    <!-- LOGIN HEADING -->
+    <!-- HEADING -->
 
     <div class="form-heading">
 
@@ -410,8 +409,9 @@ body::before{
         <h1>Member Login</h1>
 
         <p>
-            Enter your registered email and password
-            to access your member account.
+            Welcome back!
+            <br>
+            Login to access your member profile.
         </p>
 
     </div>
@@ -497,7 +497,7 @@ body::before{
             class="login-btn"
             id="loginBtn"
         >
-            LOGIN 
+            LOGIN
         </button>
 
 
@@ -512,11 +512,13 @@ body::before{
 
         Not a member yet?
 
+        <br>
+
         <a
             href="member-registration.html"
             class="apply-link"
         >
-            Sign Up
+            Apply as Member
         </a>
 
     </div>
@@ -537,7 +539,7 @@ body::before{
 
     <div class="footer">
 
-        Neuron Blood Foundation
+        © Neuron Blood Foundation
         <br>
         With youth; on the path of humanity
 
@@ -790,11 +792,13 @@ form.addEventListener("submit",async function(e){
 
     clearMessage();
 
-    let signedInUser = null;
-
     try{
 
+        /* WAIT FOR FRESH SESSION */
+
         await freshSessionReady;
+
+        /* SESSION-ONLY LOGIN */
 
         await setPersistence(
             auth,
@@ -810,10 +814,10 @@ form.addEventListener("submit",async function(e){
             password
         );
 
-        signedInUser = result.user;
+        const signedInUser = result.user;
 
 
-        /* FIND MEMBER USING UID */
+        /* FIND APPROVED MEMBER USING UID */
 
         const memberQuery = query(
             collection(db,"members"),
@@ -821,24 +825,6 @@ form.addEventListener("submit",async function(e){
         );
 
         const memberSnapshot = await getDocs(memberQuery);
-
-
-        if(memberSnapshot.empty){
-
-            await signOut(auth);
-            signedInUser = null;
-
-            showMessage(
-                "No approved member profile was found for this account.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* CHECK APPROVAL STATUS */
 
         let approvedMember = false;
 
@@ -853,29 +839,54 @@ form.addEventListener("submit",async function(e){
         });
 
 
-        if(!approvedMember){
-
-            await signOut(auth);
-            signedInUser = null;
+        if(approvedMember){
 
             showMessage(
-                "Your membership application is not approved yet.",
-                "error"
+                "Login successful! Opening your profile...",
+                "success"
             );
 
+            window.location.replace("member-profile.html");
             return;
 
         }
 
 
-        /* LOGIN SUCCESS */
+        /* CHECK APPLICATION STATUS */
 
-        showMessage(
-            "Login successful! Opening your profile...",
-            "success"
+        const applicationQuery = query(
+            collection(db,"memberApplications"),
+            where("uid","==",signedInUser.uid)
         );
 
-        window.location.replace("member-profile.html");
+        const applicationSnapshot = await getDocs(applicationQuery);
+
+        let statusMessage =
+            "No approved member profile was found for this account. Please contact the Foundation.";
+
+        applicationSnapshot.forEach(applicationDoc=>{
+
+            const data = applicationDoc.data();
+
+            if(data.status === "Pending"){
+
+                statusMessage =
+                    "Your membership application is still pending approval.";
+
+            }
+            else if(data.status === "Rejected"){
+
+                statusMessage =
+                    "Your membership application was not approved. Please contact the Foundation.";
+
+            }
+
+        });
+
+
+        await signOut(auth);
+
+        showMessage(statusMessage,"error");
 
     }
     catch(error){
@@ -896,13 +907,17 @@ form.addEventListener("submit",async function(e){
             "Login failed. Please check your email and password.";
 
         if(error.code === "auth/too-many-requests"){
+
             errorText =
                 "Too many attempts. Please try again later.";
+
         }
 
         if(error.code === "auth/network-request-failed"){
+
             errorText =
                 "Network error. Please check your internet connection.";
+
         }
 
         showMessage(errorText,"error");
@@ -911,7 +926,7 @@ form.addEventListener("submit",async function(e){
     finally{
 
         loginBtn.disabled = false;
-        loginBtn.textContent = "LOGIN TO MY ACCOUNT";
+        loginBtn.textContent = "LOGIN";
 
     }
 
